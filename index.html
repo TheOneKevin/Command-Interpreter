@@ -19,8 +19,8 @@
   <body>
     <header>
       <div class="inner">
-        <h1>Command-Interpreter</h1>
-        <h2>Program command blocks.</h2>
+        <h1>Command Interpreter</h1>
+        <h2>Program command blocks like you do with any other (C) language.</h2>
         <a href="https://github.com/TheCool1James/Command-Interpreter" class="button"><small>View project on</small> GitHub</a>
       </div>
     </header>
@@ -39,14 +39,49 @@
 <h2>
 <a id="the-ilanguage" class="anchor" href="#the-ilanguage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The ILanguage</h2>
 
-<p>BASICS
-'''C#
-var h;
-main()
-{</p>
+<p>
+<h3><b>THE BASICS:</b></h3> <br />
+Firstly, you need to familiarize yourself with <b>objects</b>. An abstract object is like a real object without the specific details.
+Let's take a Minecraft player for instance. An abstract player would have the attributes like Name, UUID, Health, Skin, Hunger, XP, PermissionLevel. Notice how the attributes
+doesn't have any values assigned to it. Now, when a real player is created (an instance), values would be assigned to each attribute, like Name -> "TheCool1James", UUID -> 19DSEWFDF...., etc. Programmers
+use abstract objects to create real objects. Wrapped your head around that? Well, let's move on to inheritance. So, let's say you have a abstract entity, with attributes like Health, Hunger etc. Now, we create
+a player, inheriting the abstract entity. So, we give the players specific attributes like Skin, Username, etc. Since the player inherits the entity object, it will also have all the attributes of an entity.
+<br />Still alive? Great! Let's get coding. <br />
+So, we first need to define a target entity/player by creating a player object. <br />
+<code>aPlayer player;</code><br />
+Now, we need to assign values to the player:<br />
+<code>player.x = 1 <br />
+player.y = 1<br />
+player.z = 1<br /></code>
+Great! Now, we need to do something to the player.... let's kill it! So:<br />
+<code>player.kill()</code><br />
+We have officially murdered an innocent player at coordinates (1, 1, 1)! Be proud.<br />
+Oh, and for all you curious people, this is how the interpreted minecraft command looks: <br />
+<code>/kill @a[x=1, y=1, z=1]</code> <br />
+If you want a different selector, say <code>@p</code>, just change the object from <code>aPlayer</code> to <code>pPlayer</code>.
+For <code>@r</code>, its <code>rPlayer</code>. And for <code>@e</code> its <code>aEntity</code>.<br />
+To comment, simple put // at the start of the comment. The comment will last until the EOL marker, kinda like assembly code now that I think about it :) <br />
+<code>This is code. //This is comment. The interpreter will ignore anything here.</code><br />
+<b>One last thing:</b> Make sure each statement is a new line. If they are not, they are considered to be the same statement.<br />
+<h3><b>DECLARE VARIABLES, NOT WAR.</b></h3><br />
+To declare a variable is simple.<br />
+<code>[type] [name] = [value]</code><br />
+Where [type] can be: <code>int or string</code>, [name] can be whatever your heart desires, and [value] must be of [type]. Example:<br />
+<code>int fooBar = 1</code><br />
+<b>Worth Noting:</b> You canot put [player/entity object].x, y or z for the values of the integer variables :(<br />
+<h3><b>WHILE AND IF STATEMENTS</b></h3><br />
+The title probably speaks for itself. This section is dedicated to the WHILE IF statements. Let's start with the if statement. Usage:<br />
+<code>if(<i>condition</i>){<br />
+	<i>code here</i> <br />
+}</code><br />
+Where <i>condition</i> is the condition that must be true for the stuff inside of the IF to be executed. Simple right? Yeah. <br />
+Now, WHILE statements is just a repeating IF statements. So:<br />
+<code>while(<i>condition</i>){<br />
+	<i>code here</i> <br />
+}</code><br />
+So, while the condition is true, the code inside of the curly brackets will be executed. If its false, then the loop will be terminated.<br />
 
-<p>}
-'''</p>
+</p>
         </section>
 
         <aside id="sidebar">
