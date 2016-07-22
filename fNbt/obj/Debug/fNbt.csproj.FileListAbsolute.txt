@@ -1,0 +1,6 @@
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\bin\Debug\fNbt.xml
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\bin\Debug\fNbt.dll
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\bin\Debug\fNbt.pdb
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\fNbt\obj\Debug\fNbt.csprojResolveAssemblyReference.cache
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\fNbt\obj\Debug\fNbt.dll
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\fNbt\obj\Debug\fNbt.pdb

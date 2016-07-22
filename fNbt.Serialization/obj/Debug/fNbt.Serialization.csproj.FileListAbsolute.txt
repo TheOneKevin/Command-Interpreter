@@ -1,0 +1,5 @@
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\bin\Debug\fNbt.Serialization.dll
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\bin\Debug\fNbt.Serialization.pdb
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\fNbt.Serialization\obj\Debug\fNbt.Serialization.csprojResolveAssemblyReference.cache
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\fNbt.Serialization\obj\Debug\fNbt.Serialization.dll
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\fNbt.Serialization\obj\Debug\fNbt.Serialization.pdb

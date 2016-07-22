@@ -1,0 +1,10 @@
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\ProgramInterpreter.exe.config
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\ProgramInterpreter.exe
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\ProgramInterpreter.pdb
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\obj\Debug\ProgramInterpreter.csprojResolveAssemblyReference.cache
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\obj\Debug\ProgramInterpreter.Form1.resources
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\obj\Debug\ProgramInterpreter.Properties.Resources.resources
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\obj\Debug\ProgramInterpreter.csproj.GenerateResource.Cache
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\obj\Debug\ProgramInterpreter.exe
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\obj\Debug\ProgramInterpreter.pdb
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\MaterialSkin.dll
