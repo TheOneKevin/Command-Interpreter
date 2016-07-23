@@ -47,9 +47,11 @@ doesn't have any values assigned to it. Now, when a real player is created (an i
 use abstract objects to create real objects. Wrapped your head around that? Well, let's move on to inheritance. So, let's say you have a abstract entity, with attributes like Health, Hunger etc. Now, we create
 a player, inheriting the abstract entity. So, we give the players specific attributes like Skin, Username, etc. Since the player inherits the entity object, it will also have all the attributes of an entity.
 <br />Still alive? Great! Let's get coding. <br />
-So, we first need to define a target entity/player by creating a player object. <br />
+So, we first need to define a target entity/player by creating a selector object. Syntax:<br />
+<code>[object] [objectName];<br /></code>
+So to create an all players (@a for u minecraft ppl) selector:<br />
 <code>aPlayer player;</code><br />
-Now, we need to assign values to the player:<br />
+We then need to assign values to the player:<br />
 <code>player.x = 1; <br />
 player.y = 1;<br />
 player.z = 1;<br /></code>
@@ -57,44 +59,59 @@ Great! Now, we need to do something to the player.... let's kill it! So:<br />
 <code>player.kill();</code><br />
 We have officially murdered an innocent player at coordinates (1, 1, 1)! Be proud.<br />
 Oh, and for all you curious people, this is how the interpreted minecraft command looks: <br />
-<code>/kill @a[x=1, y=1, z=1]</code> <br />
+<code>/kill @a[x=1, y=1, z=1, r=1]</code> <br />
+Note how even if we didn't specify a <code>player.r</code> value, the interpreter defaults to the value 1.
 If you want a different selector, say <code>@p</code>, just change the object from <code>aPlayer</code> to <code>pPlayer</code>.
 For <code>@r</code>, its <code>rPlayer</code>. And for <code>@e</code> its <code>aEntity</code>.<br />
 To comment, simple put // at the start of the comment. The comment will last until the EOL marker, kinda like assembly code now that I think about it :) <br />
 <code>This is code. //This is comment. The interpreter will ignore anything here.</code><br />
-<b>One last thing:</b> Make sure each statement ends with a semicolon, like in C# or Java or C;<br />
-<h3><b>DECLARE VARIABLES, NOT WAR.</b></h3><br />
+To destroy an object, simply put:<br />
+<code>[object].destroy();</code><br /> <b>PLEASE NOTE</b> that <b>no selectors can be destroyed</b> i.e., aPlayer, rPlayer, pPlayer and aEntity. This is because
+there can only be one instance of every selector in the script. Previous selectors of the same type will be destroyed automatically when a new one is created.
+However, with any other object, i.e., Item, Entity etc., you may have multiple instances of them (with different names
+of course), thus you can destroy them. <br />
+<b>One last thing:</b> Make sure each statement ends with a semicolon, like in C#, Java or C;<br />
+<h3><b>DECLARE VARIABLES. NOT WAR.</b></h3><br />
 To declare a variable is simple.<br />
 <code>[type] [name] = [value];</code><br />
 Where [type] can be: <code>int or string</code>, [name] can be whatever your heart desires, and [value] must be of [type]. Example:<br />
 <code>int fooBar = 1;</code><br />
-<b>Worth Noting:</b> You canot put [player/entity object].x, y or z for the values of the integer variables :(<br />
+<b>Worth Noting:</b> You cannot put a [player/entity object]'s x, y or z (or any attributes*) for the values of the variables, UNLESS you have a
+<code>[LOCAL]</code> tag before. More on that later :(<br />
 <h3><b>WHILE AND IF STATEMENTS</b></h3><br />
 The title probably speaks for itself. This section is dedicated to the WHILE IF statements. Let's start with the if statement. Usage:<br />
 <code>if(<i>condition</i>){<br />
 	<i>code here</i> <br />
 }</code><br />
 Where <i>condition</i> is the condition that must be true for the stuff inside of the IF to be executed. Simple right? Yeah. <br />
-Now, WHILE statements is just a repeating IF statements. So:<br />
+Now, WHILE statements is just a repeating IF statement. So:<br />
 <code>while(<i>condition</i>){<br />
 	<i>code here</i> <br />
 }</code><br />
-So, while the condition is true, the code inside of the curly brackets will be executed. If its false, then the loop will be terminated.<br />
+While the condition is true, the code inside of the curly brackets will be executed. If its false, then the loop will be terminated.<br />
 <b>Worth Noting:</b> For IF statements, ELSE IF and ELSEs are not supported yet. (awwwwww).
 <h3><b>Commands!!</b></h3><br />
 In order to execute a command, we need a target to execute it on. So, we need to create a target object: <br />
 <code>aPlayer p;<br /></code> And then we need to specify the command we want to perform on the said object:<br />
 <code>p.kill();<br /></code> However, if you want to execute a minecraft command that takes arguments/input, you need
 to specify the arguments within the bracks, like any C method.<br />
-<code>p.say("hi", white);<br /></code>This will say "hi" to the player in white text. With more complicated commands like
+<code>p.say("hi", "white");<br /></code>This will say "hi" to the player in white text. With more complicated commands like
 the give command, we need to create an object for the item we are giving:<br />
 <code>Item i;<br />
 i.id = "stone"; //Can be number or word. Defaults to stone.<br />
 i.amount = 1;	//Defaults to 1<br />
 i.damage = 1;	//Defaults to 0<br />
-p.give(i);<br /></code>
-So, now we gave the player 1 of stone:1.
-
+p.give(i);<br />
+i.destroy();	//Speeds up compiling, and reduces risk of crashes.<br /></code>
+We just gave the player 1 block of stone:1.<br />
+For more complex commands such as the <code>/tellraw</code> where there's a loooottttt of options, we have something called
+"overloads." This means that some optional arguments may be left blank with the <code>null</code> code.<br />
+<code>[target].tellraw(text[]("text", extra (new text[]), "color", <b>bold</b> (bool), <u>underline</u> (bool), <i>italics</i> (bool),
+strikethrough (bool), obfuscated (bool), "insertation", new clickEvent(action, "value"), new hoverEvent(action, "value", translate, with), 
+new score("name", "objective", value), "selector")); </code><br />
+Now you may thank Minecraft for being this complicated. The <code>text[]</code> thing means a text object array (not to be confused with a string array).
+A <code>text</code> object is just the universal format for all text-displaying commands in Minecraft. The array part allows you to have as many text passages
+as the computer would allow.
 </p>
         </section>
 
