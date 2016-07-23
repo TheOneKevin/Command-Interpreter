@@ -26,11 +26,12 @@ namespace InterpreterEngine
                 StreamReader file = new StreamReader(inputf);
                 while((line = file.ReadLine()) != null)
                 {
+
                     count++;
                 }
             }
             else
-                throw new FileNotFoundException("File not found!", input);
+                throw new FileNotFoundException("File not found!", inputf);
         }
 
         public int lineNumber() { return count;  }
