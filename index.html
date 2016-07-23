@@ -13,7 +13,7 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title>Command-Interpreter by TheCool1James</title>
+    <title>Command Interpreter by TheCool1James</title>
   </head>
 
   <body>
@@ -50,9 +50,9 @@ a player, inheriting the abstract entity. So, we give the players specific attri
 So, we first need to define a target entity/player by creating a player object. <br />
 <code>aPlayer player;</code><br />
 Now, we need to assign values to the player:<br />
-<code>player.x = 1 <br />
-player.y = 1<br />
-player.z = 1<br /></code>
+<code>player.x = 1; <br />
+player.y = 1;<br />
+player.z = 1;<br /></code>
 Great! Now, we need to do something to the player.... let's kill it! So:<br />
 <code>player.kill()</code><br />
 We have officially murdered an innocent player at coordinates (1, 1, 1)! Be proud.<br />
@@ -62,12 +62,12 @@ If you want a different selector, say <code>@p</code>, just change the object fr
 For <code>@r</code>, its <code>rPlayer</code>. And for <code>@e</code> its <code>aEntity</code>.<br />
 To comment, simple put // at the start of the comment. The comment will last until the EOL marker, kinda like assembly code now that I think about it :) <br />
 <code>This is code. //This is comment. The interpreter will ignore anything here.</code><br />
-<b>One last thing:</b> Make sure each statement is a new line. If they are not, they are considered to be the same statement.<br />
+<b>One last thing:</b> Make sure each statement ends with a semicolon, like in C# or Java or C;<br />
 <h3><b>DECLARE VARIABLES, NOT WAR.</b></h3><br />
 To declare a variable is simple.<br />
-<code>[type] [name] = [value]</code><br />
+<code>[type] [name] = [value];</code><br />
 Where [type] can be: <code>int or string</code>, [name] can be whatever your heart desires, and [value] must be of [type]. Example:<br />
-<code>int fooBar = 1</code><br />
+<code>int fooBar = 1;</code><br />
 <b>Worth Noting:</b> You canot put [player/entity object].x, y or z for the values of the integer variables :(<br />
 <h3><b>WHILE AND IF STATEMENTS</b></h3><br />
 The title probably speaks for itself. This section is dedicated to the WHILE IF statements. Let's start with the if statement. Usage:<br />
@@ -80,6 +80,8 @@ Now, WHILE statements is just a repeating IF statements. So:<br />
 	<i>code here</i> <br />
 }</code><br />
 So, while the condition is true, the code inside of the curly brackets will be executed. If its false, then the loop will be terminated.<br />
+<b>Worth Noting:</b> For IF statements, ELSE IF and ELSEs are not supported yet. (awwwwww).
+<h3><b>Commands!!</b></h3>
 
 </p>
         </section>
