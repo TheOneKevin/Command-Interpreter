@@ -81,7 +81,19 @@ Now, WHILE statements is just a repeating IF statements. So:<br />
 }</code><br />
 So, while the condition is true, the code inside of the curly brackets will be executed. If its false, then the loop will be terminated.<br />
 <b>Worth Noting:</b> For IF statements, ELSE IF and ELSEs are not supported yet. (awwwwww).
-<h3><b>Commands!!</b></h3>
+<h3><b>Commands!!</b></h3><br />
+In order to execute a command, we need a target to execute it on. So, we need to create a target object: <br />
+<code>aPlayer p;<br /></code> And then we need to specify the command we want to perform on the said object:<br />
+<code>p.kill();<br /></code> However, if you want to execute a minecraft command that takes arguments/input, you need
+to specify the arguments within the bracks, like any C method.<br />
+<code>p.say("hi", white);<br /></code>This will say "hi" to the player in white text. With more complicated commands like
+the give command, we need to create an object for the item we are giving:<br />
+<code>Item i;<br />
+i.id = "stone"; //Can be number or word. Defaults to stone.<br />
+i.amount = 1;	//Defaults to 1<br />
+i.damage = 1;	//Defaults to 0<br />
+p.give(i);<br /></code>
+So, now we gave the player 1 of stone:1.
 
 </p>
         </section>
