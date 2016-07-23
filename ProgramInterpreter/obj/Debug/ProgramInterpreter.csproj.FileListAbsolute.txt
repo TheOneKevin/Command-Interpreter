@@ -8,3 +8,4 @@ C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramI
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\obj\Debug\ProgramInterpreter.exe
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\obj\Debug\ProgramInterpreter.pdb
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\MaterialSkin.dll
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\obj\Debug\ProgramInterpreter.AboutBox.resources

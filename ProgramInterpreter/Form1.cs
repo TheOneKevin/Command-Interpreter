@@ -21,5 +21,11 @@ namespace ProgramInterpreter
         {
 
         }
+
+        private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox a = new AboutBox();
+            a.Show();
+        }
     }
 }
