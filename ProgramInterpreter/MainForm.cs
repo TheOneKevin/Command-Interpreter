@@ -29,5 +29,10 @@ namespace ProgramInterpreter
             AboutBox a = new AboutBox();
             a.Show();
         }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
     }
 }
