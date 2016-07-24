@@ -1,8 +1,11 @@
 # Command-Interpreter
-Program Command Blocks like you do with a regular programming language!
+Program Command Blocks like you do with a regular programming language!  
+*Warning:* Contains some dirrrttyy code :grin:
 ## Project files:
-fNBT.* <- Belongs to the fNBT library. Used to read/write to NBT files  
 ProgramInterpreter <- Contains the GUI components of the program  
 InterpreterEngine <- The heart of it all. Contains all the wacky interpretations and etc...  
-### You can find the documentaions at the project site!
-https://thecool1james.github.io/Command-Interpreter/
+For now, only Windows users can enjoy this tool.  :unamused:
+### You can find the documentation at the project site!
+(If you are still alive after reading them that is) :smirk:  
+https://thecool1james.github.io/Command-Interpreter/  
+I'm kinda addicted to the emojis now. :stuck_out_tongue_closed_eyes:
