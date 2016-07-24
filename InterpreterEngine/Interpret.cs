@@ -30,7 +30,8 @@ namespace InterpreterEngine
             if (File.Exists(inputf))
             {
                 StreamReader file = new StreamReader(inputf);
-                while((line = file.ReadLine()) != null)
+                StringReader sr = new StringReader(pruneComments(file.ReadToEnd()));
+                while ((line =sr.ReadLine()) != null)
                 {
                     //We need to start the head-aching process of seperating
                     //the statements by semicolon and colon :(
@@ -88,6 +89,24 @@ namespace InterpreterEngine
             }
             return index;
         }
+
+        public string pruneComments(string input)
+        {
+            var blockComments = @"/\*(.*?)\*/";
+            var lineComments = @"//(.*?)\r?\n";
+            var strings = @"""((\\[^\n]|[^""\n])*)""";
+            var verbatimStrings = @"@(""[^""]*"")+";
+            return Regex.Replace(input,
+            blockComments + "|" + lineComments + "|" + strings + "|" + verbatimStrings,
+            me =>
+            {
+                if (me.Value.StartsWith("/*") || me.Value.StartsWith("//"))
+                return me.Value.StartsWith("//") ? Environment.NewLine : "";
+                // Keep the literal strings
+                return me.Value;
+            },
+            RegexOptions.Singleline);
+        }
         #endregion
 
         #region Parse
@@ -98,14 +117,13 @@ namespace InterpreterEngine
             int i = 0; //Keep track on which statement we are processing
             foreach(string s in statements)
             {
+                s.Trim();
                 if (p.isStatement(s))
                     p.parseStatement(s);
                 else if (p.isVariable(s))
                     p.parseVariable(s);
                 else if (p.isWhile(s))
                     p.parseWhile(s);
-                else if (p.isComment(s))
-                    p.parseComment(s);
                 else
                     //Kill the PC
 

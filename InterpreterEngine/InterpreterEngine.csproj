@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands.cs" />
+    <Compile Include="Error.cs" />
     <Compile Include="Interpret.cs" />
     <Compile Include="Keywords.cs" />
     <Compile Include="Parser.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace InterpreterEngine
@@ -9,25 +10,28 @@ namespace InterpreterEngine
     class Parser
     {
         #region Get Line Type
+
         public bool isVariable(string line)
         {
-            return false;
+            var reg = new Regex("=([^;]*);");
+            var matches = reg.Matches(line);
+            return matches.Count >= 1;
         }
 
         public bool isStatement(string line)
         {
-            return false;
+            var reg = new Regex("(?<=^([^\"\r\n]|\"([^\"\\\\\r\n]|\\\\.)*\")*)(;)");
+            var matches = reg.Matches(line);
+            return matches.Count >= 1;
         }
         
         public bool isWhile(string line)
         {
-            return false;
+            var reg = new Regex("(?<=^([^\"\r\n]|\"([^\"\\\\\r\n]|\\\\.)*\")*)(:)");
+            var matches = reg.Matches(line);
+            return matches.Count >= 1;
         }
 
-        public bool isComment(string line)
-        {
-            return false;
-        }
         #endregion
 
         #region Parse Line Type
@@ -43,11 +47,6 @@ namespace InterpreterEngine
         }
 
         public void parseWhile(string line)
-        {
-
-        }
-        
-        public void parseComment(string line)
         {
 
         }
