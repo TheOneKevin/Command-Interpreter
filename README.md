@@ -1,5 +1,6 @@
 # Command-Interpreter
 Program Command Blocks like you do with a regular programming language!  
+I have a habbit of commiting too often. IDK if its a good habbit (maybe if you lose everything).  
 *Warning:* Contains some dirrrttyy code :grin:
 ## Project files:
 ProgramInterpreter <- Contains the GUI components of the program  
