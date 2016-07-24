@@ -111,7 +111,12 @@ strikethrough (bool), obfuscated (bool), "insertation", new clickEvent(action, "
 new score("name", "objective", value), "selector")); </code><br />
 Now you may thank Minecraft for being this complicated. The <code>text[]</code> thing means a text object array (not to be confused with a string array).
 A <code>text</code> object is just the universal format for all text-displaying commands in Minecraft. The array part allows you to have as many text passages
-as the computer would allow.
+as the computer would allow.<br />
+To execute a command that does not exist inside the IDE (or for some other reason), you can use the <code>_mc()</code> function.<br />
+<code>_mc("/give @a stone 1 0");</code><br />
+Please note that the commands will be inserted AS-IS, and NO INTERPRETATION will be applied. Can cause bugs and errors when not used
+appropriately.<br />
+
 </p>
         </section>
 
