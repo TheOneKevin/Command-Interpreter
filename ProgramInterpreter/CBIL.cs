@@ -166,7 +166,7 @@ namespace ProgramInterpreter
             this.keywords1 = new HashSet<string>(Regex.Split(words1 ?? string.Empty, @"\s+").Where(l => !string.IsNullOrEmpty(l)));
             this.keywords2 = new HashSet<string>(Regex.Split(words2 ?? string.Empty, @"\s+").Where(l => !string.IsNullOrEmpty(l)));
             this.keywords3 = new HashSet<string>(Regex.Split(words3 ?? string.Empty, @"\s+").Where(l => !string.IsNullOrEmpty(l)));
-            this.operands = new HashSet<string>(Regex.Split(Regex.Unescape(operands) ?? string.Empty, @"\s+").Where(l => !string.IsNullOrEmpty(l)));
+            this.operands  = new HashSet<string>(Regex.Split(Regex.Unescape(operands) ?? string.Empty, @"\s+").Where(l => !string.IsNullOrEmpty(l)));
         }
     }
 }

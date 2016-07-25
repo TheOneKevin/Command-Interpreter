@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InterpreterEngine
 {
-    class Extract
+    public class Extract
     {
         public string extractString(string input)
         {
@@ -24,7 +24,17 @@ namespace InterpreterEngine
             return null;
         }
 
-        public void addTokenS(string[] identifier, string value, Dictionary<string ,string> sd)
+        public void addTokenS(string name, string value, Dictionary<string, string> d)
+        {
+            
+        }
+
+        public void addTokenI(string name, string value, Dictionary<string, int> d)
+        {
+
+        }
+
+        public void addTokenB(string name, string value, Dictionary<string, int> d)
         {
 
         }

@@ -9,6 +9,11 @@ namespace InterpreterEngine
 {
     public class Parser
     {
+        Dictionary<string, int> ints = new Dictionary<string, int>();
+        Dictionary<string, string> strings = new Dictionary<string, string>();
+        Dictionary<string, int> bools = new Dictionary<string, int>();
+        Extract ex = new Extract();
+
         #region Get Line Type
 
         public bool isVariable(string line)
@@ -62,9 +67,9 @@ namespace InterpreterEngine
                     //the first entry in array. If type is not found, we throw and error.
                     switch (foo[0])
                     {
-                        case "int": break;
-                        case "string": break;
-                        case "bool": break;
+                        case "int": ex.addTokenI(foo[1], foo[3], ints); break;
+                        case "string": ex.addTokenS(foo[1], foo[3], strings); break;
+                        case "bool": ex.addTokenB(foo[1], foo[3], bools); break;
                         default: break; //Throw error
                     }
                 }
