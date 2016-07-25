@@ -39,6 +39,8 @@
             this.scintilla.Size = new System.Drawing.Size(532, 304);
             this.scintilla.TabIndex = 0;
             this.scintilla.UseTabs = false;
+            this.scintilla.StyleNeeded += new System.EventHandler<ScintillaNET.StyleNeededEventArgs>(this.scintilla_StyleNeeded);
+            this.scintilla.TextChanged += new System.EventHandler(this.scintilla_TextChanged);
             // 
             // Editor
             // 

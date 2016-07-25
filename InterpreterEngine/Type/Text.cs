@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InterpreterEngine
+namespace InterpreterEngine.Type
 {
-    class Keywords
+    class Text
     {
 
     }

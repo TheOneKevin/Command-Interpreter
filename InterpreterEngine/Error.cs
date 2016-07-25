@@ -8,5 +8,9 @@ namespace InterpreterEngine
 {
     class Error
     {
+        public void throwError()
+        {
+
+        }
     }
 }

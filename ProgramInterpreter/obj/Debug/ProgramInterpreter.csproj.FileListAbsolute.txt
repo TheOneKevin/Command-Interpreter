@@ -15,3 +15,16 @@ C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramI
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\obj\Debug\ProgramInterpreter.MainForm.resources
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\fNbt.dll
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\fNbt.pdb
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\Icons\compile.png
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\Icons\compile_error.png
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\Icons\compile_warning.png
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\Icons\error.png
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\Icons\error2.png
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\Icons\gnome_preferences_system.png
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\Icons\new_document.png
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\Icons\save.png
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\Icons\folder.png
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\Icons\redo.png
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\Icons\save_all.png
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\Icons\undo.png
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\Icons\play.png

@@ -1,1 +1,5 @@
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\obj\Debug\InterpreterEngine.csprojResolveAssemblyReference.cache
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\bin\Debug\InterpreterEngine.dll
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\bin\Debug\InterpreterEngine.pdb
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\obj\Debug\InterpreterEngine.dll
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\obj\Debug\InterpreterEngine.pdb

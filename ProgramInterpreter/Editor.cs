@@ -15,6 +15,7 @@ namespace ProgramInterpreter
 {
     public partial class Editor : DockContent
     {
+        private int maxLineNumberCharLength;
         public Editor()
         {
             InitializeComponent();
@@ -27,27 +28,48 @@ namespace ProgramInterpreter
             scintilla.StyleResetDefault();
             scintilla.Styles[Style.Default].Font = "Consolas";
             scintilla.Styles[Style.Default].Size = 10;
+            scintilla.Styles[Style.LineNumber].ForeColor = Color.DarkSlateGray;
             scintilla.StyleClearAll();
 
-            // Configure the CPP (C#) lexer styles
-            scintilla.Styles[Style.Cpp.Default].ForeColor = Color.Silver;
-            scintilla.Styles[Style.Cpp.Comment].ForeColor = Color.FromArgb(0, 128, 0); // Green
-            scintilla.Styles[Style.Cpp.CommentLine].ForeColor = Color.FromArgb(0, 128, 0); // Green
-            scintilla.Styles[Style.Cpp.CommentLineDoc].ForeColor = Color.FromArgb(128, 128, 128); // Gray
-            scintilla.Styles[Style.Cpp.Number].ForeColor = Color.ForestGreen;
-            scintilla.Styles[Style.Cpp.Word].ForeColor = Color.CornflowerBlue;
-            scintilla.Styles[Style.Cpp.Word2].ForeColor = Color.RoyalBlue;
-            scintilla.Styles[Style.Cpp.String].ForeColor = Color.FromArgb(163, 21, 21); // Red
-            scintilla.Styles[Style.Cpp.Character].ForeColor = Color.FromArgb(163, 21, 21); // Red
-            scintilla.Styles[Style.Cpp.Verbatim].ForeColor = Color.FromArgb(163, 21, 21); // Red
-            scintilla.Styles[Style.Cpp.StringEol].BackColor = Color.Pink;
-            scintilla.Styles[Style.Cpp.Operator].ForeColor = Color.Crimson;
-            scintilla.Styles[Style.Cpp.Preprocessor].ForeColor = Color.Maroon;
-            scintilla.Lexer = Lexer.Cpp;
+            // Configure the CBIL lexer styles
+            scintilla.Styles[CBILexar.StyleDefault].ForeColor = Color.Silver;
+            scintilla.Styles[CBILexar.StyleDefault].Italic = true;
+            scintilla.Styles[CBILexar.StyleComment].ForeColor = Color.FromArgb(0, 128, 0); // Green
+            scintilla.Styles[CBILexar.StyleNumber].ForeColor = Color.DarkOrchid;
+            scintilla.Styles[CBILexar.StyleKeyword1].ForeColor = Color.DarkSlateBlue;
+            scintilla.Styles[CBILexar.StyleKeyword2].ForeColor = Color.Tomato;
+            scintilla.Styles[CBILexar.StyleKeyword3].ForeColor = Color.BlueViolet;
+            scintilla.Styles[CBILexar.StyleKeyword3].Bold = true;
+            scintilla.Styles[CBILexar.StyleIdentifier].ForeColor = Color.RoyalBlue;
+            scintilla.Styles[CBILexar.StyleString].ForeColor = Color.FromArgb(163, 21, 21); // Red
+            scintilla.Styles[CBILexar.StyleThings].ForeColor = Color.Black;
+        }
+
+        private void scintilla_StyleNeeded(object sender, StyleNeededEventArgs e)
+        {
             // Set the keywords
-            scintilla.SetKeywords(0, "while if true false achievement blockdata clear clone defaultgamemode difficulty effect enchant " +
-                "entitydata execute fill gamemode gamerule give kill particle playsound replaceitem say scoreboard setblock setworldspawn spawnpoint stats stopsound summon teleport tell tellraw testfor testforblock testforblocks time title toggledownfall trigger weather worldborder xp");
-            scintilla.SetKeywords(1, "bool int float string aPlayer rPlayer pPlayer aEntity Item");
+            string keywords1 = "while if true false _mc";
+            string keywords2 = "bool int float string aPlayer rPlayer pPlayer aEntity Item";
+            string keywords3 = "achievement blockdata clear clone defaultgamemode difficulty effect enchant " +
+                "entitydata execute fill gamemode gamerule give kill particle playsound replaceitem say scoreboard setblock setworldspawn spawnpoint stats stopsound summon teleport tell tellraw testfor testforblock testforblocks time title toggledownfall trigger weather worldborder xp";
+            string operands = "{ } [ ] ( ) ; : | + = - * \\ ' < > . , ? ~";
+            CBILexar l = new CBILexar(keywords1, keywords2, keywords3, operands);
+            l.Style(scintilla, scintilla.GetEndStyled(), e.Position);
+        }
+
+        private void scintilla_TextChanged(object sender, EventArgs e)
+        {
+            // Did the number of characters in the line number display change?
+            // i.e. nnn VS nn, or nnnn VS nn, etc...
+            var maxLineNumberCharLength = scintilla.Lines.Count.ToString().Length;
+            if (maxLineNumberCharLength == this.maxLineNumberCharLength)
+                return;
+
+            // Calculate the width required to display the last line number
+            // and include some padding for good measure.
+            const int padding = 2;
+            scintilla.Margins[0].Width = scintilla.TextWidth(Style.LineNumber, new string('9', maxLineNumberCharLength + 1)) + padding;
+            this.maxLineNumberCharLength = maxLineNumberCharLength;
         }
     }
 }

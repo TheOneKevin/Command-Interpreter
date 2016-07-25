@@ -7,27 +7,27 @@ using System.Threading.Tasks;
 
 namespace InterpreterEngine
 {
-    class Parser
+    public class Parser
     {
         #region Get Line Type
 
         public bool isVariable(string line)
         {
-            var reg = new Regex("=([^;]*);");
+            var reg = new Regex(@"(?<=^([^""\r\n]|""([^""\\\r\n]|\\.)*"")*)(\=)");
             var matches = reg.Matches(line);
             return matches.Count >= 1;
         }
 
         public bool isStatement(string line)
         {
-            var reg = new Regex("(?<=^([^\"\r\n]|\"([^\"\\\\\r\n]|\\\\.)*\")*)(;)");
+            var reg = new Regex(@"(?<=^([^""\r\n]|""([^""\\\r\n]|\\.)*"")*)(\;)");
             var matches = reg.Matches(line);
             return matches.Count >= 1;
         }
         
         public bool isWhile(string line)
         {
-            var reg = new Regex("(?<=^([^\"\r\n]|\"([^\"\\\\\r\n]|\\\\.)*\")*)(:)");
+            var reg = new Regex(@"(?<=^([^""\r\n]|""([^""\\\r\n]|\\.)*"")*)(\:)");
             var matches = reg.Matches(line);
             return matches.Count >= 1;
         }
@@ -43,12 +43,52 @@ namespace InterpreterEngine
 
         public void parseVariable(string line)
         {
-
+            string pattern = @"(?<=^([^""\r\n]|""([^""\\\r\n]|\\.)*"")*)(\=)";
+            RegexOptions regexOptions = RegexOptions.None;
+            Regex regex = new Regex(pattern, regexOptions);
+            string[] result = regex.Split(line);
+            //We are going to be VERY strict on syntax. A variable declaration MUST be
+            //[type] [name] = [value]; i.e., int foo_bar = 3; When split with regex, we're
+            //gonna get an array with 2 entries, "int foo_bar" and "3;"
+            if (result.Length == 4)
+            {
+                string[] foo = result[0].Trim().Split();
+                string value = removeEnding(false, result[3].Trim());
+                //Then we split the "int foo_bar" into "int" and "foo_bar" If array length exceeds
+                //2, we throw and error.
+                if (foo.Length == 2)
+                {
+                    //We are going to check what type the variable is. We assume the type is
+                    //the first entry in array. If type is not found, we throw and error.
+                    switch (foo[0])
+                    {
+                        case "int": break;
+                        case "string": break;
+                        case "bool": break;
+                        default: break; //Throw error
+                    }
+                }
+            }
+            //else
+                //Error
         }
 
         public void parseWhile(string line)
         {
 
+        }
+
+        public string removeEnding(bool isWhile, string inputData)
+        {
+            string pattern;
+            if(isWhile)
+                pattern = @"(?<=^([^""\r\n]|""([^""\\\r\n]|\\.)*"")*)(\:)";
+            else
+                pattern = @"(?<=^([^""\r\n]|""([^""\\\r\n]|\\.)*"")*)(\;)";
+            RegexOptions regexOptions = RegexOptions.None;
+            Regex regex = new Regex(pattern, regexOptions);
+            string replacement = @"";
+            return regex.Replace(inputData, replacement);
         }
 
         #endregion
