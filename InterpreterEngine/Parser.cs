@@ -9,7 +9,7 @@ namespace InterpreterEngine
 {
     public class Parser
     {
-        Dictionary<string, int> ints = new Dictionary<string, int>();
+        Dictionary<string, string> ints = new Dictionary<string, string>();
         Dictionary<string, string> strings = new Dictionary<string, string>();
         Dictionary<string, int> bools = new Dictionary<string, int>();
         Extract ex = new Extract();
@@ -59,17 +59,19 @@ namespace InterpreterEngine
             {
                 string[] foo = result[0].Trim().Split();
                 string value = removeEnding(false, result[3].Trim());
+                int i;
                 //Then we split the "int foo_bar" into "int" and "foo_bar" If array length exceeds
                 //2, we throw and error.
                 if (foo.Length == 2)
                 {
+                    int.TryParse(foo[3], out i);
                     //We are going to check what type the variable is. We assume the type is
                     //the first entry in array. If type is not found, we throw and error.
                     switch (foo[0])
                     {
                         case "int": ex.addTokenI(foo[1], foo[3], ints); break;
                         case "string": ex.addTokenS(foo[1], foo[3], strings); break;
-                        case "bool": ex.addTokenB(foo[1], foo[3], bools); break;
+                        case "bool": ex.addTokenB(foo[1], i, bools); break;
                         default: break; //Throw error
                     }
                 }

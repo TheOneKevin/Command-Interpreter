@@ -24,19 +24,9 @@ namespace InterpreterEngine
             return null;
         }
 
-        public void addTokenS(string name, string value, Dictionary<string, string> d)
-        {
-            
-        }
+        public void addTokenS(string name, string value, Dictionary<string, string> d){ d.Add(name, value); }
+        public void addTokenI(string name, string value, Dictionary<string, string> d){ d.Add(name, value); }
+        public void addTokenB(string name, int value, Dictionary<string, int> d){ d.Add(name, value); }
 
-        public void addTokenI(string name, string value, Dictionary<string, int> d)
-        {
-
-        }
-
-        public void addTokenB(string name, string value, Dictionary<string, int> d)
-        {
-
-        }
     }
 }
