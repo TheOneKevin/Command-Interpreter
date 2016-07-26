@@ -44,17 +44,13 @@
 Firstly, you need to familiarize yourself with <b>objects</b>. An abstract object is like a real object without the specific details.
 Let's take a Minecraft player for instance. An abstract player would have the attributes like Name, UUID, Health, Skin, Hunger, XP, PermissionLevel. Notice how the attributes
 doesn't have any values assigned to it. Now, when a real player is created (an instance), values would be assigned to each attribute, like Name -> "TheCool1James", UUID -> 19DSEWFDF...., etc. Programmers
-use abstract objects to create real objects. Wrapped your head around that? Well, let's move on to inheritance. So, let's say you have a abstract entity, with attributes like Health, Hunger etc. Now, we create
+use abstract objects to create real objects. Wrapped your head around that? Well, let's move on to inheritance. So, let's say you have an abstract entity, with attributes like Health, Hunger etc. Now, we create
 a player, inheriting the abstract entity. So, we give the players specific attributes like Skin, Username, etc. Since the player inherits the entity object, it will also have all the attributes of an entity.
 <br />Still alive? Great! Let's get coding. <br />
 So, we first need to define a target entity/player by creating a selector object. Syntax:<br />
 <code>[object] [objectName];<br /></code>
 So to create an all players (@a for u minecraft ppl) selector:<br />
-<code>aPlayer player;</code><br />
-We then need to assign values to the player:<br />
-<code>player.x = 1; <br />
-player.y = 1;<br />
-player.z = 1;<br /></code>
+<code>aPlayer player = new aPlayer(1, 1, 1, 1);</code><br />
 Great! Now, we need to do something to the player.... let's kill it! So:<br />
 <code>player.kill();</code><br />
 We have officially murdered an innocent player at coordinates (1, 1, 1)! Be proud.<br />
@@ -78,6 +74,10 @@ Where [type] can be: <code>int or string</code>, [name] can be whatever your hea
 <code>int fooBar = 1;</code><br />
 <b>Worth Noting:</b> You cannot put a [player/entity object]'s x, y or z (or any attributes*) for the values of the variables, UNLESS you have a
 <code>[LOCAL]</code> tag before. More on that later :(<br />
+<h3><b>Instances and Objects</b></h3><br />
+To create a new object, you simply follow the syntax:<br />
+<code>[type] [name] = new [type](arg[0], arg[1], ....);<br /></code>
+Simple.
 <h3><b>WHILE AND IF STATEMENTS</b></h3><br />
 The title probably speaks for itself. This section is dedicated to the WHILE IF statements. Let's start with the if statement. Usage:<br />
 <code>if(<i>condition</i>){<br />
@@ -92,18 +92,15 @@ While the condition is true, the code inside of the curly brackets will be execu
 <b>Worth Noting:</b> For IF statements, ELSE IF and ELSEs are not supported yet. (awwwwww).
 <h3><b>Commands!!</b></h3><br />
 In order to execute a command, we need a target to execute it on. So, we need to create a target object: <br />
-<code>aPlayer p;<br /></code> And then we need to specify the command we want to perform on the said object:<br />
+<code>aPlayer p = new Player(1, 1, 1, 1);<br /></code> And then we need to specify the command we want to perform on the said object:<br />
 <code>p.kill();<br /></code> However, if you want to execute a minecraft command that takes arguments/input, you need
 to specify the arguments within the bracks, like any C method.<br />
 <code>p.say("hi", "white");<br /></code>This will say "hi" to the player in white text. With more complicated commands like
 the give command, we need to create an object for the item we are giving:<br />
-<code>Item i;<br />
-i.id = "stone"; //Can be number or word. Defaults to stone.<br />
-i.amount = 1;	//Defaults to 1<br />
-i.damage = 1;	//Defaults to 0<br />
+<code>Item i = new Item("stone", 1, 1, "name");<br />
 p.give(i);<br />
 i.destroy();	//Speeds up compiling, and reduces risk of crashes.<br /></code>
-We just gave the player 1 block of stone:1.<br />
+We just gave the player 1 block of stone:1 named "name".<br />
 For more complex commands such as the <code>/tellraw</code> where there's a loooottttt of options, we have something called
 "overloads." This means that some optional arguments may be left blank with the <code>null</code> code.<br />
 <code>[target].tellraw(text[]("text", extra (new text[]), "color", <b>bold</b> (bool), <u>underline</u> (bool), <i>italics</i> (bool),
@@ -116,6 +113,31 @@ To execute a command that does not exist inside the IDE (or for some other reaso
 <code>_mc("/give @a stone 1 0");</code><br />
 Please note that the commands will be inserted AS-IS, and NO INTERPRETATION will be applied. Can cause bugs and errors when not used
 appropriately.<br />
+<h3><b>IFs and Booleans</b></h3><br />
+When you type:<br />
+<code>int i = 3;
+if(i == 4)<br />
+{<br />
+	_mc("say @p \"hi\"");<br />
+}<br />
+We know that the "hi" will never be said because i can never equal to 4. So, i == 4 is false. This makes the statement i==4 into a boolean (it outputs a result
+that is a boolean). So... what? Well, ALL Minecraft commands outputs a result that is a boolean, but its not what you think. When you place a comparator behind
+a command block, you can see the output for yourself. If the comparator lights up, the output is true, and if it doesn't, its false. Applying this logic, you
+TECHNICALLY can use IF statements on them. But again, its not what you think. Let's take <code>target.playSound()</code> as an example:<br />
+<code>aPlayer p = new aPlayer(1, 1, 1, 1);<br />
+if(p.playSound("someSound", [some other arguments so here]))<br />
+{<br />
+	p.kill();<br />
+}<br /></code>
+You would expect the player would die when the sound is played, and you would be correct. HOWEVER, when you do IF statements in this fasion, the statement WILL
+BE EXECUTED. So, the sound "somesound" WILL PLAY! This is the same with variable declarations. If you set a bool to the value of the command, whenever you use
+the boolean, THE COMMAND WILL BE EXECUTED <b>(although this feature is not avaiable yet, and will most likely not be)</b>.
+<h3><b>IL2JSON (IL2ALI)</b></h3><br />
+CBIL is actually an IL2JSON parser thingy, which means Interpreted Langauge 2 JSON (the language used by minecraft command blocks), however, that makes no
+sense because JSON is ALSO an interpreted language... So... its IL2AIL (Interpreted Langauge 2 Another Interpreted Langauge). Anyways... that aside,
+since this is an interpreted langauge, the syntax is a little more loose than normal languages. So, don't be alarmed if an error in your code doesn't
+doesn't show up as an actual error. It's probably the parser's fault. If that happens, you can post a bug thing on GitHub (with your code, and an explanation
+about the bug) and I'll try my best to fix it. <br />
 
 </p>
         </section>
