@@ -9,10 +9,18 @@ namespace InterpreterEngine
 {
     public class Parser
     {
-        Dictionary<string, string> ints = new Dictionary<string, string>();
+        #region Variables
+
+        //Local variables
         Dictionary<string, string> strings = new Dictionary<string, string>();
+        //Convertable variables
+        Dictionary<string, string> ints = new Dictionary<string, string>();
         Dictionary<string, int> bools = new Dictionary<string, int>();
+        //Objects
+        Dictionary<string, int> objects = new Dictionary<string, int>();
         Extract ex = new Extract();
+
+        #endregion
 
         #region Get Line Type
 
@@ -64,14 +72,29 @@ namespace InterpreterEngine
                 //2, we throw and error.
                 if (foo.Length == 2)
                 {
-                    int.TryParse(foo[3], out i);
                     //We are going to check what type the variable is. We assume the type is
                     //the first entry in array. If type is not found, we throw and error.
+                    //If you want more types, then feel free to add more cases...... :)
+                    if(objects.ContainsKey(foo[0]))
+                    {
+						char[] myChar = { 'n', 'e', 'w' };
+						value = value.TrimStart(myChar).Trim();
+                    }
                     switch (foo[0])
                     {
-                        case "int": ex.addTokenI(foo[1], foo[3], ints); break;
-                        case "string": ex.addTokenS(foo[1], foo[3], strings); break;
-                        case "bool": ex.addTokenB(foo[1], i, bools); break;
+                        case "int":
+                            ex.addTokenI(foo[1], value, ints);
+                            //else throw error
+                            break;
+                        case "string":
+                            ex.addTokenS(foo[1], value, strings);
+                            //else throw error
+                            break;
+                        case "bool":
+                            if (int.TryParse(value, out i))
+                                ex.addTokenB(foo[1], i, bools);
+                            //else throw error
+                            break;
                         default: break; //Throw error
                     }
                 }
@@ -99,6 +122,17 @@ namespace InterpreterEngine
         }
 
         #endregion
+
+        public Parser()
+        {
+            initObjects();
+        }
+
+        public void initObjects()
+        {
+            objects.Add("rPlayer", 0); objects.Add("aPlayer", 1); objects.Add("pPlayer", 2); objects.Add("aEntity", 3);
+            objects.Add("Item", 4); objects.Add("Entity", 5); objects.Add("Text[]", 6);
+        }
 
     }
 }

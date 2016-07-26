@@ -112,10 +112,10 @@ namespace InterpreterEngine
             foreach(string s in statements)
             {
                 s.Trim(); //Clean up stuff
-                if (p.isStatement(s))
-                    p.parseStatement(s);
-                else if (p.isVariable(s))
+                if (p.isVariable(s))
                     p.parseVariable(s);
+                else if (p.isStatement(s))
+                    p.parseStatement(s);
                 else if (p.isWhile(s))
                     p.parseWhile(s);
                 else

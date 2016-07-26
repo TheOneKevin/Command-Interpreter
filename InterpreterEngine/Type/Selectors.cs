@@ -15,7 +15,7 @@ namespace InterpreterEngine.Type
     /// random player that fulfills all the conditions/variables
     /// set below.
     /// </summary>
-    class RandPlayer
+    public class RandPlayer
     {
         public int x, y, z, radiusMax, radiusMin, dx, dy, dz;
         public string score; public int scoreMax, scoreMin;
@@ -23,13 +23,17 @@ namespace InterpreterEngine.Type
         public string team, tag;
         public int gameMode; public string name;
         public string identifier() { return "@r"; }
+        public RandPlayer(int x, int y, int z, int r)
+        {
+            this.x = x; this.y = y; this.z = z; this.radiusMax = r;
+        }
     }
     /// <summary>
     /// All player selector. Selects all players on the map/server
     /// that fulfills all the conditions/variables below.
     /// Minecraft selector @a
     /// </summary>
-    class AllPlayer
+    public class AllPlayer
     {
         public int x, y, z, radiusMax, radiusMin, dx, dy, dz;
         public string score; public int scoreMax, scoreMin;
@@ -37,13 +41,17 @@ namespace InterpreterEngine.Type
         public string team, tag;
         public int gameMode; public string name;
         public string identifier() { return "@a"; }
+        public AllPlayer(int x, int y, int z, int r)
+        {
+            this.x = x; this.y = y; this.z = z; this.radiusMax = r;
+        }
     }
     /// <summary>
     /// Nearest player selector. Selects the nearest player on the map/server
     /// that fulfills all the conditions/variables below.
     /// Minecraft selector @p
     /// </summary>
-    class NearestPlayer
+    public class NearestPlayer
     {
         public int x, y, z, radiusMax, radiusMin, dx, dy, dz;
         public string score; public int scoreMax, scoreMin;
@@ -51,13 +59,17 @@ namespace InterpreterEngine.Type
         public string team, tag;
         public int gameMode; public string name;
         public string identifier() { return "@p"; }
+        public NearestPlayer(int x, int y, int z, int r)
+        {
+            this.x = x; this.y = y; this.z = z; this.radiusMax = r;
+        }
     }
     /// <summary>
     /// All player selector. Selects all entities on the map/server
     /// that fulfills all the conditions/variables below.
     /// Minecraft selector @e
     /// </summary>
-    class AllEntities
+    public class AllEntities
     {
         public int x, y, z, radiusMax, radiusMin, dx, dy, dz;
         public string score; public int scoreMax, scoreMin;
@@ -65,5 +77,9 @@ namespace InterpreterEngine.Type
         public string team, tag;
         public string name, type;
         public string identifier() { return "@e"; }
+        public AllEntities(int x, int y, int z, int r)
+        {
+            this.x = x; this.y = y; this.z = z; this.radiusMax = r;
+        }
     }
 }

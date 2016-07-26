@@ -15,6 +15,7 @@ namespace ProgramInterpreter
 {
     public partial class Editor : DockContent
     {
+        public bool needSave = false;
         private int maxLineNumberCharLength;
         public Editor()
         {
@@ -52,7 +53,7 @@ namespace ProgramInterpreter
             string keywords2 = "bool int float string aPlayer rPlayer pPlayer aEntity Item";
             string keywords3 = "achievement blockdata clear clone defaultgamemode difficulty effect enchant " +
                 "entitydata execute fill gamemode gamerule give kill particle playsound replaceitem say scoreboard setblock setworldspawn spawnpoint stats stopsound summon teleport tell tellraw testfor testforblock testforblocks time title toggledownfall trigger weather worldborder xp";
-            string operands = "{ } [ ] ( ) ; : | + = - * \\ ' < > . , ? ~";
+            string operands = "{ } [ ] ( ) ; : | + = - * / \\ ' < > . , ? ~";
             CBILexar l = new CBILexar(keywords1, keywords2, keywords3, operands);
             l.Style(scintilla, scintilla.GetEndStyled(), e.Position);
         }
@@ -70,6 +71,7 @@ namespace ProgramInterpreter
             const int padding = 2;
             scintilla.Margins[0].Width = scintilla.TextWidth(Style.LineNumber, new string('9', maxLineNumberCharLength + 1)) + padding;
             this.maxLineNumberCharLength = maxLineNumberCharLength;
+            this.Text = this.Text.Trim('*') + "*"; needSave = true;
         }
     }
 }

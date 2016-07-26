@@ -28,3 +28,6 @@ C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramI
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\Icons\save_all.png
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\Icons\undo.png
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\Icons\play.png
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\WeifenLuo.WinFormsUI.Docking.ThemeVS2012Light.dll
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\InterpreterEngine.dll
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\InterpreterEngine.pdb
