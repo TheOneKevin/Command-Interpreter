@@ -9,7 +9,7 @@ namespace InterpreterEngine
     class Error
     {
         string error = "DEADBEEF";
-        public void throwError()
+        public static void throwError(string error, int line)
         {
 
         }

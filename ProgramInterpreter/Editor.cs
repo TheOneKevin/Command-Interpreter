@@ -16,7 +16,7 @@ namespace ProgramInterpreter
     public partial class Editor : DockContent
     {
         public bool needSave = false;
-        private int maxLineNumberCharLength;
+        private int maxLineNumberCharLength; int lastCaretPos = 0;
         public Editor()
         {
             InitializeComponent();
@@ -29,11 +29,13 @@ namespace ProgramInterpreter
             scintilla.StyleResetDefault();
             scintilla.Styles[Style.Default].Font = "Consolas";
             scintilla.Styles[Style.Default].Size = 10;
-            scintilla.Styles[Style.LineNumber].ForeColor = Color.DarkSlateGray;
             scintilla.StyleClearAll();
 
+            //Line number
+            scintilla.Styles[Style.LineNumber].ForeColor = Color.Indigo;
+
             // Configure the CBIL lexer styles
-            scintilla.Styles[CBILexar.StyleDefault].ForeColor = Color.Silver;
+            scintilla.Styles[CBILexar.StyleDefault].ForeColor = Color.DarkGray;
             scintilla.Styles[CBILexar.StyleDefault].Italic = true;
             scintilla.Styles[CBILexar.StyleComment].ForeColor = Color.FromArgb(0, 128, 0); // Green
             scintilla.Styles[CBILexar.StyleNumber].ForeColor = Color.DarkOrchid;
@@ -44,6 +46,12 @@ namespace ProgramInterpreter
             scintilla.Styles[CBILexar.StyleIdentifier].ForeColor = Color.RoyalBlue;
             scintilla.Styles[CBILexar.StyleString].ForeColor = Color.FromArgb(163, 21, 21); // Red
             scintilla.Styles[CBILexar.StyleThings].ForeColor = Color.Black;
+
+            //Brace matching
+            scintilla.IndentationGuides = IndentView.LookBoth;
+            scintilla.Styles[Style.BraceLight].BackColor = Color.GreenYellow;
+            scintilla.Styles[Style.BraceLight].ForeColor = Color.BlueViolet;
+            scintilla.Styles[Style.BraceBad].ForeColor = Color.Red;
         }
 
         private void scintilla_StyleNeeded(object sender, StyleNeededEventArgs e)
@@ -72,6 +80,96 @@ namespace ProgramInterpreter
             scintilla.Margins[0].Width = scintilla.TextWidth(Style.LineNumber, new string('9', maxLineNumberCharLength + 1)) + padding;
             this.maxLineNumberCharLength = maxLineNumberCharLength;
             this.Text = this.Text.Trim('*') + "*"; needSave = true;
+        }
+
+        private static bool IsBrace(int c)
+        {
+            switch (c)
+            {
+                case '(':
+                case ')':
+                case '[':
+                case ']':
+                case '{':
+                case '}':
+                case '<':
+                case '>':
+                    return true;
+            }
+
+            return false;
+        }
+
+        private void scintilla_UpdateUI(object sender, UpdateUIEventArgs e)
+        {
+            // Has the caret changed position?
+            var caretPos = scintilla.CurrentPosition;
+            if (lastCaretPos != caretPos)
+            {
+                lastCaretPos = caretPos;
+                var bracePos1 = -1;
+                var bracePos2 = -1;
+
+                // Is there a brace to the left or right?
+                if (caretPos > 0 && IsBrace(scintilla.GetCharAt(caretPos - 1)))
+                    bracePos1 = (caretPos - 1);
+                else if (IsBrace(scintilla.GetCharAt(caretPos)))
+                    bracePos1 = caretPos;
+
+                if (bracePos1 >= 0)
+                {
+                    // Find the matching brace
+                    bracePos2 = scintilla.BraceMatch(bracePos1);
+                    if (bracePos2 == Scintilla.InvalidPosition)
+                    {
+                        scintilla.BraceBadLight(bracePos1);
+                        scintilla.HighlightGuide = 0;
+                    }
+                    else
+                    {
+                        scintilla.BraceHighlight(bracePos1, bracePos2);
+                        scintilla.HighlightGuide = scintilla.GetColumn(bracePos1);
+                    }
+                }
+                else
+                {
+                    // Turn off brace matching
+                    scintilla.BraceHighlight(Scintilla.InvalidPosition, Scintilla.InvalidPosition);
+                    scintilla.HighlightGuide = 0;
+                }
+            }
+        }
+
+        private void HighlightWord(string text)
+        {
+            // Indicators 0-7 could be in use by a lexer
+            // so we'll use indicator 8 to highlight words.
+            const int NUM = 8;
+
+            // Remove all uses of our indicator
+            scintilla.IndicatorCurrent = NUM;
+            scintilla.IndicatorClearRange(0, scintilla.TextLength);
+
+            // Update indicator appearance
+            scintilla.Indicators[NUM].Style = IndicatorStyle.StraightBox;
+            scintilla.Indicators[NUM].Under = true;
+            scintilla.Indicators[NUM].ForeColor = Color.Green;
+            scintilla.Indicators[NUM].OutlineAlpha = 50;
+            scintilla.Indicators[NUM].Alpha = 30;
+
+            // Search the document
+            scintilla.TargetStart = 0;
+            scintilla.TargetEnd = scintilla.TextLength;
+            scintilla.SearchFlags = SearchFlags.None;
+            while (scintilla.SearchInTarget(text) != -1)
+            {
+                // Mark the search results with the current indicator
+                scintilla.IndicatorFillRange(scintilla.TargetStart, scintilla.TargetEnd - scintilla.TargetStart);
+
+                // Search the remainder of the document
+                scintilla.TargetStart = scintilla.TargetEnd;
+                scintilla.TargetEnd = scintilla.TextLength;
+            }
         }
     }
 }

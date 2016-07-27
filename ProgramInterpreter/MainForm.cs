@@ -16,18 +16,17 @@ namespace ProgramInterpreter
 {
     public partial class MainForm : Form
     {
-        Editor edit; string save;
+        string filesOpen;
+        Editor edit;
         public MainForm()
         {
             InitializeComponent();
             dockPanel.Theme = new VS2012LightTheme();
-            edit = new Editor();
-            edit.Show(dockPanel, DockState.Document);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            newDocument();
         }
 
         private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -36,13 +35,20 @@ namespace ProgramInterpreter
             a.Show();
         }
 
+        private void newDocument()
+        {
+            Editor e = new Editor();
+            e.Show(dockPanel, DockState.Document);
+        }
 
+        private void setActive() { edit = dockPanel.ActiveDocument as Editor; }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (edit.needSave)
+            setActive();
+            if (edit != null && edit.needSave)
             {
-                DialogResult d = MessageBox.Show("You have unsave changes. Are you sure you want to quit?", "Unsaved Changes", MessageBoxButtons.YesNo);
+                DialogResult d = MessageBox.Show("You have unsaved changes. Are you sure you want to quit?", "Unsaved Changes", MessageBoxButtons.YesNo);
                 if (d == DialogResult.No)
                     saveFilE();
             }
@@ -61,34 +67,60 @@ namespace ProgramInterpreter
 
         private void saveFilE()
         {
-            SaveFileDialog save = new SaveFileDialog();
-            save.Filter = "ILanguage Code | *.cbil"; save.Title = "Save your file";
-            DialogResult s = save.ShowDialog();
-            if (s != DialogResult.Cancel)
+            setActive();
+            if (filesOpen != "" && File.Exists(filesOpen))
             {
-                if (save.FileName != "" || !File.Exists(save.FileName))
+                string file = edit.scintilla.Text;
+                File.WriteAllText(filesOpen, file);
+                edit.Text = "Editor" + " [" + filesOpen.Split('\\')[filesOpen.Split('\\').Length - 1] + "]";
+                edit.needSave = false;
+            }
+            else
+            {
+                SaveFileDialog save = new SaveFileDialog();
+                save.Filter = "ILanguage Code | *.cbil"; save.Title = "Save your file";
+                DialogResult s = save.ShowDialog();
+                if (s != DialogResult.Cancel)
                 {
-                    string file = edit.scintilla.Text;
-                    this.save = save.FileName;
-                    File.WriteAllText(save.FileName, file);
-                    edit.Text = "Editor" + " [" + save.FileName.Split('\\')[save.FileName.Split('\\').Length - 1] + "]";
+                    if (File.Exists(this.filesOpen))
+                    {
+                        string file = edit.scintilla.Text;
+                        File.WriteAllText(this.filesOpen, file);
+                        edit.needSave = false;
+                    }
                 }
             }
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var document = edit.scintilla.Document;
-            edit.scintilla.AddRefDocument(document);
-
-            // Replace the current document with a new one
-            edit.scintilla.Document = Document.Empty;
+            newDocument();
         }
 
         private void buildProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Interpret i = new Interpret(save, "");
+            Engine i = new Engine(filesOpen, "");
             i.Compile();
         }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            setActive();
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter = "ILanguage Code | *.cbil"; open.Title = "Open your file";
+            DialogResult s = open.ShowDialog();
+            if(s != DialogResult.Cancel)
+            {
+                if (open.FileName != "" || File.Exists(open.FileName))
+                {
+                    string file = edit.scintilla.Text;
+                    this.filesOpen = open.FileName;
+                    edit.scintilla.Text = File.ReadAllText(open.FileName);
+                    edit.Text = "Editor" + " [" + open.FileName.Split('\\')[open.FileName.Split('\\').Length - 1] + "]";
+                }
+            }
+        }
+        private void toolBoxToolStripMenuItem_Click(object sender, EventArgs e) { ToolBox t = new ToolBox(); t.Show(dockPanel, DockState.DockRight); }
+
     }
 }

@@ -8,15 +8,18 @@ using System.Text.RegularExpressions;
 
 namespace InterpreterEngine
 {
-    public class Interpret
+    public class Engine
     {
         #region Variables
+        //Make sure there is only 1 instance of this class at any given moment
+        //Because we need to retain our variables :)
+        Parser p;
         List<string> statements = new List<string>();
         private string inputf, outputf;
         private int count = 0;
         private string line;
         //Interpret class. Set the variables
-        public Interpret(string inputPath, string outputPath)
+        public Engine(string inputPath, string outputPath)
         {
             inputf = inputPath; outputf = outputPath;
         }
@@ -27,6 +30,7 @@ namespace InterpreterEngine
         //And puts them into a list
         public void Compile()
         {
+            p = new Parser(count);
             if (File.Exists(inputf))
             {
                 //Load the file.
@@ -35,6 +39,7 @@ namespace InterpreterEngine
                 StringReader sr = new StringReader(pruneComments(file.ReadToEnd()));
                 while ((line = sr.ReadLine()) != null)
                 {
+                    p.line = count;
                     //First, we reset the list of statements we stored for the last line.
                     statements.Clear();
                     //Then, we seperate the line into statements. Each statement could end in either a
@@ -106,8 +111,6 @@ namespace InterpreterEngine
 
         public void parseStatement()
         {
-            //We call our Parser class.
-            Parser p = new Parser();
             int i = 0; //Keep track on which statement we are processing
             foreach(string s in statements)
             {
@@ -119,7 +122,7 @@ namespace InterpreterEngine
                 else if (p.isWhile(s))
                     p.parseWhile(s);
                 else
-                    //Throw an error
+                    Error.throwError("", this.count);
                 i++;
             }
         }

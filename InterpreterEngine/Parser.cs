@@ -18,7 +18,10 @@ namespace InterpreterEngine
         Dictionary<string, int> bools = new Dictionary<string, int>();
         //Objects
         Dictionary<string, int> objects = new Dictionary<string, int>();
-        Extract ex = new Extract();
+        //Selector
+        string selector = "";
+
+        Extract ex = new Extract(); public int line;
 
         #endregion
 
@@ -79,28 +82,43 @@ namespace InterpreterEngine
                     {
 						char[] myChar = { 'n', 'e', 'w' };
 						value = value.TrimStart(myChar).Trim();
+                        if (ex.extractParenthesis(value).Length == 1 && value.Substring(0, value.IndexOf('(')) == foo[0])
+                        {
+                            string[] idx = ex.extractParenthesis(value)[0].Split(',');
+                            if(getSelector(foo[0], idx) != null)
+                            {
+                                Type.Selectors fooBar = getSelector(foo[0], idx);
+                                string p = Translate.getSelDecl(fooBar.x, fooBar.y, fooBar.z, fooBar.radiusMax, foo[0]);
+                                if (!string.IsNullOrWhiteSpace(p))
+                                    this.selector = p;
+                                else
+                                    Error.throwError("", this.line);
+                            }
+                            else
+                                Error.throwError("", this.line);
+                        }
+                        else
+                            Error.throwError("", this.line);
                     }
                     switch (foo[0])
                     {
                         case "int":
                             ex.addTokenI(foo[1], value, ints);
-                            //else throw error
                             break;
                         case "string":
                             ex.addTokenS(foo[1], value, strings);
-                            //else throw error
                             break;
                         case "bool":
                             if (int.TryParse(value, out i))
                                 ex.addTokenB(foo[1], i, bools);
-                            //else throw error
+                            else Error.throwError("", this.line);
                             break;
-                        default: break; //Throw error
+                        default: Error.throwError("", this.line); break;
                     }
                 }
             }
-            //else
-                //Error
+            else
+                Error.throwError("", this.line);
         }
 
         public void parseWhile(string line)
@@ -123,16 +141,39 @@ namespace InterpreterEngine
 
         #endregion
 
-        public Parser()
+        #region Parser
+
+        public Parser(int line)
         {
-            initObjects();
+            initObjects(); this.line = line;
         }
 
         public void initObjects()
         {
-            objects.Add("rPlayer", 0); objects.Add("aPlayer", 1); objects.Add("pPlayer", 2); objects.Add("aEntity", 3);
-            objects.Add("Item", 4); objects.Add("Entity", 5); objects.Add("Text[]", 6);
+            //The value of each entry is equal to the number of arguments it takes
+            objects.Add("rPlayer", 4); objects.Add("aPlayer", 4); objects.Add("pPlayer", 4); objects.Add("aEntity", 4);
+            objects.Add("Item", 4); objects.Add("Entity", 5); objects.Add("Text[]", 13);
         }
 
+        #endregion
+
+        #region Get Object Types
+
+        public Type.Selectors getSelector(string name, string[] idx)
+        {
+            if (idx.Length == 4)
+            {
+                int[] xyzr = new int[4]; int i = 0;
+                foreach (string s in idx)
+                {
+                    int.TryParse(idx[i], out xyzr[i]); i++;
+                }
+                return new Type.Selectors(xyzr[0], xyzr[1], xyzr[2], xyzr[3]);
+            }
+            else
+                return null;
+        }
+
+        #endregion
     }
 }

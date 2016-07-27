@@ -40,6 +40,7 @@
             this.scintilla.TabIndex = 0;
             this.scintilla.UseTabs = false;
             this.scintilla.StyleNeeded += new System.EventHandler<ScintillaNET.StyleNeededEventArgs>(this.scintilla_StyleNeeded);
+            this.scintilla.UpdateUI += new System.EventHandler<ScintillaNET.UpdateUIEventArgs>(this.scintilla_UpdateUI);
             this.scintilla.TextChanged += new System.EventHandler(this.scintilla_TextChanged);
             // 
             // Editor
