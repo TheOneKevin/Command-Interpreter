@@ -10,13 +10,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 using System.Configuration;
+using System.IO;
 
+//Most of this consists of code from the ScintillaNet WIKI
 namespace ProgramInterpreter
 {
     public partial class Editor : DockContent
     {
-        public bool needSave = false;
+        public bool needSave = false; public string filesOpen;
         private int maxLineNumberCharLength; int lastCaretPos = 0;
+        private const int BOOKMARK_MARGIN = 1; // Conventionally the symbol margin
+        private const int BOOKMARK_MARKER = 3; // Arbitrary. Any valid index would work.
         public Editor()
         {
             InitializeComponent();
@@ -52,13 +56,26 @@ namespace ProgramInterpreter
             scintilla.Styles[Style.BraceLight].BackColor = Color.GreenYellow;
             scintilla.Styles[Style.BraceLight].ForeColor = Color.BlueViolet;
             scintilla.Styles[Style.BraceBad].ForeColor = Color.Red;
+
+            //Breakpoints
+            var margin = scintilla.Margins[BOOKMARK_MARGIN];
+            margin.Width = 16;
+            margin.Sensitive = true;
+            margin.Type = MarginType.Symbol;
+            margin.Mask = Marker.MaskAll;
+            margin.Cursor = MarginCursor.Arrow;
+
+            var marker = scintilla.Markers[BOOKMARK_MARKER];
+            marker.Symbol = MarkerSymbol.Bookmark;
+            marker.SetBackColor(Color.Crimson);
+            marker.SetForeColor(Color.Black);
         }
 
         private void scintilla_StyleNeeded(object sender, StyleNeededEventArgs e)
         {
             // Set the keywords
-            string keywords1 = "while if true false _mc";
-            string keywords2 = "bool int float string aPlayer rPlayer pPlayer aEntity Item";
+            string keywords1 = "while if true false _mc bool int float string";
+            string keywords2 = "aPlayer rPlayer pPlayer aEntity Item";
             string keywords3 = "achievement blockdata clear clone defaultgamemode difficulty effect enchant " +
                 "entitydata execute fill gamemode gamerule give kill particle playsound replaceitem say scoreboard setblock setworldspawn spawnpoint stats stopsound summon teleport tell tellraw testfor testforblock testforblocks time title toggledownfall trigger weather worldborder xp";
             string operands = "{ } [ ] ( ) ; : | + = - * / \\ ' < > . , ? ~";
@@ -169,6 +186,59 @@ namespace ProgramInterpreter
                 // Search the remainder of the document
                 scintilla.TargetStart = scintilla.TargetEnd;
                 scintilla.TargetEnd = scintilla.TextLength;
+            }
+        }
+
+        private void Editor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.needSave)
+            {
+                DialogResult d = MessageBox.Show("You have unsaved changes. Are you sure you want to quit?", "Unsaved Changes", MessageBoxButtons.YesNo);
+                if (d == DialogResult.No)
+                {
+                    if (filesOpen != "" && File.Exists(filesOpen))
+                    {
+                        string file = this.scintilla.Text;
+                        File.WriteAllText(filesOpen, file);
+                        this.Text = "Editor" + " [" + filesOpen.Split('\\')[filesOpen.Split('\\').Length - 1] + "]";
+                        this.needSave = false;
+                    }
+                    else
+                    {
+                        SaveFileDialog save = new SaveFileDialog();
+                        save.Filter = "ILanguage Code | *.cbil"; save.Title = "Save your file";
+                        DialogResult s = save.ShowDialog();
+                        if (s != DialogResult.Cancel)
+                        {
+                            if (File.Exists(this.filesOpen))
+                            {
+                                string file = this.scintilla.Text;
+                                File.WriteAllText(this.filesOpen, file);
+                                this.needSave = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void scintilla_MarginClick(object sender, MarginClickEventArgs e)
+        {
+            if (e.Margin == BOOKMARK_MARGIN)
+            {
+                // Do we have a marker for this line?
+                const uint mask = (1 << BOOKMARK_MARKER);
+                var line = scintilla.Lines[scintilla.LineFromPosition(e.Position)];
+                if ((line.MarkerGet() & mask) > 0)
+                {
+                    // Remove existing bookmark
+                    line.MarkerDelete(BOOKMARK_MARKER);
+                }
+                else
+                {
+                    // Add bookmark
+                    line.MarkerAdd(BOOKMARK_MARKER);
+                }
             }
         }
     }

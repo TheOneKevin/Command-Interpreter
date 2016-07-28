@@ -32,3 +32,5 @@ C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramI
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\InterpreterEngine.dll
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\InterpreterEngine.pdb
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\obj\Debug\ProgramInterpreter.ErrorList.resources
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\obj\Debug\ProgramInterpreter.ToolBox.resources
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\obj\Debug\ProgramInterpreter.Output.resources

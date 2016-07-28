@@ -1,0 +1,1120 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sasa.Parsing</name>
+    </assembly>
+    <members>
+        <member name="T:Sasa.Parsing.Lexing.AlternateRunner`1">
+            <summary>
+            Applies a list of lexers using only stack space.
+            </summary>
+            <remarks>
+            Actual allocation is performed by the merge function only when a list
+            of alternate parses is desired.
+            </remarks>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.AlternateRunner`1.#ctor(`0,Sasa.Parsing.LexMerge{`0},Sasa.VAction{`0}[])">
+            <summary>
+            Construct a new instance of a runner that lexes alternates.
+            </summary>
+            <param name="original">The original lexer state.</param>
+            <param name="merge">The merge function.</param>
+            <param name="lexers">The list of possible lexers that could match.</param>
+        </member>
+        <member name="F:Sasa.Parsing.Lexing.AlternateRunner`1.Lexers">
+            <summary>
+            The list of lexers to apply.
+            </summary>
+        </member>
+        <member name="F:Sasa.Parsing.Lexing.AlternateRunner`1.Original">
+            <summary>
+            The original lexer state.
+            </summary>
+        </member>
+        <member name="F:Sasa.Parsing.Lexing.AlternateRunner`1.Merge">
+            <summary>
+            The lex merge function to apply.
+            </summary>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.AlternateRunner`1.Run(`0@,System.Int32)">
+            <summary>
+            Run the lexers recursively and merge the results.
+            </summary>
+            <param name="root">The output lexer state.</param>
+            <param name="i">The index designating the current lexer to apply.</param>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.AlternateRunner`1.Equals(Sasa.Parsing.Lexing.AlternateRunner{`0})">
+            <summary>
+            Compares struct for equality.
+            </summary>
+            <param name="other">The object to compare to.</param>
+            <returns>True if equal, false otherwise.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.AlternateRunner`1.Equals(System.Object)">
+            <summary>
+            Compares struct for equality.
+            </summary>
+            <param name="obj">The object to compare to.</param>
+            <returns>True if equal, false otherwise.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.AlternateRunner`1.GetHashCode">
+            <summary>
+            Computes the hash code for the object.
+            </summary>
+            <returns>The integer hash code.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.AlternateRunner`1.op_Equality(Sasa.Parsing.Lexing.AlternateRunner{`0},Sasa.Parsing.Lexing.AlternateRunner{`0})">
+            <summary>
+            Compares struct for equality.
+            </summary>
+            <param name="left">The left object to compare.</param>
+            <param name="right">The right object to compare.</param>
+            <returns>True if equal, false otherwise.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.AlternateRunner`1.op_Inequality(Sasa.Parsing.Lexing.AlternateRunner{`0},Sasa.Parsing.Lexing.AlternateRunner{`0})">
+            <summary>
+            Compares struct for inequality.
+            </summary>
+            <param name="left">The left object to compare.</param>
+            <param name="right">The right object to compare.</param>
+            <returns>True if not equal, false otherwise.</returns>
+        </member>
+        <member name="T:Sasa.Parsing.Lexing.ILexer`2">
+            <summary>
+            An extended lexer interface providing complex, performance-optimized
+            lexer combinators.
+            </summary>
+            <typeparam name="T">The type of the built lexer.</typeparam>
+            <typeparam name="TState">The lexer state.</typeparam>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.ILexer`2.Literal(System.String)">
+            <summary>
+            Lex a string terminal.
+            </summary>
+            <param name="x">The string literal to match.</param>
+            <returns>A lexer that matches <paramref name="x"/>.</returns>
+            <remarks>
+            This is merely a performance optimization. The following code snippet demonstrates
+            the equivalence:
+            <code>
+            <see cref="M:Sasa.Parsing.Lexing.ILexer`2.Literal(System.String)"/>("foo") == <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Sequence(`0[])"/>(<see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>('f'), <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>('o'), <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>('o'))
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.ILexer`2.Range(System.Char,System.Char)">
+            <summary>
+            Lex a character range.
+            </summary>
+            <param name="lower">The inclusive lower bound on the character range.</param>
+            <param name="upper">The inclusive upper bound on the character range.</param>
+            <returns>A lexer that matches a character range.</returns>
+            <remarks>
+            This is functionally equivalent to the base lexer interface as follows:
+            <code>
+            <see cref="M:Sasa.Parsing.Lexing.ILexer`2.Range(System.Char,System.Char)"/>('A', 'z') = <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Alternate(Sasa.Parsing.LexMerge{`1},`0[])"/>(<see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>('A') , <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>('B'), ..., <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>('z'));
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.ILexer`2.Where(System.Predicate{System.Char})">
+            <summary>
+            Match a character using a predicate.
+            </summary>
+            <param name="matches">The predicate to check.</param>
+            <returns>A lexer that matches the given predicate.</returns>
+            <remarks>
+            Whatever predicate is provided can be matched by a composition of the base
+            lexer combinators.
+            </remarks>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.ILexer`2.OneOrMore(`0)">
+            <summary>
+            A lexer that repeatedly attempts to match an underlying lexer.
+            </summary>
+            <param name="lexer">The underlying lexer.</param>
+            <returns>A lexer that matches one or more times.</returns>
+            <remarks>
+            This is equivalent to:
+            <code>
+            <see cref="M:Sasa.Parsing.Lexing.ILexer`2.OneOrMore(`0)"/>(X) == <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Recursive(`0)"/>(x => <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Sequence(`0[])"/>(X, x))
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.ILexer`2.ZeroOrMore(`0)">
+            <summary>
+            A lexer that repeatedly attempts to match an underlying lexer.
+            </summary>
+            <param name="lexer">The underlying lexer.</param>
+            <returns>A lexer that matches zero or more times.</returns>
+            <remarks>
+            This is equivalent to:
+            <code>
+            ZeroOrMore(X) == <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Recursive(`0)"/>(x => <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Alternate(Sasa.Parsing.LexMerge{`1},`0[])"/>(<see cref="P:Sasa.Parsing.Lexing.ILexerBasic`2.Empty"/>, X, x))
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.ILexer`2.Any(System.String)">
+            <summary>
+            A lexer that matches any one of a number of characters.
+            </summary>
+            <param name="chars"></param>
+            <returns>A lexer that can recognize any of the characters listed in the string.</returns>
+            <remarks>
+            This is equivalent to:
+            <code>
+            <see cref="M:Sasa.Parsing.Lexing.ILexer`2.Any(System.String)"/>(c0, c1, ... cN) == <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Alternate(Sasa.Parsing.LexMerge{`1},`0[])"/>(<see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>(c0), <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>(c1), ..., <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>(cN))
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.ILexer`2.Optional(`0)">
+            <summary>
+            A lexer that succeeds whether or not it matches.
+            </summary>
+            <param name="lexer">The lexer to apply.</param>
+            <returns>An optional lexer.</returns>
+            <remarks>
+            This is equivalent to:
+            <code>
+            <see cref="M:Sasa.Parsing.Lexing.ILexer`2.Optional(`0)"/>(X) == <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Alternate(Sasa.Parsing.LexMerge{`1},`0[])"/>(<see cref="P:Sasa.Parsing.Lexing.ILexerBasic`2.Empty"/>, X)
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.ILexer`2.Regex(System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            Lex using a regular expression.
+            </summary>
+            <param name="format">The regex to use.</param>
+            <param name="options">The regex options.</param>
+            <returns>A lexer that scans using a regular expression.</returns>
+        </member>
+        <member name="T:Sasa.Parsing.Lexing.ILexerBasic`2">
+            <summary>
+            Abstract lexer construction interface.
+            </summary>
+            <typeparam name="T">The type of a built lexer.</typeparam>
+            <typeparam name="TLexerState">The lexer state.</typeparam>
+        </member>
+        <member name="P:Sasa.Parsing.Lexing.ILexerBasic`2.Empty">
+            <summary>
+            Lex nothing.
+            </summary>
+            <returns>A lexer that matches nothing, but returns trivially true as matched.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)">
+            <summary>
+            Lex a character terminal.
+            </summary>
+            <param name="character">The character to match.</param>
+            <returns>A lexer that matches <paramref name="character"/>.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.ILexerBasic`2.Alternate(Sasa.Parsing.LexMerge{`1},`0[])">
+            <summary>
+            Choose amongst a set of possible lexes.
+            </summary>
+            <param name="lexers">The list of lexers to apply.</param>
+            <param name="merge">A function that collapses the set of lexes.</param>
+            <returns>A lexer that matches given any of <paramref name="lexers"/>.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.ILexerBasic`2.Sequence(`0[])">
+            <summary>
+            Compose a series of lexers.
+            </summary>
+            <param name="lexers">The list of lexers that must match, in sequence.</param>
+            <returns>A lexer that matches an ordered sequence of lexers.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.ILexerBasic`2.Recursive(`0)">
+            <summary>
+            Construct a recursive lexer.
+            </summary>
+            <param name="lexer">A function that builds a recursive lexer given the current lexer.</param>
+            <returns>A recursive lexer.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.ILexerBasic`2.Tag(System.String,`0)">
+            <summary>
+            Applies a tag to the lexer state if lexing succeeds.
+            </summary>
+            <param name="identifier">The identifier to associate with the lexing rule.</param>
+            <param name="lexer">The lexer to wrap.</param>
+            <returns>A lexer that sets the identifier on success.</returns>
+        </member>
+        <member name="T:Sasa.Parsing.Lexing.ILexerState">
+            <summary>
+            The abstract lexer state.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Lexing.ILexerState.Input">
+            <summary>
+            The input string to lex.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Lexing.ILexerState.Position">
+            <summary>
+            The position during lexical analysis.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Lexing.ILexerState.Error">
+            <summary>
+            The error encountered, if any.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Lexing.ILexerState.Id">
+            <summary>
+            A string that uniquely identifies a lexer rule.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Lexing.ILexerState.Alternate">
+            <summary>
+            An alternate parse.
+            </summary>
+        </member>
+        <member name="T:Sasa.Parsing.Lexing.Lexer">
+            <summary>
+            A full extender lexer.
+            </summary>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.Lexer.Literal(System.String)">
+            <summary>
+            Lex a string terminal.
+            </summary>
+            <param name="x">The string literal to match.</param>
+            <returns>A lexer that matches <paramref name="x"/>.</returns>
+            <remarks>
+            This is merely a performance optimization. The following code snippet demonstrates
+            the equivalence:
+            <code>
+            <see cref="M:Sasa.Parsing.Lexing.Lexer.Literal(System.String)"/>("foo") == <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Sequence(`0[])"/>(<see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>('f'), <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>('o'), <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>('o'))
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.Lexer.Range(System.Char,System.Char)">
+            <summary>
+            Lex a character range.
+            </summary>
+            <param name="lower">The inclusive lower bound on the character range.</param>
+            <param name="upper">The inclusive upper bound on the character range.</param>
+            <returns>A lexer that matches a character range.</returns>
+            <remarks>
+            This is functionally equivalent to the base lexer interface as follows:
+            <code>
+            <see cref="M:Sasa.Parsing.Lexing.Lexer.Range(System.Char,System.Char)"/>('A', 'z') = <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Alternate(Sasa.Parsing.LexMerge{`1},`0[])"/>(<see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>('A') , <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>('B'), ..., <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>('z'));
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.Lexer.Where(System.Predicate{System.Char})">
+            <summary>
+            Match a character using a predicate.
+            </summary>
+            <param name="matches">The predicate to check.</param>
+            <returns>A lexer that matches the given predicate.</returns>
+            <remarks>
+            Whatever predicate is provided can be matched by a composition of the base
+            lexer combinators.
+            </remarks>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.Lexer.ZeroOrMore(Sasa.VAction{Sasa.Parsing.LexerState})">
+            <summary>
+            A lexer that repeatedly attempts to match an underlying lexer.
+            </summary>
+            <param name="lexer">The uncerlying lexer.</param>
+            <returns>A lexer that matches one or more times.</returns>
+            <remarks>
+            This is equivalent to:
+            <code>
+            <see cref="M:Sasa.Parsing.Lexing.Lexer.OneOrMore(Sasa.VAction{Sasa.Parsing.LexerState})"/>(X) == <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Recursive(`0)"/>(x => <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Sequence(`0[])"/>(X, x))
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.Lexer.OneOrMore(Sasa.VAction{Sasa.Parsing.LexerState})">
+            <summary>
+            A lexer that repeatedly attempts to match an underlying lexer.
+            </summary>
+            <param name="lexer">The underlying lexer.</param>
+            <returns>A lexer that matches zero or more times.</returns>
+            <remarks>
+            This is equivalent to:
+            <code>
+            ZeroOrMore(X) == <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Recursive(`0)"/>(x => <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Alternate(Sasa.Parsing.LexMerge{`1},`0[])"/>(<see cref="P:Sasa.Parsing.Lexing.ILexerBasic`2.Empty"/>, X, x))
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.Lexer.Any(System.String)">
+            <summary>
+            A lexer that matches any one of a number of characters.
+            </summary>
+            <param name="chars"></param>
+            <returns>A lexer that can recognize any of the characters listed in the string.</returns>
+            <remarks>
+            This is equivalent to:
+            <code>
+            <see cref="M:Sasa.Parsing.Lexing.Lexer.Any(System.String)"/>(c0, c1, ... cN) == <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Alternate(Sasa.Parsing.LexMerge{`1},`0[])"/>(<see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>(c0), <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>(c1), ..., <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Terminal(System.Char)"/>(cN))
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.Lexer.Not(Sasa.VAction{Sasa.Parsing.LexerState})">
+            <summary>
+            A lexer that negates successful lexes.
+            </summary>
+            <param name="lexer">The lexer to apply.</param>
+            <returns>An negated lexer.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.Lexer.Optional(Sasa.VAction{Sasa.Parsing.LexerState})">
+            <summary>
+            A lexer that succeeds whether or not it matches.
+            </summary>
+            <param name="lexer">The lexer to apply.</param>
+            <returns>An optional lexer.</returns>
+            <remarks>
+            This is equivalent to:
+            <code>
+            <see cref="M:Sasa.Parsing.Lexing.Lexer.Optional(Sasa.VAction{Sasa.Parsing.LexerState})"/>(X) == <see cref="M:Sasa.Parsing.Lexing.ILexerBasic`2.Alternate(Sasa.Parsing.LexMerge{`1},`0[])"/>(<see cref="P:Sasa.Parsing.Lexing.ILexerBasic`2.Empty"/>, X)
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.Lexer.Regex(System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            Scan using a regular expression.
+            </summary>
+            <param name="format">The regex pattern to match against.</param>
+            <param name="options">The options to the regex.</param>
+            <returns>A scanner using a regular expression for matching.</returns>
+        </member>
+        <member name="T:Sasa.Parsing.Lexing.LexerBasic">
+            <summary>
+            A simple lexer
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Lexing.LexerBasic.Empty">
+            <summary>
+            Lex nothing.
+            </summary>
+            <returns>A lexer that matches nothing, but returns trivially true as matched.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.LexerBasic.Terminal(System.Char)">
+            <summary>
+            Lex a character terminal.
+            </summary>
+            <param name="character">The character to match.</param>
+            <returns>A lexer that matches <paramref name="character"/>.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.LexerBasic.Alternate(Sasa.Parsing.LexMerge{Sasa.Parsing.LexerState},Sasa.VAction{Sasa.Parsing.LexerState}[])">
+            <summary>
+            Choose amongst a set of possible lexes.
+            </summary>
+            <param name="lexers">The list of lexers to apply.</param>
+            <param name="merge">A function that collapses the set of lexes.</param>
+            <returns>A lexer that matches given any of <paramref name="lexers"/>.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.LexerBasic.Sequence(Sasa.VAction{Sasa.Parsing.LexerState}[])">
+            <summary>
+            Compose a series of lexers.
+            </summary>
+            <param name="lexers">The list of lexers that must match, in sequence.</param>
+            <returns>A lexer that matches an ordered sequence of lexers.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.LexerBasic.Recursive(Sasa.VAction{Sasa.Parsing.LexerState})">
+            <summary>
+            Construct a recursive lexer.
+            </summary>
+            <param name="lexer">The lexer to apply recursively.</param>
+            <returns>A recursive lexer.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexing.LexerBasic.Tag(System.String,Sasa.VAction{Sasa.Parsing.LexerState})">
+            <summary>
+            Applies a tag to the lexer state if lexing succeeds.
+            </summary>
+            <param name="identifier">The identifier to associate with the lexing rule.</param>
+            <param name="lexer">The lexer to wrap.</param>
+            <returns>A lexer that sets the identifier on success.</returns>
+        </member>
+        <member name="T:Sasa.Parsing.LexMerge`1">
+            <summary>
+            A lex merging function used to process all alternates using
+            only the stack.
+            </summary>
+            <typeparam name="T">The type of lexer state.</typeparam>
+            <param name="root">The actual lexer state returned.</param>
+            <param name="original">The original lexer state before applying alternates.</param>
+            <param name="current">The lexer state from the current alternate.</param>
+        </member>
+        <member name="T:Sasa.Parsing.Lexers">
+            <summary>
+            Extension methods on all lexers.
+            </summary>
+        </member>
+        <member name="M:Sasa.Parsing.Lexers.SingleMatch``1(``0@,``0,``0@)">
+            <summary>
+            A <see cref="T:Sasa.Parsing.LexMerge`1"/> function that ensures only a single lex is possible.
+            </summary>
+            <typeparam name="TLexerState">The type of lexer state.</typeparam>
+            <param name="root">The returned lexer state.</param>
+            <param name="original">The original lexer state.</param>
+            <param name="current">The lexer state generated by the current lexer.</param>
+            <exception cref="T:System.InvalidOperationException">Thrown when more than one lexing rules matches.</exception>
+        </member>
+        <member name="M:Sasa.Parsing.Lexers.LongestMatch``1(``0@,``0,``0@)">
+            <summary>
+            A <see cref="T:Sasa.Parsing.LexMerge`1"/> function that selects the longest match available.
+            </summary>
+            <typeparam name="TLexerState">The type of lexer state.</typeparam>
+            <param name="root">The returned lexer state.</param>
+            <param name="original">The original lexer state.</param>
+            <param name="current">The lexer state generated by the current lexer.</param>
+        </member>
+        <member name="M:Sasa.Parsing.Lexers.ValidMatches``1(``0@,``0,``0@)">
+            <summary>
+            A <see cref="T:Sasa.Parsing.LexMerge`1"/> function that collects all valid lexes.
+            </summary>
+            <typeparam name="TLexerState">The type of lexer state.</typeparam>
+            <param name="root">The returned lexer state.</param>
+            <param name="original">The original lexer state.</param>
+            <param name="current">The lexer state generated by the current lexer.</param>
+        </member>
+        <member name="M:Sasa.Parsing.Lexers.CollectMatches``1(``0@,``0,``0@)">
+            <summary>
+            A <see cref="T:Sasa.Parsing.LexMerge`1"/> function that collects all valid and invalid lexes.
+            </summary>
+            <typeparam name="TLexerState">The type of lexer state.</typeparam>
+            <param name="root">The returned lexer state.</param>
+            <param name="original">The original lexer state.</param>
+            <param name="current">The lexer state generated by the current lexer.</param>
+        </member>
+        <member name="M:Sasa.Parsing.Lexers.Alternates``1(``0)">
+            <summary>
+            Return an enumerator over the list of alternate lexes.
+            </summary>
+            <typeparam name="TLexerState">The type of the lexer state.</typeparam>
+            <param name="state">The root lexer state.</param>
+            <returns>An enumerator over the list of alternate lexes.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexers.Contains``1(``0,System.String)">
+            <summary>
+            Checks whether lexer alternates contain the given identifier.
+            </summary>
+            <typeparam name="TLexerState">The lexer state type.</typeparam>
+            <param name="state">The lexer state to search.</param>
+            <param name="id">The identifier to search for.</param>
+            <returns>True if the lex alternates contain the identifier.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexers.Letters``2(Sasa.Parsing.Lexing.ILexer{``0,``1})">
+            <summary>
+            A lexer for letters.
+            </summary>
+            <typeparam name="T">The lexer type.</typeparam>
+            <typeparam name="TState">The lexer state type.</typeparam>
+            <param name="lexer">The lexer to use.</param>
+            <returns>A lexer that scans for letters.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexers.Digits``2(Sasa.Parsing.Lexing.ILexer{``0,``1})">
+            <summary>
+            A lexer for digits.
+            </summary>
+            <typeparam name="T">The lexer type.</typeparam>
+            <typeparam name="TState">The lexer state type.</typeparam>
+            <param name="lexer">The lexer to use.</param>
+            <returns>A lexer that scans for digits.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexers.LettersOrDigits``2(Sasa.Parsing.Lexing.ILexer{``0,``1})">
+            <summary>
+            A lexer for letters or digits.
+            </summary>
+            <typeparam name="T">The lexer type.</typeparam>
+            <typeparam name="TState">The lexer state type.</typeparam>
+            <param name="lexer">The lexer to use.</param>
+            <returns>A lexer that scans for letters or digits.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Lexers.Whitespace``2(Sasa.Parsing.Lexing.ILexer{``0,``1})">
+            <summary>
+            A lexer for whitespace.
+            </summary>
+            <typeparam name="T">The lexer type.</typeparam>
+            <typeparam name="TState">The lexer state type.</typeparam>
+            <param name="lexer">The lexer to use.</param>
+            <returns>A lexer that scans for whitespace.</returns>
+        </member>
+        <member name="T:Sasa.Parsing.LexerState">
+            <summary>
+            The minimal state of the lexer.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.LexerState.Input">
+            <summary>
+            The input string to lex.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.LexerState.Position">
+            <summary>
+            The position during lexical analysis.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.LexerState.Error">
+            <summary>
+            The error encountered, if any.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.LexerState.Id">
+            <summary>
+            A string that uniquely identifies a lexer rule.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.LexerState.Alternate">
+            <summary>
+            An alternate parse.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.LexerState.Terminate">
+            <summary>
+            True if lexing should terminate.
+            </summary>
+            <remarks>Terminate = !Continue</remarks>
+        </member>
+        <member name="P:Sasa.Parsing.LexerState.Continue">
+            <summary>
+            True if lexing should continue.
+            </summary>
+            <remarks>Continue = !Terminate</remarks>
+        </member>
+        <member name="M:Sasa.Parsing.LexerState.Equals(Sasa.Parsing.LexerState)">
+            <summary>
+            Compares struct for equality.
+            </summary>
+            <param name="other">The object to compare to.</param>
+            <returns>True if equal, false otherwise.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.LexerState.Equals(System.Object)">
+            <summary>
+            Compares struct for equality.
+            </summary>
+            <param name="obj">The object to compare to.</param>
+            <returns>True if equal, false otherwise.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.LexerState.GetHashCode">
+            <summary>
+            Computes the hash code for the object.
+            </summary>
+            <returns>The integer hash code.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.LexerState.op_Equality(Sasa.Parsing.LexerState,Sasa.Parsing.LexerState)">
+            <summary>
+            Compares struct for equality.
+            </summary>
+            <param name="left">The left object to compare.</param>
+            <param name="right">The right object to compare.</param>
+            <returns>True if equal, false otherwise.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.LexerState.op_Inequality(Sasa.Parsing.LexerState,Sasa.Parsing.LexerState)">
+            <summary>
+            Compares struct for inequality.
+            </summary>
+            <param name="left">The left object to compare.</param>
+            <param name="right">The right object to compare.</param>
+            <returns>True if not equal, false otherwise.</returns>
+        </member>
+        <member name="T:Sasa.Parsing.ParseException">
+            <summary>
+            Describes a parse error.
+            </summary>
+        </member>
+        <member name="M:Sasa.Parsing.ParseException.#ctor">
+            <summary>
+            Construct a new parse error.
+            </summary>
+        </member>
+        <member name="M:Sasa.Parsing.ParseException.#ctor(System.String)">
+            <summary>
+            Constructs a new parse error.
+            </summary>
+            <param name="error">A description of the error.</param>
+        </member>
+        <member name="M:Sasa.Parsing.ParseException.#ctor(System.String,System.Exception)">
+            <summary>
+            Construct a new parse error.
+            </summary>
+            <param name="error">The error description.</param>
+            <param name="inner">The inner exception.</param>
+        </member>
+        <member name="M:Sasa.Parsing.ParseException.#ctor(System.Int32,System.Int32,System.String)">
+            <summary>
+            Constructs a new error at the given line number and position of the input.
+            </summary>
+            <param name="line">The line number of the error.</param>
+            <param name="column">The column position of the error.</param>
+            <param name="error">A description of the error.</param>
+        </member>
+        <member name="M:Sasa.Parsing.ParseException.#ctor(System.Int32,System.Int32,System.String,System.Exception)">
+            <summary>
+            Constructs a new error at the given line number and position of the input.
+            </summary>
+            <param name="line">The line number of the error.</param>
+            <param name="column">The column position of the error.</param>
+            <param name="error">A description of the error.</param>
+            <param name="inner">The inner exception.</param>
+        </member>
+        <member name="P:Sasa.Parsing.ParseException.Line">
+            <summary>
+            The line number of the error.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.ParseException.Column">
+            <summary>
+            The position of the error on the line.
+            </summary>
+        </member>
+        <member name="M:Sasa.Parsing.ParseException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialize the exception data.
+            </summary>
+            <param name="info">The serialization data.</param>
+            <param name="context">The context.</param>
+        </member>
+        <member name="M:Sasa.Parsing.ParseException.ToString">
+            <summary>
+            Returns a string representation describing the parse error.
+            </summary>
+            <returns>A string representation describing the parse error.</returns>
+        </member>
+        <member name="T:Sasa.Parsing.Pratt.Token`1">
+            <summary>
+            A semantic token encapsulating all the information needed to
+            parse a lexed input.
+            </summary>
+            <typeparam name="T">The type of value parsed by the token.</typeparam>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Token`1.#ctor(Sasa.Parsing.Pratt.Rule{`0},System.String,System.Int32,System.Int32)">
+            <summary>
+            Create a semantic token.
+            </summary>
+            <param name="rule">The rule this token was matched from.</param>
+            <param name="value">The token value.</param>
+            <param name="line">The line number where the token occurred.</param>
+            <param name="column">The column where the token occurred.</param>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.Token`1.Id">
+            <summary>
+            The token rule's unique identifier.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.Token`1.LeftBindingPower">
+            <summary>
+            The rule's left binding power.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.Token`1.Rule">
+            <summary>
+            The rule that matched this token.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.Token`1.Value">
+            <summary>
+            The token value extracted from the input.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.Token`1.Line">
+            <summary>
+            The line number of the input where the error occurred.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.Token`1.Column">
+            <summary>
+            The column where the error occurred.
+            </summary>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Token`1.Nud(Sasa.Parsing.Pratt.PrattParser{`0})">
+            <summary>
+            Execute the null denotation function of this token.
+            </summary>
+            <returns>The value for the null denotation of this token.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Token`1.Led(Sasa.Parsing.Pratt.PrattParser{`0},`0)">
+            <summary>
+            Execute the left denotation function of this token.
+            </summary>
+            <param name="parser">The parser state.</param>
+            <param name="left">The value to the left of this token.</param>
+            <returns>The left denotation of this token.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Token`1.ToString">
+            <summary>
+            Returns a string representation of this token.
+            </summary>
+            <returns>A string representation of this token.</returns>
+        </member>
+        <member name="T:Sasa.Parsing.Pratt.Grammar`1">
+            <summary>
+            Inherit from this class to implement a typed grammar.
+            </summary>
+            <typeparam name="T">The type of values parsed from the input.</typeparam>
+            <remarks>
+            Implements a simple single-state Pratt-style parser with a longest
+            match precedence-based lexer. Clients need only inherit from this class,
+            specify the type of elements being parsed, and in the constructor function
+            specifying the set of parsable operators with the associated semantic action.
+            
+            Pratt-parsers are effectively Turing complete, so they can parse any grammar imaginable,
+            although the predefined combinators encourage context-free grammars.
+            
+            References:
+            <ul>
+            <li><a href="http://effbot.org/zone/simple-top-down-parsing.htm">http://effbot.org/zone/simple-top-down-parsing.htm</a></li>
+            <li><a href="http://javascript.crockford.com/tdop/tdop.html">http://javascript.crockford.com/tdop/tdop.html</a></li>
+            </ul>
+            </remarks>
+            <example>
+            Here is a simple calculator as an example:
+            <code>
+            class Calculator : Grammar&lt;int&gt;
+            {
+                public Calculator()
+                {
+                    Infix("+", 10, Add);   Infix("-", 10, Sub);
+                    Infix("*", 20, Mul);   Infix("/", 20, Div);
+                    InfixR("^", 30, Pow);  Postfix("!", 30, Fact);
+                    Prefix("-", 100, Neg); Prefix("+", 100, Pos);
+                    Group("(", ")", int.MaxValue);
+                    Match("(digit)", char.IsDigit, 1, Int);
+                    SkipWhile(char.IsWhiteSpace);
+                }
+            
+                int Int(string lit) { return int.Parse(lit); }
+                int Add(int lhs, int rhs) { return lhs + rhs; }
+                int Sub(int lhs, int rhs) { return lhs - rhs; }
+                int Mul(int lhs, int rhs) { return lhs * rhs; }
+                int Div(int lhs, int rhs) { return lhs / rhs; }
+                int Pow(int lhs, int rhs) { return (int)Math.Pow(lhs, rhs); }
+                int Neg(int arg) { return -arg; }
+                int Pos(int arg) { return arg; }
+                int Fact(int arg)
+                {
+                    return arg == 0 || arg == 1 ? 1 : arg * Fact(arg - 1);
+                }
+            }
+            </code>
+            </example>
+            <exception cref="T:Sasa.Parsing.ParseException">Thrown if the parser encounters any errors, such as unknown symbols.</exception>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.#ctor(Sasa.Parsing.LexMerge{Sasa.Parsing.LexerState})">
+            <summary>
+            Initialize a grammar.
+            </summary>
+            <param name="lexMerge">The merge function to apply to lexers.</param>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Rule(Sasa.Parsing.Pratt.Rule{`0})">
+            <summary>
+            Declares a parsing rule.
+            </summary>
+            <param name="newRule">The parsing rule.</param>
+            <returns>The modified parsing rule.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Match(System.String,Sasa.VAction{Sasa.Parsing.LexerState},System.Int32,System.Func{System.String,`0})">
+            <summary>
+            A rule that matches a custom lex.
+            </summary>
+            <param name="id">The identifier for this symbol.</param>
+            <param name="lex">The lexer for this rule.</param>
+            <param name="bindingPower">Operator's left binding power.</param>
+            <param name="parse">Parsing function taking a string to a <typeparamref name="T"/>.</param>
+            <returns>Literal symbol.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Symbol(System.String)">
+            <summary>
+            Generates a symbol.
+            </summary>
+            <param name="id">The symbol identifier.</param>
+            <returns>A symbol.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Symbol(System.String,System.Int32)">
+            <summary>
+            Generates a symbol with the given left binding power.
+            </summary>
+            <param name="id">The symbol identifier.</param>
+            <param name="leftBindingPower">The left binding power.</param>
+            <returns>A symbol.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Prefix(System.String,System.Int32,System.Func{`0,`0})">
+            <summary>
+            Generate a prefix symbol.
+            </summary>
+            <param name="op">Prefix operator symbol.</param>
+            <param name="bindingPower">Operator's binding power.</param>
+            <param name="selector">Mapping function.</param>
+            <returns>Prefix operator symbol.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Prefix(System.String,Sasa.VAction{Sasa.Parsing.LexerState},System.Int32,System.Func{Sasa.Parsing.Pratt.PrattParser{`0},`0,`0})">
+            <summary>
+            Generate a prefix symbol.
+            </summary>
+            <param name="id">The prefix rule identifier.</param>
+            <param name="lex">The lexer that recognizes this prefix rule.</param>
+            <param name="bindingPower">Operator's binding power.</param>
+            <param name="selector">Mapping function.</param>
+            <returns>Prefix operator symbol.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Postfix(System.String,System.Int32,System.Func{`0,`0})">
+            <summary>
+            Generate a postfix operator symbol.
+            </summary>
+            <param name="op">The operator symbol.</param>
+            <param name="bindingPower">The binding power of the operator.</param>
+            <param name="selector">The function transforming the postfix token.</param>
+            <returns>A postfix operator symbol.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Postfix(System.String,Sasa.VAction{Sasa.Parsing.LexerState},System.Int32,System.Func{`0,Sasa.Parsing.Pratt.Token{`0},Sasa.Parsing.Pratt.PrattParser{`0},`0})">
+            <summary>
+            Generate a postfix operator symbol.
+            </summary>
+            <param name="id">The rule identifier.</param>
+            <param name="lex">The lexer to use.</param>
+            <param name="bindingPower">The binding power of the operator.</param>
+            <param name="selector">The function transforming the postfix token.</param>
+            <returns>A postfix operator symbol.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Infix(System.String,System.Int32,System.Func{`0,`0,`0})">
+            <summary>
+            Left-associative infix symbol.
+            </summary>
+            <param name="op">The operator symbol.</param>
+            <param name="bindingPower">The binding power of the operator.</param>
+            <param name="selector">The function transforming the infix token.</param>
+            <returns>A right-associative operator symbol.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Infix(System.String,Sasa.VAction{Sasa.Parsing.LexerState},System.Int32,System.Func{`0,`0,Sasa.Parsing.Pratt.PrattParser{`0},`0})">
+            <summary>
+            Left-associative infix symbol.
+            </summary>
+            <param name="id">The infix rule identifier.</param>
+            <param name="lex">The lexer that recognizes this infix rule.</param>
+            <param name="bindingPower">The binding power of the operator.</param>
+            <param name="selector">The function transforming the infix token.</param>
+            <returns>A right-associative operator symbol.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.InfixR(System.String,System.Int32,System.Func{`0,`0,`0})">
+            <summary>
+            Right-associative infix symbol.
+            </summary>
+            <param name="op">The operator symbol.</param>
+            <param name="bindingPower">The binding power of the operator.</param>
+            <param name="selector">The function transforming the infix token.</param>
+            <returns>A right-associative operator symbol.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.TernaryInfix(System.String,System.String,System.Int32,System.Func{`0,`0,`0,`0})">
+            <summary>
+            Ternary operators, like "e ? e : e".
+            </summary>
+            <param name="infix0">The first infix symbol of the ternary operator.</param>
+            <param name="infix1">The second infix symbol of the ternary operator.</param>
+            <param name="bindingPower">The binding power of the operator.</param>
+            <param name="parse">The parsing function for each branch.</param>
+            <returns>A ternary operator symbol.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.TernaryPrefix(System.String,System.String,System.String,System.Int32,System.Func{`0,`0,`0,`0})">
+            <summary>
+            Ternary operators, like "if e then e else e".
+            </summary>
+            <param name="bindingPower">The binding power of the operator.</param>
+            <param name="prefix">The symbol starting the ternary operator.</param>
+            <param name="infix0">The first infix symbol in the operator.</param>
+            <param name="infix1">The second infix symbol in the operator.</param>
+            <param name="parse">The parsing function.</param>
+            <returns>A ternary operator symbol.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.BinaryInfix(System.String,System.String,System.Int32,System.Func{`0,`0,`0})">
+            <summary>
+            Binary operators, like "e ?? e;".
+            </summary>
+            <param name="infix">The first infix symbol of the ternary operator.</param>
+            <param name="postfix">The postfix symbol of the ternary operator.</param>
+            <param name="bindingPower">The binding power of the operator.</param>
+            <param name="parse">The parsing function for each branch.</param>
+            <returns>A ternary operator symbol.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.BinaryPrefix(System.String,System.String,System.Int32,System.Func{`0,`0,`0})">
+            <summary>
+            Binary operators, like "if e then e".
+            </summary>
+            <param name="bindingPower">The binding power of the operator.</param>
+            <param name="prefix">The symbol starting the ternary operator.</param>
+            <param name="infix">The infix symbol in the operator.</param>
+            <param name="parse">The parsing function.</param>
+            <returns>A binary operator symbol.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Group(System.String,System.String,System.Int32)">
+            <summary>
+            A grouping operator, typically parenthesis of some sort.
+            </summary>
+            <param name="bindingPower">The binding power of the operator.</param>
+            <param name="leftGrouping">The left grouping symbol.</param>
+            <param name="rightGrouping">The right grouping symbol.</param>
+            <returns>A grouping operator.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Delimited(System.String,System.String,System.Int32,System.Func{`0,`0})">
+            <summary>
+            An operator that is delimited by opening and closing operators.
+            </summary>
+            <param name="bindingPower">The binding power of the operator.</param>
+            <param name="open">The opening delimiter.</param>
+            <param name="close">The closing delimiter.</param>
+            <param name="parse">The parsing function.</param>
+            <returns>A delimited operator.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Delimited(System.String,System.String,System.Int32,System.Func{Sasa.Parsing.Pratt.PrattParser{`0},`0})">
+            <summary>
+            An operator that is delimited by opening and closing operators.
+            </summary>
+            <param name="bindingPower">The binding power of the operator.</param>
+            <param name="open">The opening delimiter.</param>
+            <param name="close">The closing delimiter.</param>
+            <param name="body">A delegated parsing function.</param>
+            <returns>A delimited operator.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.List(System.Func{Sasa.Parsing.Pratt.Token{`0},System.Boolean},System.Func{System.Collections.Generic.IEnumerable{`0},`0})">
+            <summary>
+            Process a list of tokens and return a single value.
+            </summary>
+            <param name="memberOf">A membership test to determine whether list processing should continue.</param>
+            <param name="parse">A function that aggregates the list into single value.</param>
+            <returns>Aggregates a list of values into a single value.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Single(System.Func{`0,`0})">
+            <summary>
+            Process a list of tokens and return a single value.
+            </summary>
+            <param name="parse">A function that aggregates the list into single value.</param>
+            <returns>Aggregates a list of values into a single value.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Disambiguate(System.String[])">
+            <summary>
+            Specify a rule order to disambiguate parses.
+            </summary>
+            <param name="ids">The rule identifiers specified in order.</param>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Skip(System.String,Sasa.VAction{Sasa.Parsing.LexerState})">
+            <summary>
+            Creates a symbol for characters that are to be skipped, whitespace for example.
+            </summary>
+            <param name="id">The identifier for this rule.</param>
+            <param name="lex">The lexer identifying the characters to skip.</param>
+            <returns>A symbol for skipped characters.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Grammar`1.Parse(System.String)">
+            <summary>
+            Parse the given text and return the corresponding value, or throw a parse error.
+            </summary>
+            <param name="text">The text to parse.</param>
+            <returns>The value parsed from the text.</returns>
+            <exception cref="T:Sasa.Parsing.ParseException">Thrown when the text has an invalid structure.</exception>
+        </member>
+        <member name="T:Sasa.Parsing.Pratt.PrattParser`1">
+            <summary>
+            A parser for a given input text.
+            </summary>
+            <typeparam name="T">The type to be parsed from the text.</typeparam>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.PrattParser`1.Token">
+            <summary>
+            The current token in the stream.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.PrattParser`1.Line">
+            <summary>
+            The current line in the input.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.PrattParser`1.Position">
+            <summary>
+            The current position in the input.
+            </summary>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.PrattParser`1.Parse(System.Int32)">
+            <summary>
+            Parse the next token sequence given the right binding power.
+            </summary>
+            <param name="rightBindingPower">The right binding power to use when parsing.</param>
+            <returns>The next parsed value.</returns>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.PrattParser`1.Advance(System.String)">
+            <summary>
+            Checks that the current token matches the expected token specified by <paramref name="id"/>.
+            </summary>
+            <param name="id">The expected token identifier.</param>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.PrattParser`1.Optional(System.String)">
+            <summary>
+            Checks that the current token matches the expected token specified by <paramref name="id"/>,
+            and if so, advances the parser to the next token, otherwise parser remains unchanged.
+            </summary>
+            <param name="id">The expected token identifier.</param>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.PrattParser`1.Fail(System.String)">
+            <summary>
+            Throws a formatted syntax failure exception.
+            </summary>
+            <param name="reason">The reason for the failure.</param>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.PrattParser`1.Fail(System.String,System.String)">
+            <summary>
+            Throws a formatted syntax failure exception.
+            </summary>
+            <param name="input">The input being parsed.</param>
+            <param name="reason">The reason for the failure.</param>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.PrattParser`1.Column(System.String,System.Int32)">
+            <summary>
+            Computes the column given the input and the current state of the parser.
+            </summary>
+            <param name="input">The input being parsed.</param>
+            <param name="pos">The absolute position in the input used calculate the column.</param>
+            <returns>The current column in the input.</returns>
+        </member>
+        <member name="T:Sasa.Parsing.Pratt.Rule`1">
+            <summary>
+            A symbol definition.
+            </summary>
+            <typeparam name="T">The type of parser values.</typeparam>
+        </member>
+        <member name="M:Sasa.Parsing.Pratt.Rule`1.#ctor(System.String)">
+            <summary>
+            Construct a new Symbol.
+            </summary>
+            <param name="id">The symbol identifier.</param>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.Rule`1.Id">
+            <summary>
+            The unique rule identifier.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.Rule`1.Lex">
+            <summary>
+            The lexer for this rule.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.Rule`1.LeftBindingPower">
+            <summary>
+            The left binding power of the tokens generated from this rule.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.Rule`1.NullDenotation">
+            <summary>
+            The null denotation of the tokens generated from this symbol.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.Rule`1.LeftDenotation">
+            <summary>
+            The left denotation of the tokens generated from this symbol.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.Rule`1.Parse">
+            <summary>
+            The function used to parse literals or identifiers, if applicable.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.Rule`1.Preferred">
+            <summary>
+            Used to disambiguate overlapping alternate parses.
+            </summary>
+        </member>
+        <member name="P:Sasa.Parsing.Pratt.Rule`1.Skip">
+            <summary>
+            A flag indicating whether symbols of this type should be ignored
+            when generating tokens.
+            </summary>
+        </member>
+    </members>
+</doc>

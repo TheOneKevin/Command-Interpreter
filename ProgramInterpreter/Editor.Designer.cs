@@ -39,6 +39,7 @@
             this.scintilla.Size = new System.Drawing.Size(532, 304);
             this.scintilla.TabIndex = 0;
             this.scintilla.UseTabs = false;
+            this.scintilla.MarginClick += new System.EventHandler<ScintillaNET.MarginClickEventArgs>(this.scintilla_MarginClick);
             this.scintilla.StyleNeeded += new System.EventHandler<ScintillaNET.StyleNeededEventArgs>(this.scintilla_StyleNeeded);
             this.scintilla.UpdateUI += new System.EventHandler<ScintillaNET.UpdateUIEventArgs>(this.scintilla_UpdateUI);
             this.scintilla.TextChanged += new System.EventHandler(this.scintilla_TextChanged);
@@ -52,6 +53,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Editor";
             this.Text = "Editor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Editor_FormClosing);
             this.Load += new System.EventHandler(this.Editor_Load);
             this.ResumeLayout(false);
 

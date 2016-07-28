@@ -16,8 +16,10 @@ namespace InterpreterEngine
         Parser p;
         List<string> statements = new List<string>();
         private string inputf, outputf;
-        private int count = 0;
+        public static int count = 0;
         private string line;
+        public static bool errFlag = false;
+
         //Interpret class. Set the variables
         public Engine(string inputPath, string outputPath)
         {
@@ -34,34 +36,50 @@ namespace InterpreterEngine
             if (File.Exists(inputf))
             {
                 //Load the file.
-                StreamReader file = new StreamReader(inputf);
-                //To make our lives easier, we get rid of all the comments first
-                StringReader sr = new StringReader(pruneComments(file.ReadToEnd()));
-                while ((line = sr.ReadLine()) != null)
+                using (var fo = File.Open(inputf, FileMode.Open, FileAccess.ReadWrite, FileShare.Read))
                 {
-                    p.line = count;
-                    //First, we reset the list of statements we stored for the last line.
-                    statements.Clear();
-                    //Then, we seperate the line into statements. Each statement could end in either a
-                    //colon or semicolon, so we check for those.
-                    if(!string.IsNullOrWhiteSpace(line) || getEOL(line).Length > 0)
+                    StreamReader file = new StreamReader(fo);
+                    //To make our lives easier, we get rid of all the comments first
+                    StringReader sr = new StringReader(pruneComments(file.ReadToEnd()));
+                    while ((line = sr.ReadLine()) != null)
                     {
-                        int c = 0; int[] t = getEOL(line);
-                        foreach(int i in t)
+                        p.line = count;
+                        //First, we reset the list of statements we stored for the last line.
+                        statements.Clear();
+                        //Then, we seperate the line into statements. Each statement could end in either a
+                        //colon or semicolon, so we check for those.
+                        if (!string.IsNullOrWhiteSpace(line) || getEOL(line).Length > 0)
                         {
-                            //Then we store each statement inside a list
-                            if(c + 1 < t.Length)
-                                statements.Add(line.Substring(t[c], t[c + 1] - t[c]));
-                            c++;
+                            int c = 0; int[] t = getEOL(line);
+                            foreach (int i in t)
+                            {
+                                //Then we store each statement inside a list
+                                if (c + 1 < t.Length)
+                                    statements.Add(line.Substring(t[c], t[c + 1] - t[c]));
+                                c++;
+                            }
+                            parseStatement(); //We pass off the list of statements to the parse function
                         }
-                        parseStatement(); //We pass off the list of statements to the parse function
+
+                        count++; //Increment the line
+                        if (errFlag)
+                            break;
                     }
-                    
-                    count++; //Increment the line
                 }
             }
             else
                 throw new FileNotFoundException("File not found!", inputf);
+        }
+
+        public string output()
+        {
+            List<string> commands = Parser.commands;
+            string s = "";
+            foreach(string s1 in commands)
+            {
+                s += s1 + Environment.NewLine;
+            }
+            return s;
         }
 
         #endregion
@@ -122,7 +140,7 @@ namespace InterpreterEngine
                 else if (p.isWhile(s))
                     p.parseWhile(s);
                 else
-                    Error.throwError("", this.count);
+                    Error.throwError("", count);
                 i++;
             }
         }

@@ -47,6 +47,10 @@
             this.buildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buildProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.errorListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.websiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.docsItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,10 +72,6 @@
             this.startButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.configButton = new System.Windows.Forms.ToolStripButton();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.errorListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -204,7 +204,7 @@
             // nBTExplorerToolStripMenuItem
             // 
             this.nBTExplorerToolStripMenuItem.Name = "nBTExplorerToolStripMenuItem";
-            this.nBTExplorerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nBTExplorerToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.nBTExplorerToolStripMenuItem.Text = "NBT Explorer";
             // 
             // buildToolStripMenuItem
@@ -230,6 +230,36 @@
             this.runToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
             this.runToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.runToolStripMenuItem.Text = "Run";
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolBoxToolStripMenuItem,
+            this.errorListToolStripMenuItem,
+            this.settingsToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // toolBoxToolStripMenuItem
+            // 
+            this.toolBoxToolStripMenuItem.Name = "toolBoxToolStripMenuItem";
+            this.toolBoxToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.toolBoxToolStripMenuItem.Text = "Tool Box";
+            this.toolBoxToolStripMenuItem.Click += new System.EventHandler(this.toolBoxToolStripMenuItem_Click);
+            // 
+            // errorListToolStripMenuItem
+            // 
+            this.errorListToolStripMenuItem.Name = "errorListToolStripMenuItem";
+            this.errorListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.errorListToolStripMenuItem.Text = "Error List";
+            this.errorListToolStripMenuItem.Click += new System.EventHandler(this.errorListToolStripMenuItem_Click);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // helpToolStripMenuItem
             // 
@@ -429,35 +459,6 @@
             this.configButton.Text = "toolStripButton3";
             this.configButton.ToolTipText = "Configure...";
             // 
-            // viewToolStripMenuItem
-            // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolBoxToolStripMenuItem,
-            this.errorListToolStripMenuItem,
-            this.settingsToolStripMenuItem});
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "View";
-            // 
-            // toolBoxToolStripMenuItem
-            // 
-            this.toolBoxToolStripMenuItem.Name = "toolBoxToolStripMenuItem";
-            this.toolBoxToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.toolBoxToolStripMenuItem.Text = "Tool Box";
-            this.toolBoxToolStripMenuItem.Click += new System.EventHandler(this.toolBoxToolStripMenuItem_Click);
-            // 
-            // errorListToolStripMenuItem
-            // 
-            this.errorListToolStripMenuItem.Name = "errorListToolStripMenuItem";
-            this.errorListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.errorListToolStripMenuItem.Text = "Error List";
-            // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -473,7 +474,6 @@
             this.Name = "MainForm";
             this.Text = "ILanguage IDE";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

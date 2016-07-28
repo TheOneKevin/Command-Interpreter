@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace InterpreterEngine
 {
-    class Error
+    public static class Error
     {
-        string error = "DEADBEEF";
+        static string error = "DEADBEEF";
         public static void throwError(string error, int line)
         {
-
+            Engine.errFlag = true;
         }
     }
 }

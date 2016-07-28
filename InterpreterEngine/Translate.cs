@@ -8,6 +8,7 @@ namespace InterpreterEngine
 {
     public class Translate
     {
+        #region Raw Translation
         public static string getSelDecl(int x, int y, int z, int radius, string selector)
         {
             string s = "";
@@ -24,5 +25,34 @@ namespace InterpreterEngine
             else
                 return "";
         }
+
+        public static string setIntVar(string name)
+        {
+            return "scoreboard objectives add " + name + " dummy";
+        }
+
+        public static string setIntVal(int value, string name)
+        {
+            return "scoreboard players set @a " + name + " " + value;
+        }
+        #endregion
+
+        #region Translate Ints
+
+        public static void addInt(List<string> commands, string value, string name)
+        {
+            int p = 0; //Convert the value to an int
+            if (int.TryParse(value, out p))
+            {
+                commands.Add(setIntVar(name)); commands.Add(setIntVal(p, name));
+            }
+            else
+                Error.throwError("", Engine.count);
+        }
+
+
+
+        #endregion
+
     }
 }

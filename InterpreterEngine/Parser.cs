@@ -22,6 +22,8 @@ namespace InterpreterEngine
         string selector = "";
 
         Extract ex = new Extract(); public int line;
+        //Final list of commands
+        public static List<string> commands = new List<string>();
 
         #endregion
 
@@ -50,12 +52,16 @@ namespace InterpreterEngine
 
         #endregion
 
-        #region Parse Line Type
+        #region Parse Statement
 
         public void parseStatement(string line)
         {
 
         }
+
+        #endregion
+
+        #region Parse Variable
 
         public void parseVariable(string line)
         {
@@ -78,14 +84,14 @@ namespace InterpreterEngine
                     //We are going to check what type the variable is. We assume the type is
                     //the first entry in array. If type is not found, we throw and error.
                     //If you want more types, then feel free to add more cases...... :)
-                    if(objects.ContainsKey(foo[0]))
+                    if (objects.ContainsKey(foo[0]))
                     {
-						char[] myChar = { 'n', 'e', 'w' };
-						value = value.TrimStart(myChar).Trim();
+                        char[] myChar = { 'n', 'e', 'w' };
+                        value = value.TrimStart(myChar).Trim();
                         if (ex.extractParenthesis(value).Length == 1 && value.Substring(0, value.IndexOf('(')) == foo[0])
                         {
                             string[] idx = ex.extractParenthesis(value)[0].Split(',');
-                            if(getSelector(foo[0], idx) != null)
+                            if (getSelector(foo[0], idx) != null)
                             {
                                 Type.Selectors fooBar = getSelector(foo[0], idx);
                                 string p = Translate.getSelDecl(fooBar.x, fooBar.y, fooBar.z, fooBar.radiusMax, foo[0]);
@@ -100,20 +106,33 @@ namespace InterpreterEngine
                         else
                             Error.throwError("", this.line);
                     }
-                    switch (foo[0])
+                    else
                     {
-                        case "int":
-                            ex.addTokenI(foo[1], value, ints);
-                            break;
-                        case "string":
-                            ex.addTokenS(foo[1], value, strings);
-                            break;
-                        case "bool":
-                            if (int.TryParse(value, out i))
-                                ex.addTokenB(foo[1], i, bools);
-                            else Error.throwError("", this.line);
-                            break;
-                        default: Error.throwError("", this.line); break;
+                        //Find type, then add to list of commands
+                        switch (foo[0])
+                        {
+                            case "int":
+                                if (!ints.ContainsKey(foo[1]))
+                                {
+                                    ex.addTokenI(foo[1], value, ints); //Add to dictionary
+                                    Translate.addInt(commands, value, foo[1]); //Add to list of commands
+                                }
+                                else Error.throwError("", this.line);
+                                break;
+                            case "string":
+                                if (!strings.ContainsKey(foo[1]))
+                                {
+                                    ex.addTokenS(foo[1], value, strings);
+                                }
+                                else Error.throwError("", this.line);
+                                break;
+                            case "bool":
+                                if (int.TryParse(value, out i))
+                                    ex.addTokenB(foo[1], i, bools);
+                                else Error.throwError("", this.line);
+                                break;
+                            default: Error.throwError("", this.line); break;
+                        }
                     }
                 }
             }
@@ -121,10 +140,18 @@ namespace InterpreterEngine
                 Error.throwError("", this.line);
         }
 
+        #endregion
+
+        #region Parse While/If/Whatnot
+
         public void parseWhile(string line)
         {
 
         }
+
+        #endregion
+        
+        #region Parser
 
         public string removeEnding(bool isWhile, string inputData)
         {
@@ -138,10 +165,6 @@ namespace InterpreterEngine
             string replacement = @"";
             return regex.Replace(inputData, replacement);
         }
-
-        #endregion
-
-        #region Parser
 
         public Parser(int line)
         {

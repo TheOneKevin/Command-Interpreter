@@ -3,3 +3,7 @@ C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\Interpre
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\obj\Debug\InterpreterEngine.csprojResolveAssemblyReference.cache
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\obj\Debug\InterpreterEngine.dll
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\obj\Debug\InterpreterEngine.pdb
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\bin\Debug\Sasa.dll
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\bin\Debug\Sasa.Parsing.dll
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\bin\Debug\Sasa.xml
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\bin\Debug\Sasa.Parsing.xml
