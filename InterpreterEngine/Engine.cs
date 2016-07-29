@@ -18,7 +18,7 @@ namespace InterpreterEngine
         private string inputf, outputf;
         public static int count = 0;
         private string line;
-        public static bool errFlag = false;
+        public static bool errFlag;
 
         //Interpret class. Set the variables
         public Engine(string inputPath, string outputPath)
@@ -32,6 +32,7 @@ namespace InterpreterEngine
         //And puts them into a list
         public void Compile()
         {
+            line = "";
             p = new Parser(count);
             if (File.Exists(inputf))
             {
@@ -43,6 +44,7 @@ namespace InterpreterEngine
                     StringReader sr = new StringReader(pruneComments(file.ReadToEnd()));
                     while ((line = sr.ReadLine()) != null)
                     {
+                        errFlag = false;
                         p.line = count;
                         //First, we reset the list of statements we stored for the last line.
                         statements.Clear();

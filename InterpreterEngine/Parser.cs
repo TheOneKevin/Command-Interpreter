@@ -19,7 +19,7 @@ namespace InterpreterEngine
         //Objects
         Dictionary<string, int> objects = new Dictionary<string, int>();
         //Selector
-        string selector = "";
+        string selector = ""; string selname = "";
 
         Extract ex = new Extract(); public int line;
         //Final list of commands
@@ -99,6 +99,7 @@ namespace InterpreterEngine
                                     this.selector = p;
                                 else
                                     Error.throwError("", this.line);
+                                this.selname = foo[1];
                             }
                             else
                                 Error.throwError("", this.line);
@@ -168,7 +169,7 @@ namespace InterpreterEngine
 
         public Parser(int line)
         {
-            initObjects(); this.line = line;
+            initObjects(); this.line = line; commands.Clear();
         }
 
         public void initObjects()
@@ -196,6 +197,7 @@ namespace InterpreterEngine
             else
                 return null;
         }
+
 
         #endregion
     }
