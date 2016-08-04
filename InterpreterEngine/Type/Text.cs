@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace InterpreterEngine.Type
 {
-    class Text
+    public class Text
     {
+        public Text(string text, string color, bool bold, bool italic, bool under, bool obfu)
+        {
 
+        }
     }
 }

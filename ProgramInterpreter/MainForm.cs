@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 using System.IO;
 using ScintillaNET;
-using InterpreterEngine;
+using libIL2AIL;
 using System.Threading;
 
 namespace ProgramInterpreter
@@ -58,11 +58,11 @@ namespace ProgramInterpreter
         {
             if (edit != null)
             {
-                Engine i = new Engine(edit.filesOpen, "");
-                i.Compile();
+                Engine i = new Engine();
+                i.Compile(edit.filesOpen);
                 if (o != null)
                 {
-                    o.textBox1.Text = i.output();
+                    //o.textBox1.Text = i.output();
                 }
             }
         }

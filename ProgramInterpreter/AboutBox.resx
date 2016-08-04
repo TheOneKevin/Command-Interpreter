@@ -607,6 +607,7 @@ Docking Panels: https://github.com/dockpanelsuite
 Syntax Highlighting: https://github.com/jacobslusser/ScintillaNET/
 Autocomplete: https://www.nuget.org/packages/AutoCompleteMenu-ScintillaNET
 All packages above were downloaded from NuGet.
+The parser library uses the .NET Roslyn interpreter to break down the code.
 Credits:
 Kevin Dai (The awesome creator of this tool) AKA TheCool1James on GitHub
 (c) Kevin Dai 2016 All Rights Reserved</value>

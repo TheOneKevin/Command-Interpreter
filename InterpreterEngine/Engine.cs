@@ -39,9 +39,10 @@ namespace InterpreterEngine
                 //Load the file.
                 using (var fo = File.Open(inputf, FileMode.Open, FileAccess.ReadWrite, FileShare.Read))
                 {
-                    StreamReader file = new StreamReader(fo);
+                    StreamReader file = new StreamReader(fo); string ss = file.ReadToEnd();
                     //To make our lives easier, we get rid of all the comments first
-                    StringReader sr = new StringReader(pruneComments(file.ReadToEnd()));
+                    string[] s = getBrackets(pruneComments(ss));
+                    StringReader sr = new StringReader(pruneComments(ss));
                     while ((line = sr.ReadLine()) != null)
                     {
                         errFlag = false;
@@ -95,7 +96,7 @@ namespace InterpreterEngine
         //Array contains the index of all the seperators.
         public int[] getEOL(string input)
         {
-            var reg = new Regex(@"(?<=^([^""\r\n]|""([^""\\\r\n]|\\.)*"")*)(\;|\:)");
+            var reg = new Regex(@"(?<=^([^""\r\n]|""([^""\\\r\n]|\\.)*"")*)(\;)");
             var matches = reg.Matches(input);
             int[] index = new int[matches.Count + 1];
             index[0] = 0; int c = 1; //Needed 0 in index[0]
@@ -125,6 +126,68 @@ namespace InterpreterEngine
             },
             RegexOptions.Singleline);
         }
+
+        //Recursive descent into hell >.<
+        public string[] getBrackets(string code)
+        {
+            bool ignoreStrings = false; int escapedString = 0; int isComment = 0;
+            string[] s = new string[2]; StringBuilder sb = new StringBuilder(); bool foo = false;
+            Stack<int> stack = new Stack<int>();
+            foreach (char c in code)
+            {
+                switch (c)
+                {
+                    case '"':
+                        if (!ignoreStrings && escapedString == 0)
+                            ignoreStrings = true;
+                        else if (escapedString == 0)
+                            ignoreStrings = false;
+                        sb.Append(c);
+                        break;
+                    case '\\':
+                        if(ignoreStrings)
+                            escapedString = 2; //The only values for this are 2, 1 and 0
+                        sb.Append(c);
+                        break;
+                    case '/':
+                        if (!ignoreStrings)
+                            isComment++;
+                        if (isComment == 2)
+                        {
+                            isComment = 0; ignoreStrings = true;
+                        }
+                        sb.Append(c);
+                        break;
+                    case '{':
+                        if (!ignoreStrings)
+                        {
+                            stack.Push(1);
+                        }
+                        sb.Append(c);
+                        if (!foo)
+                        {
+                            s[0] = sb.ToString(); sb.Clear();
+                        }
+                        else
+                            s[1] = sb.ToString();
+                        foo = true;
+                        break;
+                    case '}':
+                        if(!ignoreStrings && stack.Count > 0)
+                        {
+                            stack.Pop();
+                            if (stack.Count == 0)
+                                s[1] = sb.ToString();
+                        }
+                        break;
+                    
+                    default: sb.Append(c); break;
+                }
+                if (escapedString != 0) escapedString--;
+            }
+            return s;
+        }
+
         #endregion
 
         #region Parse

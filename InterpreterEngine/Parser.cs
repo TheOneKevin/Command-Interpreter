@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Sasa; using Sasa.Parsing.Pratt;
 
 namespace InterpreterEngine
 {
@@ -96,11 +97,12 @@ namespace InterpreterEngine
                                 Type.Selectors fooBar = getSelector(foo[0], idx);
                                 string p = Translate.getSelDecl(fooBar.x, fooBar.y, fooBar.z, fooBar.radiusMax, foo[0]);
                                 if (!string.IsNullOrWhiteSpace(p))
-                                    this.selector = p;
+                                    this.selector = p;  //Set value
                                 else
                                     Error.throwError("", this.line);
-                                this.selname = foo[1];
+                                this.selname = foo[1];  //Set name
                             }
+                            //Add more object detections
                             else
                                 Error.throwError("", this.line);
                         }
@@ -176,7 +178,7 @@ namespace InterpreterEngine
         {
             //The value of each entry is equal to the number of arguments it takes
             objects.Add("rPlayer", 4); objects.Add("aPlayer", 4); objects.Add("pPlayer", 4); objects.Add("aEntity", 4);
-            objects.Add("Item", 4); objects.Add("Entity", 5); objects.Add("Text[]", 13);
+            objects.Add("Item", 4); objects.Add("Entity", 5); objects.Add("Text", 15);
         }
 
         #endregion
@@ -196,6 +198,11 @@ namespace InterpreterEngine
             }
             else
                 return null;
+        }
+
+        public Type.Text getText(string text, string color, string[] idx)
+        {
+            return null;
         }
 
 
