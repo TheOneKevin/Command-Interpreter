@@ -15,6 +15,7 @@ namespace libIL2AIL
         #region Varibles
 
         //Variables
+        LineParser lp;
 
         #endregion
 
@@ -60,15 +61,36 @@ namespace libIL2AIL
         {
             SyntaxTree tree = CSharpSyntaxTree.ParseText(text);
             var root = tree.GetRoot() as CompilationUnitSyntax;
-            var methods = root.Members.ToArray() as MethodDeclarationSyntax[]; //Cast it to a MethodDeclaration
-            foreach (var method in methods) //Iterate through all the methods
+            //Cast it to a MethodDeclaration with delegates
+            var methods = Array.ConvertAll<object,MethodDeclarationSyntax>(root.Members.ToArray(), delegate(object obj){ return obj as MethodDeclarationSyntax; });
+            if (methods != null)
             {
-                var body = method.Body.ChildNodes(); //Get all the code inside the method
-                foreach (var line in body)
+                foreach (var method in methods) //Iterate through all the methods
                 {
-                    string ss = line.ToString(); //Iterate through all the lines in the code
+                    var body = method.Body.ChildNodes(); //Get all the code inside the method
+                    foreach (var line in body)
+                    {
+                        //string s = line.Kind().ToString();
+                        findStuff(line);
+                        //Iterate through all the lines in the code
+                        string ss = line.ToString();
+                    }
                 }
             }
+        }
+
+        private void findStuff(SyntaxNode line)
+        {
+            //Get the type of statement we are facing, i.e., statement, variable decl, if, while etc.
+            if (line.Kind() == SyntaxKind.LocalDeclarationStatement)
+                lp.parseVariableDecl(line);
+            else if (line.Kind() == SyntaxKind.FieldDeclaration)
+                lp.parseVariableDecl(line);
+        }
+
+        public Engine()
+        {
+            lp = new LineParser();
         }
 
         #endregion
