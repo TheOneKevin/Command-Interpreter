@@ -34,11 +34,7 @@ namespace libIL2AIL
                 case "Block": break;
                 //Special entities and objects
                 case "ArmorStand": break; //ArmourStand (use the U.S. spelling when coding :/ )
-                //The conventional programming variables
-                case "int": break;
-                case "string": break;
-                case "bool": break;
-
+                
                 default: break;
             }
         }
