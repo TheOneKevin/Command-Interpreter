@@ -59,16 +59,44 @@ namespace libIL2AIL
         private void parseCode(string text)
         {
             SyntaxTree tree = CSharpSyntaxTree.ParseText(text);
-            var root = tree.GetRoot() as CompilationUnitSyntax;
-            var methods = root.Members.ToArray() as MethodDeclarationSyntax[]; //Cast it to a MethodDeclaration
-            foreach (var method in methods) //Iterate through all the methods
+            if (tree.GetRoot() is CompilationUnitSyntax)
             {
-                var body = method.Body.ChildNodes(); //Get all the code inside the method
-                foreach (var line in body)
+                var root = tree.GetRoot() as CompilationUnitSyntax;
+                var members = root.Members.ToArray(); //Cast it to a MethodDeclaration
+                foreach (var m in members) //Iterate through all the methods
                 {
-                    string ss = line.ToString(); //Iterate through all the lines in the code
-                }
-            }
+                    if (m is MethodDeclarationSyntax)
+                    {
+                        var method = m as MethodDeclarationSyntax;
+                        var body = method.Body.ChildNodes(); //Get all the code inside the method
+                        foreach (var line in body)
+                        {
+                            string ss = line.ToString(); //Iterate through all the lines in the code
+                            parseType(line);
+                        }
+                    }
+                    //TODO: Add more syntax types
+                    else
+                        parseType(m); //This is just a *common* syntax type parser
+                } //End foreach m in members
+            } //End if root is syntax
+            else
+                ErrHandler.registerErr(new Error(ErrorCode.IncorrectCodeFormat, "")); //Error!
+        }
+
+        //Our common syntax parser method
+        private void parseType(SyntaxNode node)
+        {
+            //Check what type it is
+            if (node is LocalDeclarationStatementSyntax)
+                Variables.parseLocalVariable(node as LocalDeclarationStatementSyntax);
+            else if (node is VariableDeclarationSyntax)
+                Variables.parseVariable(node as VariableDeclarationSyntax);
+            else if (node is FieldDeclarationSyntax)
+                Variables.parseFieldVariable(node as FieldDeclarationSyntax);
+
+            else
+                ErrHandler.registerErr(new Error(ErrorCode.UnknownSyntax, ""));
         }
 
         #endregion

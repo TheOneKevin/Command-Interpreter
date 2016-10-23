@@ -1,0 +1,46 @@
+Each element of the stack can only be up to 64 bits (long)! Note how there is stack: in brackets below. This will be the portion of the stack modified.
+
+0x00: Null string terminator (MNEMONIC: n/a)
+0x01: Push an object id (int) into stack (stack: object id -> stack: object value) (MNEMONIC: push)
+0x02: Load an object from the top of the stack into an object (stack: object id, value -> stack: (nothing), object = value) (MNEMONIC: pop)
+0x03: Swap the top 2 values on the stack (stack: a, b -> stack b, a) (MNEMONIC: swap)
+0x04: Call library method (stack: arg n, arg n-1.. arg0, method ID -> stack: return value) (MNEMONIC: call)
+0x05: RESERVED, see opcode 0x2A (MNEMONIC: db)
+0x06: Return void after call (MNEMONIC: ret)
+0x07: Return value after call (stack: return value) (MNEMONIC: iret)
+0x08: BREAKPOINT (MNEMONIC: magic)
+0x09: EXCEPTION (stack: all cleared), activates command block to write exception (MNEMONIC: error)
+0x0A - 0x19: RESERVED FOR LIBRARY AND REFERENCES USE ONLY (MNEMONIC: n/a)
+0x2A: Insert raw Minecraft command (stack: arg n, arg n-1 ... arg0, null terminated string in 64-bit chunks) (MNEMONIC: volatile)
+    - Note that the string stored in the stack must be null terminated with 0x0000 (yes, that's 4 bytes)
+    - Note if there is 0x05 following the the null termination, then it signals a reference to an argument. The 0x05 is then followed by the argument id
+    - The argument is structured like an object
+0x2B: Defines a new variable, and puts it in the variable id list (MNEMONIC: idv)
+0x2C: Defines a new variable, and puts it in the object id list (MNEMONIC: dv)
+0x2D: Push an object id (int) into stack (stack: object id -> stack: object value) (MNEMONIC: ipush)
+0x2E: Load an object from the top of the stack into an object (stack: object id, value -> stack: (nothing), object = value) (MNEMONIC: ipop)
+
+How it all operates:
+Roslyn Parser ->[References]-> OPCODES ->[Library]-> Command Blocks
+
+A [Reference] contains all the variable structures. It contains all the system-required method names hashed, ther corresponding IDs
+and their structures. This will be written in CBIL, and compiled to the same bytecode above.
+A [Library] contains all the code linked to the system-required methods. The names of each method should match that of the [Reference]. This will be
+written in CBIL, and compiled to the bytecode above.
+A [structure] is something to define the structure a variable/object that will be stored in the stack.
+
+Sample structure for boolean:
+#DEFINE false 0
+#DEFINE true 1
+struct bool {
+    int = 0x01; //Variable identifier!
+    int = value; //"value" is a keyword too!
+};
+Explanation:
+The struct keyword followed by the name of the variable. In the code block, there are identifiers determining the value is in the stack (top to down), where
+index 0 is the bottom of the stack, and index 1 is on top of index 0 and so on...
+
+0x0A: A 2-byte variable structure ID follows. This will be the ID that will identify the variable type. (MNEMONIC: var)
+0x0B: A SHA1 object structure ID follows. This will be the ID that will identify the object type. (MNEMONIC: obj)
+0x0C: A 0x0000 goes in front of it to define the end of the structure (MNEMONIC: n/a)
+0x0D: Defines the start of a method (object), it then is followed by a hashed string, and then an array of N variable structures as it's arguments. (MNEMONIC: [name]:)

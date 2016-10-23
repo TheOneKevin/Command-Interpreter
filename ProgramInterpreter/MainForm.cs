@@ -23,7 +23,7 @@ namespace ProgramInterpreter
         public MainForm()
         {
             InitializeComponent();
-            dockPanel.Theme = new VS2012LightTheme();
+            dockPanel.Theme = new VS2005Theme();
         }
 
         #endregion
@@ -93,6 +93,7 @@ namespace ProgramInterpreter
         {
             Editor e = new Editor();
             e.Show(dockPanel, DockState.Document);
+            setActive();
         }
 
         private void setActive()
