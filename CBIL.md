@@ -32,26 +32,27 @@
 | popb     | 0x3B      |                                        | value          | Loads register into stack                   |
 | popi     | 0x3C      |                                        | value          | Loads register into stack                   |
 
-For opcode 0x2A*
+For opcode 0x2A*  
     - Note that the string stored in the stack must be null terminated with 0x0000 (yes, that's 4 bytes)  
     - Note if there is 0x05 following the the null termination, then it signals a reference to an argument. The 0x05 is then followed by the argument id  
     - The argument is structured like an object  
 
 ** String register differs from regular registers  
+*** "flag" is a flag register, not to be associated with the stack!  
 
-Stack and registers are abstract. Stack and registers can only hold up to 64 bits of data.
+Stack and registers are abstract. Stack and registers can only hold up to 64 bits of data.  
 
-How it all operates:
-Roslyn Parser ->[References]-> OPCODES ->[Library]-> Command Blocks
+How it all operates:  
+Roslyn Parser ->[References]-> OPCODES ->[Library]-> Command Blocks  
 
 A [Reference] contains all the variable structures. It contains all the system-required method names hashed, ther corresponding IDs
-and their structures. This will be written in CBIL, and compiled to the same bytecode above.
+and their structures. This will be written in CBIL, and compiled to the same bytecode above.  
 A [Library] contains all the code linked to the system-required methods. The names of each method should match that of the [Reference]. This will be
-written in CBIL, and compiled to the bytecode above.
-A [structure] is something to define the structure a variable/object that will be stored in the stack. Think of classes.
+written in CBIL, and compiled to the bytecode above.  
+A [structure] is something to define the structure a variable/object that will be stored in the stack. Think of classes.  
 
-A variable will be stored in a variable dictionary with the id and it's corresponding type and hashed name.
-An object will be stored in an object dictionary with the id and it's corresponding type and hashed name.
+A variable will be stored in a variable dictionary with the id and it's corresponding type and hashed name.  
+An object will be stored in an object dictionary with the id and it's corresponding type and hashed name.  
 
 | MNEMONIC                  | Bytecode | Stack In | Stack Out | Description                                  |
 |---------------------------|----------|----------|-----------|----------------------------------------------|
