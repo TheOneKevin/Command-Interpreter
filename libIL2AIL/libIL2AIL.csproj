@@ -96,6 +96,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ByteCode\bytecodestream.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="ErrHandler.cs" />
     <Compile Include="Error.cs" />
