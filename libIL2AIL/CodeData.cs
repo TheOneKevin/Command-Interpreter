@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace libIL2AIL
 {
-    class VariableExpression
+    public class CodeData
     {
-        void parseConditional()
-        {
-
-        }
+        public Dictionary<int, string> _variables = new Dictionary<int, string>();
     }
 }

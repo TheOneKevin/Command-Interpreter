@@ -72,31 +72,16 @@ namespace libIL2AIL
                         foreach (var line in body)
                         {
                             string ss = line.ToString(); //Iterate through all the lines in the code
-                            parseType(line);
+                            Statements.GeneralStatementParser.parseStatementType(line);
                         }
                     }
                     //TODO: Add more syntax types
                     else
-                        parseType(m); //This is just a *common* syntax type parser
+                        Statements.GeneralStatementParser.parseStatementType(m); //This is just a *common* syntax type parser
                 } //End foreach m in members
             } //End if root is syntax
             else
                 ErrHandler.registerErr(new Error(ErrorCode.IncorrectCodeFormat, "")); //Error!
-        }
-
-        //Our common syntax parser method
-        private void parseType(SyntaxNode node)
-        {
-            //Check what type it is
-            if (node is LocalDeclarationStatementSyntax)
-                Variables.parseLocalVariable(node as LocalDeclarationStatementSyntax);
-            else if (node is VariableDeclarationSyntax)
-                Variables.parseVariable(node as VariableDeclarationSyntax);
-            else if (node is FieldDeclarationSyntax)
-                Variables.parseFieldVariable(node as FieldDeclarationSyntax);
-
-            else
-                ErrHandler.registerErr(new Error(ErrorCode.UnknownSyntax, ""));
         }
 
         #endregion
