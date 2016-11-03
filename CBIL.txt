@@ -1,0 +1,102 @@
+				OPCodes
+===========================================================================
+0x0
+
+apush
+bpush
+lpush
+ipush
+spush
+
+apop
+bpop
+lpop
+ipop
+dpop
+
+mov
+
+ro
+irv
+
+_raw
+
+magic
+error
+
+ret <- Returns with void
+iret <- Returns value at top of stack
+
+call <- Calls, will return, should have ret/iret
+jmp <- Jumps, will not return, even with ret/iret
+
+swap
+
+cmp
+
+jne
+jbe
+jae
+
+je
+jb
+ja
+
+===========================================================================
+
+LIFO Stack Diagrams
+
+[Stack top]
+
+>
+
+[Stack bottom]
+
+After operands:
+mov ax, 0
+push ax
+
+[Stack top]
+
+> integer 0
+
+[Stack bottom]
+
+After operands:
+mov as, "Hello World!"
+push as
+
+[Stack top]
+
+> string Hello World!
+  integer 0
+
+[Stack bottom]
+
+After operands:
+call test
+pop ax
+
+test:
+    push ax, 100
+    iret
+
+[Stack top]
+
+> integer 100
+  string Hello World!
+  integer 0
+
+[Stack bottom]
+
+      |
+      V
+
+[Stack top]
+
+> string Helo World!
+  integer 0
+
+[Stack bottom]
+
+Where ax = 100

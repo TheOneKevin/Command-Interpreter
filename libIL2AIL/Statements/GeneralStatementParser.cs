@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace libIL2AIL.Statements
 {
-    public class GeneralStatementParser
+    public static class GeneralStatementParser
     {
         //Our common syntax parser method
         public static void parseStatementType(SyntaxNode node)

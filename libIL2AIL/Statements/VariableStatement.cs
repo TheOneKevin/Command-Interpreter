@@ -5,7 +5,7 @@ using System.Text;
 
 namespace libIL2AIL.Statements
 {
-    public class VariableStatement
+    public static class VariableStatement
     {
         public static void parseVariable(VariableDeclarationSyntax line)
         {
@@ -36,7 +36,7 @@ namespace libIL2AIL.Statements
                 {
                     byteStream.Add((byte)OpCode.ro);
                     byteStream.AddRange(Encoding.Unicode.GetBytes(variableName));
-                    Expressions.ObjectCreation.objectCreation(v.Initializer.Value as ObjectCreationExpressionSyntax);
+                    Expressions.ObjectExpression.objectCreation(v.Initializer.Value as ObjectCreationExpressionSyntax);
                 }
 
                 else if (v.Initializer.Value is LiteralExpressionSyntax)
@@ -44,7 +44,7 @@ namespace libIL2AIL.Statements
 
                 }
                 else if (v.Initializer.Value is ConditionalExpressionSyntax)
-                    VariableExpression.parseConditionalExpression(v.Initializer.Value as ConditionalExpressionSyntax);
+                    byteStream.AddRange(BooleanExpression.parseConditionalExpression(v.Initializer.Value as ConditionalExpressionSyntax));
             }
 
             return byteStream.ToArray();

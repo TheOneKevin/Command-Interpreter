@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace libIL2AIL.Types
 {
-    public class Boolean : Type
+    public class GenericObject : Type
     {
-        public Boolean()
+        public GenericObject()
         {
-            this.ID = 1;
-            this.TypeText = "bool";
+            this.ID = 2;
+            this.TypeText = "object";
         }
     }
 }

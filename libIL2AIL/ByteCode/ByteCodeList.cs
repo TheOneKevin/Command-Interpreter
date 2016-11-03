@@ -6,23 +6,28 @@ using System.Threading.Tasks;
 
 namespace libIL2AIL.ByteCode
 {
-    public enum OpCode : byte {
+    public enum OpCode : byte
+    {
         reserved0 = 0x0,
 
+        //Stack things
         push,
         ipush,
-
         swap,
+        //Call thing
         call,
 
         reserved1,
 
+        //Return
         ret,
         iret,
 
+        //Handling exceptions & debugging
         magic,
         error,
 
+        //Arithmatic stuff
         cmp = 0x0A,
         je,
         jne,
@@ -54,16 +59,13 @@ namespace libIL2AIL.ByteCode
         lpop,
         bpop,
 
-        //Load top stack value into register
-        lods,
-        lodl,
-        lodb,
-        lodi,
+        //Load/pops the top stack value into register (a, b, c or d), totalling 16 registers!
+        lodr, //as, bs, cs, ds; al, bl, cl, dl; ab, bb, cb, db; ai, bi, ci, di
 
-        //Move register value into stack
-        movs,
-        movl,
-        movb,
-        movi
+        //Move register value into register of same kind
+        movr, //as, bs, cs, ds; al, bl, cl, dl; ab, bb, cb, db; ai, bi, ci, di
+
+        //Pushes current register into stack
+        pusr  //as, bs, cs, ds; al, bl, cl, dl; ab, bb, cb, db; ai, bi, ci, di
     };
 }

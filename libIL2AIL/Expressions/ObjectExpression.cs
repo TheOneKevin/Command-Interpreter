@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace libIL2AIL.Expressions
 {
-    public class ObjectCreation
+    public static class ObjectExpression
     {
         public static byte[] objectCreation(ObjectCreationExpressionSyntax input)
         {

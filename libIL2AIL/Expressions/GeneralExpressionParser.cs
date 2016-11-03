@@ -9,7 +9,7 @@ namespace libIL2AIL.Expressions
         public static byte[] identifyAndParse(ExpressionSyntax input)
         {
             if (input is ObjectCreationExpressionSyntax)
-                return ObjectCreation.objectCreation(input as ObjectCreationExpressionSyntax);
+                return ObjectExpression.objectCreation(input as ObjectCreationExpressionSyntax);
             else
                 return null;
         }

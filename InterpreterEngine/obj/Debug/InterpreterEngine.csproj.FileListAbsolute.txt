@@ -7,3 +7,5 @@ C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\Interpre
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\bin\Debug\Sasa.Parsing.dll
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\bin\Debug\Sasa.xml
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\bin\Debug\Sasa.Parsing.xml
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\bin\Debug\InterpreterEngine.dll.CodeAnalysisLog.xml
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\InterpreterEngine\bin\Debug\InterpreterEngine.dll.lastcodeanalysissucceeded

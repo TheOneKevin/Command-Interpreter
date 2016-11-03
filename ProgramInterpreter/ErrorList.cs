@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using libIL2AIL;
 
 namespace ProgramInterpreter
 {
@@ -15,6 +16,7 @@ namespace ProgramInterpreter
     {
         public ErrorList()
         {
+            this.Controls.Add(new ListBox() { DataSource = ErrHandler.errs });
             InitializeComponent();
         }
     }

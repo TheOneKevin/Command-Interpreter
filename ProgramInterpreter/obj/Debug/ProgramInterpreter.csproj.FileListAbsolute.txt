@@ -67,3 +67,5 @@ C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramI
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\System.Reflection.Metadata.xml
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\libIL2AIL.dll
 C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\libIL2AIL.pdb
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\ProgramInterpreter.exe.CodeAnalysisLog.xml
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\ProgramInterpreter\ProgramInterpreter\bin\Debug\ProgramInterpreter.exe.lastcodeanalysissucceeded
