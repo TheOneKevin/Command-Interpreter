@@ -18,8 +18,10 @@ namespace libIL2AIL.Parse
                 Statements.VariableDeclaration.Parse(syntax as VariableDeclarationSyntax);
             else if (syntax is FieldDeclarationSyntax)
                 Statements.FieldDeclaration.Parse(syntax as FieldDeclarationSyntax);
+            //else if(syntax is LocalDeclarationStatementSyntax)
+
             else
-                ErrorHandler.registerError(ErrorCode.StatementSyntaxNotRecognized, "Type: " + syntax.GetType() + " is not valid", VEEE.getList());
+                ErrorHandler.registerError(ErrorCode.StatementSyntaxNotRecognized, "Type: " + syntax.GetType() + " is not valid", VEEE.getErrorList());
         }
     }
 }

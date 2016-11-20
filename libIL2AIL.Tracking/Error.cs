@@ -16,9 +16,16 @@ namespace libIL2AIL.Tracking
 
     public static class ErrorHandler
     {
+        static int line, charc;
+        public static void updateLinePos(int aline, int achar)
+        {
+            line = aline;
+            charc = achar;
+        }
+
         public static void registerError(ErrorCode ec, string msg, ErrorList el)
         {
-            el.errorList.Add(new Error(ec, msg, 0));
+            el.errorList.Add(new Error(ec, msg, line, charc));
         }
     }
 
@@ -36,12 +43,14 @@ namespace libIL2AIL.Tracking
         ErrorCode ErrCode { get; set; }
         string Message { get; set; }
         int LineNumber { get; set; }
+        int CharPos { get; set; }
         
-        public Error(ErrorCode e, string msg, int line)
+        public Error(ErrorCode e, string msg, int line, int charpos)
         {
             ErrCode = e;
             Message = msg;
             LineNumber = line;
+            CharPos = charpos;
         }
     }
 }

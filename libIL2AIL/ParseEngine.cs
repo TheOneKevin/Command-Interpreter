@@ -49,13 +49,14 @@ namespace libIL2AIL
                 var members = root.Members.ToArray(); //Get all the things in the root
                 foreach(var m in members)
                 {
+                    ErrorHandler.updateLinePos(m.GetLocation().GetMappedLineSpan().StartLinePosition.Line, m.GetLocation().GetMappedLineSpan().StartLinePosition.Character);
                     if (m is MethodDeclarationSyntax)
                     {
                         var method = m as MethodDeclarationSyntax;
                         var body = method.Body.ChildNodes();
                         foreach (var line in body)
                         {
-
+                            GeneralStatementParser.Parse(line);
                         }
                     }
 
@@ -66,7 +67,7 @@ namespace libIL2AIL
 
             else
                 ErrorHandler.registerError(ErrorCode.InvalidFileStructure,
-                    "Expected type: CompilationUnitSyntax, recieved type: " + tree.GetRoot().GetType(), VEEE.getList());
+                    "Expected type: CompilationUnitSyntax, recieved type: " + tree.GetRoot().GetType(), VEEE.getErrorList());
 
             VEEE.HeartBeat();
         }

@@ -13,10 +13,14 @@ namespace Test
         {
             ParseEngine pe = new ParseEngine("", "");
             string code = 
-                @"
-                var s = new string();
-                s++;
-                ";
+            @"
+var s = new string();
+s++;
+public static void Main()
+{
+    var ss;
+}
+            ";
             pe.ParseFromCache(code);
         }
     }

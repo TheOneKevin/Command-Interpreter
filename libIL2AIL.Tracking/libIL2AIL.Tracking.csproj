@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CodeAnalysis">
+      <HintPath>..\libIL2AIL.Parse\bin\Debug\Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp">
+      <HintPath>..\libIL2AIL.Parse\bin\Debug\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,16 +49,15 @@
     <Compile Include="Common.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="Hash.cs" />
-    <Compile Include="Variables\PreVars.cs" />
-	<Compile Include="Variables\RegsiteredVars.cs" />
-	<Compile Include="Objects\ObjectStruct.cs" />
-	<Compile Include="Objects\PreObjs.cs" />
-	<Compile Include="Objects\RegisteredObjs.cs" />
-	<Compile Include="Symbols\Symbol.cs" />
-	<Compile Include="Symbols\RegisteredSymbols.cs" />
+    <Compile Include="Objects\ObjectStruct.cs" />
+    <Compile Include="Objects\RegisteredObjs.cs" />
+    <Compile Include="Symbols\Symbol.cs" />
+    <Compile Include="Symbols\RegisteredSymbols.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Variables\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

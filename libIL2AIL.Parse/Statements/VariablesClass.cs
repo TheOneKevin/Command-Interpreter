@@ -23,7 +23,7 @@ namespace libIL2AIL.Parse.Statements
                 }
             }
             else
-                ErrorHandler.registerError(ErrorCode.InvalidStatementStructure, "Variable statement invalid!", VEEE.getList());
+                ErrorHandler.registerError(ErrorCode.InvalidStatementStructure, "Variable statement invalid!", VEEE.getErrorList());
         }
     }
 

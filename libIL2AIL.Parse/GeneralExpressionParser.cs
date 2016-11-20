@@ -19,7 +19,7 @@ namespace libIL2AIL.Parse
                 ObjectCreation.Parse(syntax as ObjectCreationExpressionSyntax);
 
             else
-                ErrorHandler.registerError(ErrorCode.ExpressionSyntaxNotRecognized, "Type: " + syntax.GetType() + " is not valid", VEEE.getList());
+                ErrorHandler.registerError(ErrorCode.ExpressionSyntaxNotRecognized, "Type: " + syntax.GetType() + " is not valid", VEEE.getErrorList());
         }
     }
 }
