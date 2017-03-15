@@ -6,7 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="The CbIL Intermediate Language and lwlC Language Documentation">
       
+      
+        <link rel="canonical" href="https://thecool1james.github.io/Command-Interpreter/">
+      
+      
+        <meta name="author" content="Kevin Dai">
       
       
         <link rel="shortcut icon" href="./assets/images/favicon.png">
@@ -24,6 +30,8 @@
     
       <link rel="stylesheet" href="./assets/stylesheets/application-1d1da4857d.css">
       
+        <link rel="stylesheet" href="./assets/stylesheets/application-66fa0d9bba.palette.css">
+      
     
     
       
@@ -36,17 +44,21 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     
     
+      <link rel="stylesheet" href="./extra.css">
+    
     
   </head>
   
   
   
   
-    <body>
+    <body data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     <svg class="md-svg">
       <defs>
         
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
         
       </defs>
     </svg>
@@ -72,7 +84,7 @@
             
               
             
-            Home
+            Introduction
           
         </span>
       </div>
@@ -99,6 +111,26 @@
       <div class="md-flex__cell md-flex__cell--shrink">
         <div class="md-header-nav__source">
           
+            
+
+
+  
+
+
+  <a href="https://github.com/TheCool1James/Command-Interpreter" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      TheCool1James/IL Interpreter
+    </div>
+  </a>
+
+          
         </div>
       </div>
     </div>
@@ -123,6 +155,28 @@
     CbIL Docs
   </label>
   
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/TheCool1James/Command-Interpreter" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      TheCool1James/IL Interpreter
+    </div>
+  </a>
+
+    </div>
+  
   <ul class="md-nav__list" data-md-scrollfix>
     
       
@@ -140,11 +194,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        Home
+        Introduction
       </label>
     
-    <a href="." title="Home" class="md-nav__link md-nav__link--active">
-      Home
+    <a href="." title="Introduction" class="md-nav__link md-nav__link--active">
+      Introduction
     </a>
     
       
@@ -206,8 +260,8 @@
 
 
   <li class="md-nav__item">
-    <a href="lang/" title="Paradigm" class="md-nav__link">
-      Paradigm
+    <a href="lang/" title="The OOP Paradigm" class="md-nav__link">
+      The OOP Paradigm
     </a>
   </li>
 
@@ -217,9 +271,57 @@
       
 
 
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      The Language
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        The Language
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
   <li class="md-nav__item">
-    <a href="issue/" title="Issues" class="md-nav__link">
-      Issues
+    <a href="lwlC/" title="Introduction to lwlC" class="md-nav__link">
+      Introduction to lwlC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="CbIL/" title="Introduction to CbIL" class="md-nav__link">
+      Introduction to CbIL
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="issue/" title="Issue Tracking" class="md-nav__link">
+      Issue Tracking
     </a>
   </li>
 
@@ -294,6 +396,8 @@
                 
                 
                 <h1 id="welcome-to-the-cbil-documentation">Welcome to the CbIL Documentation</h1>
+<hr />
+
 <blockquote>
 <p><em>For the increadibly confused, curious and bored folks!</em>  </p>
 </blockquote>
@@ -342,12 +446,16 @@ low-level languages.  </p>
 <p>Alright, how does this all relate to CbIL? Well, as command blocks follow a completly different logic path than traditional programming languages, the IL is there to strip away any
 unnecessary human abstractions and leave behind only the control flow of the program (i.e., <code class="codehilite">if</code> statements, and <code class="codehilite">while</code>/<code class="codehilite">for</code> loops). This makes the coding portion less messy for
 the creator of the program and the user of the program. Abstraction can be increased, paradigm changed (linear &rarr; object oriented) and overall a cleaner output.  </p>
-<p>Some articles that may be useful: <a href="https://en.wikipedia.org/wiki/Intermediate_representation/" title="Intermediate Representation Language">1</a> <a href="https://en.wikipedia.org/wiki/LLVM/" title="LLVM">2</a> <a href="https://en.wikipedia.org/wiki/Common_Intermediate_Language/" title="CIL">3</a>  </p>
+<p>Some articles that may be useful: <a href="https://en.wikipedia.org/wiki/Intermediate_representation" title="Intermediate Representation Language">1</a> <a href="https://en.wikipedia.org/wiki/LLVM" title="LLVM">2</a> <a href="https://en.wikipedia.org/wiki/Common_Intermediate_Language" title="CIL">3</a>  </p>
 <h2 id="word-of-advice-from-the-not-so-wise">Word of Advice from the not-so Wise</h2>
 <p>Ok. So, many people would question whether I have gone insane and why I am wasting my time of such a <em>pointless</em> project. Well, this project is not much <em>pointless</em> as it is 
 pointful. It is my very first attempt at making any sort of parser, let alone a programming language (sort of). Yes, it is heavily based off of the C# syntax, but it does need
 to convert from one <em>mindset</em> to another. This project may not appeal to a widespread audience, nor do I hope that it will gain widespread popularity, but it is a learning
-experience in it of itself for me, and for possibly you - the <em>user</em>.  </p>
+experience in it of itself for me, and for possibly you - the <em>user</em>.<br />
+<br />
+<hr /></p>
+<h1 id="end-of-introduction">End of Introduction</h1>
+<p><br /></p>
                 
                   
                 
@@ -367,13 +475,13 @@ experience in it of itself for me, and for possibly you - the <em>user</em>.  </
       <nav class="md-footer-nav__inner md-grid">
         
         
-          <a href="lang/" title="Paradigm" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="lang/" title="The OOP Paradigm" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Paradigm
+                The OOP Paradigm
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

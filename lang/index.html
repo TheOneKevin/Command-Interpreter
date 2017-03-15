@@ -6,7 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="The CbIL Intermediate Language and lwlC Language Documentation">
       
+      
+        <link rel="canonical" href="https://thecool1james.github.io/Command-Interpreter/lang/">
+      
+      
+        <meta name="author" content="Kevin Dai">
       
       
         <link rel="shortcut icon" href="../assets/images/favicon.png">
@@ -15,7 +21,7 @@
     
     
       
-        <title>Paradigm - CbIL Docs</title>
+        <title>The OOP Paradigm - CbIL Docs</title>
       
     
     
@@ -23,6 +29,8 @@
     
     
       <link rel="stylesheet" href="../assets/stylesheets/application-1d1da4857d.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-66fa0d9bba.palette.css">
       
     
     
@@ -36,17 +44,21 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     
     
+      <link rel="stylesheet" href="../extra.css">
+    
     
   </head>
   
   
   
   
-    <body>
+    <body data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     <svg class="md-svg">
       <defs>
         
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
         
       </defs>
     </svg>
@@ -72,7 +84,7 @@
             
               
             
-            Paradigm
+            The OOP Paradigm
           
         </span>
       </div>
@@ -99,6 +111,26 @@
       <div class="md-flex__cell md-flex__cell--shrink">
         <div class="md-header-nav__source">
           
+            
+
+
+  
+
+
+  <a href="https://github.com/TheCool1James/Command-Interpreter" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      TheCool1James/IL Interpreter
+    </div>
+  </a>
+
+          
         </div>
       </div>
     </div>
@@ -123,6 +155,28 @@
     CbIL Docs
   </label>
   
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/TheCool1James/Command-Interpreter" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      TheCool1James/IL Interpreter
+    </div>
+  </a>
+
+    </div>
+  
   <ul class="md-nav__list" data-md-scrollfix>
     
       
@@ -131,8 +185,8 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Home" class="md-nav__link">
-      Home
+    <a href=".." title="Introduction" class="md-nav__link">
+      Introduction
     </a>
   </li>
 
@@ -152,11 +206,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        Paradigm
+        The OOP Paradigm
       </label>
     
-    <a href="./" title="Paradigm" class="md-nav__link md-nav__link--active">
-      Paradigm
+    <a href="./" title="The OOP Paradigm" class="md-nav__link md-nav__link--active">
+      The OOP Paradigm
     </a>
     
       
@@ -233,13 +287,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#overloading" title="Overloading" class="md-nav__link">
-    Overloading
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -265,9 +312,57 @@
       
 
 
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      The Language
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        The Language
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
   <li class="md-nav__item">
-    <a href="../issue/" title="Issues" class="md-nav__link">
-      Issues
+    <a href="../lwlC/" title="Introduction to lwlC" class="md-nav__link">
+      Introduction to lwlC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../CbIL/" title="Introduction to CbIL" class="md-nav__link">
+      Introduction to CbIL
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../issue/" title="Issue Tracking" class="md-nav__link">
+      Issue Tracking
     </a>
   </li>
 
@@ -356,13 +451,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#overloading" title="Overloading" class="md-nav__link">
-    Overloading
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -400,7 +488,7 @@ For the sake of this article, we will only be focusing soely on one paradigm: ob
 
 <div class="admonition note">
 <p class="admonition-title">Some complicated topics are not covered!</p>
-<p>For the sake of this very simple "lwlC" language, <em>some</em> advanced object oriented topics are not covered. If I missed something, please <strong>let me know!</strong></p>
+<p>For the sake of this very simple "lwlC" language, <em>some</em> advanced object oriented topics are not covered. If I missed something that you think should be covered, please <strong>let me know!</strong></p>
 </div>
 <h2 id="a-brief-definition-of-oop">A Brief Definition of OOP</h2>
 <blockquote>
@@ -427,7 +515,27 @@ a set of input parameters. A static class <strong>can only contain static member
 for specifying which variation to use" (Richard Gabriel).  </p>
 </blockquote>
 <p>Let's take some C# code from the Microsoft website:
-<div class="codehilite"><pre><span></span><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Shape</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">Shape</span>
 <span class="p">{</span>
     <span class="k">private</span> <span class="kt">string</span> <span class="n">name</span><span class="p">;</span>
 
@@ -449,9 +557,25 @@ for specifying which variation to use" (Richard Gabriel).  </p>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-</p>
+</td></tr></table></p>
 <p>The above code identified the <em>common attributes of shapes</em> - the area and name. Now, we can create a variation of this shape by inheriting it:</p>
-<div class="codehilite"><pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">Square</span> <span class="p">:</span> <span class="n">Shape</span> <span class="c1">// A square is a shape</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">Square</span> <span class="p">:</span> <span class="n">Shape</span> <span class="c1">// A square is a shape</span>
 <span class="p">{</span>
     <span class="c1">// The side attribute is unique to squares only. Since it was not needed,</span>
     <span class="c1">// we did not put it in our abstract class. Instead, we put it in our</span>
@@ -469,7 +593,7 @@ for specifying which variation to use" (Richard Gabriel).  </p>
     <span class="k">public</span> <span class="k">override</span> <span class="kt">double</span> <span class="n">Area</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">side</span> <span class="p">*</span> <span class="n">side</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-
+</td></tr></table>
 
 <p>So, we can see that a square has a new property: side (length). As that property was unique to only the square (insert asterisk here), we did not add the property
 to our abstract class, because <em>it was not needed</em>. Instead, we added it to our child <strong>Square</strong> class. To see more in depth into the example used: <a href="https://msdn.microsoft.com/en-us/library/yd3z1377.aspx" title="MSDN Documentation">2</a></p>
@@ -485,7 +609,32 @@ Alright. Some definitions <sup> <a href="https://chesterli0130.wordpress.com/201
 <p>Inheritance is where you want the properties and methods of one object to be present in another. You may recall our abstract class <code class="codehilite">Shape</code> example. In that example, the <code class="codehilite">Square</code>
 class inherits the <code class="codehilite">Shape</code> class. Due to the <code class="codehilite">Shape</code> class being abstract, the <code class="codehilite">Square</code> class <strong>must override</strong> all the methods and properties outlined in the <code class="codehilite">Shape</code> class. With
 normal class &rarr; class inheritance, overriding is not mandated. Let's say you have a class:
-<div class="codehilite"><pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">Foo</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">Foo</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">void</span> <span class="nf">Bar</span><span class="p">()</span>
     <span class="p">{</span>
@@ -512,9 +661,18 @@ normal class &rarr; class inheritance, overriding is not mandated. Let's say you
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-
+</td></tr></table>
 We can see that <code class="codehilite">FooBar</code> inherits <code class="codehilite">Foo</code>. This means that you can call <code class="codehilite">Bar()</code> from <code class="codehilite">FooBar</code>, but the output of <code class="codehilite">Bar1()</code> from <code class="codehilite">FooBar</code> will be changed as it was overriden:</p>
-<div class="codehilite"><pre><span></span><span class="c1">// Create an instance of our two objects</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">// Create an instance of our two objects</span>
 <span class="n">Foo</span> <span class="n">obj</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Foo</span><span class="p">();</span>
 <span class="n">FooBar</span> <span class="n">obj2</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FooBar</span><span class="p">();</span>
 
@@ -525,24 +683,25 @@ We can see that <code class="codehilite">FooBar</code> inherits <code class="cod
 <span class="n">obj2</span><span class="p">.</span><span class="n">Bar1</span><span class="p">();</span> <span class="c1">//Overriden</span>
 <span class="n">obj2</span><span class="p">.</span><span class="n">DoStuff</span><span class="p">();</span> <span class="c1">//Added</span>
 </pre></div>
-
+</td></tr></table>
 
 <p>This will output:</p>
-<div class="codehilite"><pre><span></span>Hello from Foo!
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Hello from Foo!
 Hello from Foo!
 Hello from Foo!
 BWAHAHAHA. I have overriden!
 Hello from FooBar!
 </pre></div>
-
+</td></tr></table>
 
 <p>Here is a nice article with a nice diagram to help you through: <a href="https://msdn.microsoft.com/en-us/library/ms173149.aspx" title="Microsoft Again">5</a></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Do not worry! We are almost done!</p>
-</div>
 <h3 id="polymorphism">Polymorphism</h3>
-<h3 id="overloading">Overloading</h3>
+<p>In the word polymorphism, poly is the Greek word for "many" or "much," and "morph" means "forms." Polymorphism is the ability for a method to proccess objects differently
+based on their type or class. In other words, it is the ability to <em>override</em> or <em>redefine</em> methods from parent classes.</p>
                 
                   
                 
@@ -553,9 +712,9 @@ Hello from FooBar!
                   <div id="disqus_thread"></div>
 <script>
   var disqus_config = function () {
-    this.page.url = "None";
+    this.page.url = "https://thecool1james.github.io/Command-Interpreter/lang/";
     this.page.identifier =
-      "None";
+      "lang/";
   };
   (function() {
     var d = document, s = d.createElement("script");
@@ -577,7 +736,7 @@ Hello from FooBar!
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href=".." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href=".." title="Introduction" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -586,19 +745,19 @@ Hello from FooBar!
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Home
+                Introduction
               </span>
             </div>
           </a>
         
         
-          <a href="../issue/" title="Issues" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../lwlC/" title="Introduction to lwlC" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Issues
+                Introduction to lwlC
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
