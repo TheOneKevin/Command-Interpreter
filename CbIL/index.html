@@ -364,7 +364,7 @@
 
 <h2 id="preface">Preface</h2>
 <p>UUuuughhhh more typing.</p>
-<div class="codehilite"><pre><span></span>st=&gt;start
+<pre class="uml-flowchart"><code>st=&gt;start
 e=&gt;end
 
 op1=&gt;operation: Register
@@ -375,9 +375,7 @@ io=&gt;inputoutput: catch something...
 
 st-&gt;op1-&gt;cond
 cond(yes)-&gt;io-&gt;e
-cond(no)-&gt;sub1(right)-&gt;op1
-</pre></div>
-
+cond(no)-&gt;sub1(right)-&gt;op1</code></pre>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
 
@@ -536,6 +534,8 @@ cond(no)-&gt;sub1(right)-&gt;op1
       
     
     
+      
+      <script>!function(e,t,a,n,o,c,i){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,c=t.createElement(a),i=t.getElementsByTagName(a)[0],c.async=1,c.src=n,i.parentNode.insertBefore(c,i)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-93800518-1","http://thecool1james.github.io/"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var t=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",t,e.href)})});var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})</script>
       
     
   </body>
