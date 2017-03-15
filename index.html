@@ -1,175 +1,416 @@
+
 <!DOCTYPE html>
-<html>
+<html class="no-js">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <title>Command Interpreted Language</title>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="shortcut icon" href="./assets/images/favicon.png">
+      
+      <meta name="generator" content="mkdocs-0.16.2, mkdocs-material-1.3.0">
+    
+    
+      
+        <title>CbIL Docs</title>
+      
+    
+    
+      <script src="./assets/javascripts/modernizr-56ade86843.js"></script>
+    
+    
+      <link rel="stylesheet" href="./assets/stylesheets/application-1d1da4857d.css">
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
   </head>
-
-  <body>
-    <header>
-      <div class="inner">
-        <h1>Command Interpreter</h1>
-        <h2>Program command blocks like you do with any other (C) language.</h2>
-        <a href="https://github.com/TheCool1James/Command-Interpreter" class="button"><small>View project on</small> GitHub</a>
+  
+  
+  
+  
+    <body>
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <a href="." title="CbIL Docs" class="md-icon md-icon--home md-header-nav__button">
+          </a>
+        
       </div>
-    </header>
-
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h1>
-<a id="welcome-to-the-command-interpreter-docs" class="anchor" href="#welcome-to-the-command-interpreter-docs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to the Command-Interpreter docs!</h1>
-
-<h2><a id="whatisit" class="anchor" href="#whatisit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What Is This?</h2>
-<p>
-So, what does this program do? Minecraft command blocks are awesome. Commands allow players to manipulate the game itself to some degree, like summoning
-in monsters, giving effects to players, teleporting players and more. Command blocks allow players to execute a command with a redstone signal. When
-1.9 rolled around, Mojang issued a massive update to command blocks. Before 1.9, command blocks had to be powered by redstone. To take an output from a
-command, you had to use a comparator. However, with the 1.9 update, and the introduction of the chain, repeating and impulse commands, made programming
-command blocks easier. Taking advantage of these added features, this program allows you to code command blocks like a regular programming language.
-This allows the player to focus on WHAT they're trying to build instead of HOW am I going to build.
-</p>
-
-<h2>
-<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting started</h2>
-
-<p>Right now, the project is still under (active) development. No releases available yet.  </p>
-
-<h2>
-<a id="the-ilanguage" class="anchor" href="#the-ilanguage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The ILanguage</h2>
-<p>
-<h3><b>THE BASICS:</b></h3> <br />
-Firstly, you need to familiarize yourself with <b>objects</b>. An abstract object is like a real object without the specific details.
-Let's take a Minecraft player for instance. An abstract player would have the attributes like Name, UUID, Health, Skin, Hunger, XP, PermissionLevel. Notice how the attributes
-doesn't have any values assigned to it. Now, when a real player is created (an instance), values would be assigned to each attribute, like Name -> "TheCool1James", UUID -> 19DSEWFDF...., etc. Programmers
-use abstract objects to create real objects. Wrapped your head around that? Well, let's move on to inheritance. So, let's say you have an abstract entity, with attributes like Health, Hunger etc. Now, we create
-a player, inheriting the abstract entity. So, we give the players specific attributes like Skin, Username, etc. Since the player inherits the entity object, it will also have all the attributes of an entity.
-<br />Still alive? Great! Let's get coding. <br />
-So, we first need to define a target entity/player by creating a selector object. Syntax:<br />
-<code>[object] [objectName];<br /></code>
-So to create an all players (@a for u minecraft ppl) selector:<br />
-<code>aPlayer player = new aPlayer(1, 1, 1, 1);</code><br />
-Great! Now, we need to do something to the player.... let's kill it! So:<br />
-<code>player.kill();</code><br />
-We have officially murdered an innocent player at coordinates (1, 1, 1)! Be proud.<br />
-Oh, and for all you curious people, this is how the interpreted minecraft command looks: <br />
-<code>/kill @a[x=1, y=1, z=1, r=1]</code> <br />
-Note how even if we didn't specify a <code>player.r</code> value, the interpreter defaults to the value 1.
-If you want a different selector, say <code>@p</code>, just change the object from <code>aPlayer</code> to <code>pPlayer</code>.
-For <code>@r</code>, its <code>rPlayer</code>. And for <code>@e</code> its <code>aEntity</code>.<br />
-To comment, simple put // at the start of the comment. The comment will last until the EOL marker, kinda like assembly code now that I think about it :) <br />
-<code>This is code. //This is comment. The interpreter will ignore anything here.</code><br />
-To destroy an object, simply put:<br />
-<code>[object].destroy();</code><br /> <b>PLEASE NOTE</b> that <b>no selectors can be destroyed</b> i.e., aPlayer, rPlayer, pPlayer and aEntity. This is because
-there can only be one instance of every selector in the script. Previous selectors of the same type will be destroyed automatically when a new one is created.
-However, with any other object, i.e., Item, Entity etc., you may have multiple instances of them (with different names
-of course), thus you can destroy them. <br />
-<b>One last thing:</b> Make sure each statement ends with a semicolon, like in C#, Java or C;<br />
-<h3><b>DECLARE VARIABLES. NOT WAR.</b></h3><br />
-To declare a variable is simple.<br />
-<code>[type] [name] = [value];</code><br />
-Where [type] can be: <code>int or string</code>, [name] can be whatever your heart desires, and [value] must be of [type]. Example:<br />
-<code>int fooBar = 1;</code><br />
-<b>Worth Noting:</b> You cannot put a [player/entity object]'s x, y or z (or any attributes*) for the values of the variables, UNLESS you have a
-<code>[LOCAL]</code> tag before. More on that later :(<br />
-<h3><b>Instances and Objects</b></h3><br />
-To create a new object, you simply follow the syntax:<br />
-<code>[type] [name] = new [type](arg[0], arg[1], ....);<br /></code>
-Simple.
-<h3><b>WHILE AND IF STATEMENTS</b></h3><br />
-The title probably speaks for itself. This section is dedicated to the WHILE IF statements. Let's start with the if statement. Usage:<br />
-<code>if(<i>condition</i>){<br />
-	<i>code here</i> <br />
-}</code><br />
-Where <i>condition</i> is the condition that must be true for the stuff inside of the IF to be executed. Simple right? Yeah. <br />
-Now, WHILE statements is just a repeating IF statement. So:<br />
-<code>while(<i>condition</i>){<br />
-	<i>code here</i> <br />
-}</code><br />
-While the condition is true, the code inside of the curly brackets will be executed. If its false, then the loop will be terminated.<br />
-<b>Worth Noting:</b> For IF statements, ELSE IF and ELSEs are not supported yet. (awwwwww).
-<h3><b>Commands!!</b></h3><br />
-In order to execute a command, we need a target to execute it on. So, we need to create a target object: <br />
-<code>aPlayer p = new Player(1, 1, 1, 1);<br /></code> And then we need to specify the command we want to perform on the said object:<br />
-<code>p.kill();<br /></code> However, if you want to execute a minecraft command that takes arguments/input, you need
-to specify the arguments within the bracks, like any C method.<br />
-<code>p.say("hi", "white");<br /></code>This will say "hi" to the player in white text. With more complicated commands like
-the give command, we need to create an object for the item we are giving:<br />
-<code>Item i = new Item("stone", 1, 1, "name");<br />
-p.give(i);<br />
-i.destroy();	//Speeds up compiling, and reduces risk of crashes.<br /></code>
-We just gave the player 1 block of stone:1 named "name".<br />
-For more complex commands such as the <code>/tellraw</code> where there's a loooottttt of options, we have something called
-"overloads." This means that some optional arguments may be left blank with the <code>null</code> code.<br />
-<code>[target].tellraw(text[]("text", extra (new text[]), "color", <b>bold</b> (bool), <u>underline</u> (bool), <i>italics</i> (bool),
-strikethrough (bool), obfuscated (bool), "insertation", new clickEvent(action, "value"), new hoverEvent(action, "value", translate, with), 
-new score("name", "objective", value), "selector")); </code><br />
-Now you may thank Minecraft for being this complicated. The <code>text[]</code> thing means a text object array (not to be confused with a string array).
-A <code>text</code> object is just the universal format for all text-displaying commands in Minecraft. The array part allows you to have as many text passages
-as the computer would allow.<br />
-To execute a command that does not exist inside the IDE (or for some other reason), you can use the <code>_mc()</code> function.<br />
-<code>_mc("/give @a stone 1 0");</code><br />
-Please note that the commands will be inserted AS-IS, and NO INTERPRETATION will be applied. Can cause bugs and errors when not used
-appropriately.<br />
-<h3><b>IFs and Booleans</b></h3><br />
-When you type:<br />
-<code>int i = 3;
-if(i == 4)<br />
-{<br />
-	_mc("say @p \"hi\"");<br />
-}<br /></code>
-We know that the "hi" will never be said because i can never equal to 4. So, i == 4 is false. This makes the statement i==4 into a boolean (it outputs a result
-that is a boolean). So... what? Well, ALL Minecraft commands outputs a result that is a boolean, but its not what you think. When you place a comparator behind
-a command block, you can see the output for yourself. If the comparator lights up, the output is true, and if it doesn't, its false. Applying this logic, you
-TECHNICALLY can use IF statements on them. But again, its not what you think. Let's take <code>target.playSound()</code> as an example:<br />
-<code>aPlayer p = new aPlayer(1, 1, 1, 1);<br />
-if(p.playSound("someSound", [some other arguments so here]))<br />
-{<br />
-	p.kill();<br />
-}<br /></code>
-You would expect the player would die when the sound is played, and you would be correct. HOWEVER, when you do IF statements in this fasion, the statement WILL
-BE EXECUTED. So, the sound "somesound" WILL PLAY! This is the same with variable declarations. If you set a bool to the value of the command, whenever you use
-the boolean, THE COMMAND WILL BE EXECUTED <b>(although this feature is not avaiable yet, and will most likely not be)</b>.
-<h3><b>IL2JSON (IL2ALI)</b></h3><br />
-CBIL is actually an IL2JSON parser thingy, which means Interpreted Langauge 2 JSON (the language used by minecraft command blocks), however, that makes no
-sense because JSON is ALSO an interpreted language... So... its IL2AIL (Interpreted Langauge 2 Another Interpreted Langauge). Anyways... that aside,
-since this is an interpreted langauge, the syntax is a little more loose than normal languages. So, don't be alarmed if an error in your code doesn't
-doesn't show up as an actual error. It's probably the parser's fault. If that happens, you can post a bug thing on GitHub (with your code, and an explanation
-about the bug) and I'll try my best to fix it. <br />
-</p>
-<h3>Screenshots</h3><br />
-<image src="https://thecool1james.github.io/Command-Interpreter/images/screenshot.PNG" />
-
-        </section>
-
-        <aside id="sidebar">
-          <a href="https://github.com/TheCool1James/Command-Interpreter/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/TheCool1James/Command-Interpreter/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/TheCool1James/Command-Interpreter"></a> is maintained by <a href="https://github.com/TheCool1James">TheCool1James</a>.</p>
-
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+            
+            Home
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search">
+  <div class="md-search__overlay"></div>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" accesskey="s" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result"></div>
       </div>
     </div>
+  </div>
+</div>
+        
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <div class="md-header-nav__source">
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    
+      <i class="md-icon md-icon--home md-nav__button"></i>
+    
+    CbIL Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
 
   
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Home
+      </label>
+    
+    <a href="." title="Home" class="md-nav__link md-nav__link--active">
+      Home
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-this" title="What is this?" class="md-nav__link">
+    What is this?
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-blocks" title="Command Blocks" class="md-nav__link">
+    Command Blocks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intermediate-languages-il" title="Intermediate Languages (IL)" class="md-nav__link">
+    Intermediate Languages (IL)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#word-of-advice-from-the-not-so-wise" title="Word of Advice from the not-so Wise" class="md-nav__link">
+    Word of Advice from the not-so Wise
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="lang/" title="Paradigm" class="md-nav__link">
+      Paradigm
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="issue/" title="Issues" class="md-nav__link">
+      Issues
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-this" title="What is this?" class="md-nav__link">
+    What is this?
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-blocks" title="Command Blocks" class="md-nav__link">
+    Command Blocks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intermediate-languages-il" title="Intermediate Languages (IL)" class="md-nav__link">
+    Intermediate Languages (IL)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#word-of-advice-from-the-not-so-wise" title="Word of Advice from the not-so Wise" class="md-nav__link">
+    Word of Advice from the not-so Wise
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="welcome-to-the-cbil-documentation">Welcome to the CbIL Documentation</h1>
+<blockquote>
+<p><em>For the increadibly confused, curious and bored folks!</em>  </p>
+</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Idiot Warning</p>
+<p>Hello there. The author of this page may be an idiot, so please please <em>please</em> if you find any grammatical errors or contexual/factual errors here, <strong>let me know</strong>!</p>
+</div>
+<h2 id="what-is-this">What is this?</h2>
+<p>CbIL stands for <em>Command block Intermediate Language</em>. This program gives support for 2 languages:  </p>
+<ul>
+<li><strong>lwlC:</strong> Lightweight Object Oriented language based on C#</li>
+<li><strong>CbIL:</strong>  Command block Intermediate Language</li>
+</ul>
+<p>Support for both languages exists due to the fact that an intermediate language is easier to parse and turn into a pattern of Minecraft commands.
+This also provoides ease of access for porting into and out of existing languages such as the Redstone Programming Language (RPL).
+The key concepts to note here are: Minecraft command blocks, and intermediate languages.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All hyperlinks are going to open in the same tab this page is in. You should probably (manually) open them in a new tab if you want to continue reading this article.</p>
+</div>
+<h4 id="command-blocks">Command Blocks</h4>
+<p>Minecraft is a childish game. Yes. But, that doesn't mean that it isn't particularly <em>interesting</em> in its command features. Within the game, commands can
+be typed in to induce certain effects on the environment, i.e., placing a block at a fixed location. However, most of these commands must be typed in manually
+as of Minecraft 1.7. In the 1.8 version of the game, <em>command blocks</em> were introduced that allowed the automation of these commands through a <em>redstone signal</em>.<br />
+If these concepts are not familiar, these articles might be of some help: <a href="http://minecraft.gamepedia.com/Command_Block/" title="Command Blocks">1</a>, <a href="http://minecraft.gamepedia.com/Redstone_circuit/" title="Redstone">2</a><br />
+However, new improvements upon these command blocks have been made in the 1.9 version of the game. <em>Control flow</em> became an integral part of the command block system:
+command blocks can be activated based on the output of previous commands, the direction of the execution can be controlled allowing for more compact designs, and loops
+are now possible with the new additions. Even though these were possible in previous versions of Minecraft, the new improvements allows for control flow without actual
+<em>redstone devices</em> such as repeaters and comparators, which can often lead to lag and clunky designs.</p>
+<h4 id="intermediate-languages-il">Intermediate Languages (IL)</h4>
+<div class="admonition note">
+<p class="admonition-title">Asterisks! Exceptions! Over simplifications!</p>
+<p>Ok, this portion of the article calls for lots of asterisk marks. So, please bear with me as I will not be placing any asterisk marks. Just know that they are implied.</p>
+</div>
+<p>Let us suppose that you are a programmer - and you just completed your wonderful Paint program. Being the industrious fellow you are, you decide to port this program and
+make it cross-platform. Then you realise a problem: you have to rewrite the program in (possibly) different languages using (possibly) different platform-specific libraries.
+However, being the good programmer that you are, you decided to stay away from dirty platform-specific hacks (supposed "native" calls), and the porting proccess is fairly easy.<br />
+Now, imagine that there was this language that allows you to write the program once, and then it magically becomes corss-platform. There is such thing - it's called Java. Java
+is perhaps the most common - and well known - example of a language that gets compiled into an intermediate language: Java bytecode. Then, during runtime, the bytecode is parsed
+on the spot and executed (insert asterisk here). This is called JIT compilation. Au contraire, CbIL is AOT, or Ahead-Of-Time where the code is compiled into the native machine
+code before execution. So, to sum up, the core purpose of an IL is (usually) for optimization and portability. It acts like an in-between language for high-level languages and
+low-level languages.  </p>
+<blockquote>
+<p>High level code &rarr; Compiler &rarr; Bytecode/IL &rarr; Machine Code (runtime or precompiled)  </p>
+</blockquote>
+<p>Alright, how does this all relate to CbIL? Well, as command blocks follow a completly different logic path than traditional programming languages, the IL is there to strip away any
+unnecessary human abstractions and leave behind only the control flow of the program (i.e., <code class="codehilite">if</code> statements, and <code class="codehilite">while</code>/<code class="codehilite">for</code> loops). This makes the coding portion less messy for
+the creator of the program and the user of the program. Abstraction can be increased, paradigm changed (linear &rarr; object oriented) and overall a cleaner output.  </p>
+<p>Some articles that may be useful: <a href="https://en.wikipedia.org/wiki/Intermediate_representation/" title="Intermediate Representation Language">1</a> <a href="https://en.wikipedia.org/wiki/LLVM/" title="LLVM">2</a> <a href="https://en.wikipedia.org/wiki/Common_Intermediate_Language/" title="CIL">3</a>  </p>
+<h2 id="word-of-advice-from-the-not-so-wise">Word of Advice from the not-so Wise</h2>
+<p>Ok. So, many people would question whether I have gone insane and why I am wasting my time of such a <em>pointless</em> project. Well, this project is not much <em>pointless</em> as it is 
+pointful. It is my very first attempt at making any sort of parser, let alone a programming language (sort of). Yes, it is heavily based off of the C# syntax, but it does need
+to convert from one <em>mindset</em> to another. This project may not appeal to a widespread audience, nor do I hope that it will gain widespread popularity, but it is a learning
+experience in it of itself for me, and for possibly you - the <em>user</em>.  </p>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+        
+          <a href="lang/" title="Paradigm" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Paradigm
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="./assets/javascripts/application-7aa26ad9ec.js"></script>
+      <script>app.initialize({url:{base:"."}})</script>
+      
+        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+    
+      
+    
   </body>
 </html>
