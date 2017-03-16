@@ -46,13 +46,15 @@
     
       <link rel="stylesheet" href="../extra.css">
     
+      <link rel="stylesheet" href="../octicons.css">
+    
     
   </head>
   
   
   
   
-    <body data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body data-md-color-primary="indigo" data-md-color-accent="orange">
   
     <svg class="md-svg">
       <defs>
@@ -84,7 +86,7 @@
             
               
                 <span class="md-header-nav__parent">
-                  The Language
+                  The Components
                 </span>
               
             
@@ -219,11 +221,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
-      The Language
+      The Components
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
-        The Language
+        The Components
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -279,6 +281,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#from-object-to-procedural" title="From Object to Procedural" class="md-nav__link">
+    From Object to Procedural
+  </a>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -291,6 +300,78 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../compiler/" title="Specifications of the Compiler" class="md-nav__link">
+      Specifications of the Compiler
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      The Language (lwlC)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        The Language (lwlC)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../language-docs/intro/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../language-docs/basics/" title="Basics" class="md-nav__link">
+      Basics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../language-docs/base/" title="base" class="md-nav__link">
+      base
+    </a>
   </li>
 
         
@@ -338,6 +419,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#from-object-to-procedural" title="From Object to Procedural" class="md-nav__link">
+    From Object to Procedural
+  </a>
+  
+</li>
+      
       
       
         <li class="md-nav__item">
@@ -363,85 +451,91 @@
 <hr />
 
 <h2 id="preface">Preface</h2>
-<p>UUuuughhhh more typing.</p>
-<pre class="uml-flowchart"><code>st=&gt;start
-e=&gt;end
+<p>Due to this being an intermediate language, CbIL is in bytecode. The bytecode consists of simple logic flow statements, and compiled commands. The compiled commands are stored
+in plaintext, and their contents will not change. Each operation is indicated by an one-byte code, followed by arguments. Variables are all integers, and they are referenced by
+their variable ID (numerically from 0 &rarr; <span>\({2}^{32}\)</span> ). The variable ID corresponds to a variable in a list located at the bottom of the code.</p>
+<h2 id="from-object-to-procedural">From Object to Procedural</h2>
+<p>Obviously, we need to convert the object oriented lwlC into a procedural language. Conversion can be quite troublesome, and can lead to <em>very</em> unoptimized code.
+For example:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">Box</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">Length</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">Width</span>  <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">Depth</span>  <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 
-op1=&gt;operation: Register
-sub1=&gt;subroutine: My Subroutine
-cond=&gt;condition: Yes
-or No?:&gt;http://www.google.com
-io=&gt;inputoutput: catch something...
+    <span class="kt">int</span> <span class="n">Volume</span>
+    <span class="p">{</span>
+        <span class="k">get</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">Length</span> <span class="p">*</span> <span class="n">Width</span> <span class="p">*</span> <span class="n">Depth</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-st-&gt;op1-&gt;cond
-cond(yes)-&gt;io-&gt;e
-cond(no)-&gt;sub1(right)-&gt;op1</code></pre>
+<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Main</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">main</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Box</span> <span class="n">box1</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Box</span><span class="p">();</span>
+        <span class="n">Box</span> <span class="n">box2</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Box</span><span class="p">();</span>
+        <span class="n">box1</span><span class="p">.</span><span class="n">Length</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span>
+        <span class="n">box2</span><span class="p">.</span><span class="n">Length</span> <span class="p">=</span> <span class="m">20</span><span class="p">;</span>
+        <span class="n">box2</span><span class="p">.</span><span class="n">Width</span> <span class="p">=</span> <span class="m">30</span><span class="p">;</span>
+        <span class="n">box2</span><span class="p">.</span><span class="n">Depth</span> <span class="p">=</span> <span class="m">40</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">volume</span> <span class="p">=</span> <span class="n">box2</span><span class="p">.</span><span class="n">Volume</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
+<p>This code should get converted to this:  </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Look at the number of variables as the optimization progresses.</p>
+</div>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="n">Main</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">box1</span><span class="p">.</span><span class="n">Length</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">Main</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">box2</span><span class="p">.</span><span class="n">Length</span> <span class="p">=</span> <span class="m">20</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">Main</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">box2</span><span class="p">.</span><span class="n">Width</span> <span class="p">=</span> <span class="m">30</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">Main</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">box2</span><span class="p">.</span><span class="n">Depth</span> <span class="p">=</span> <span class="m">40</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">Main</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">volume</span> <span class="p">=</span> <span class="n">Main</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">box2</span><span class="p">.</span><span class="n">Length</span> <span class="p">*</span> <span class="n">Main</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">box2</span><span class="p">.</span><span class="n">Depth</span> <span class="p">*</span> <span class="n">Main</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">box2</span><span class="p">.</span><span class="n">Width</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.4.2/flowchart.min.js"></script>
-
-<script type="text/javascript">
-
-(function (document) {
-    var convertUML = function(className, converter, settings) {
-        var charts = document.querySelectorAll("pre." + className),
-            arr = [],
-            i, j, maxItem, diagaram, text, curNode;
-
-        // Is there a settings object?
-        if (settings === void 0) {
-            settings = {};
-        }
-
-        // Make sure we are dealing with an array
-        for(i = 0, maxItem = charts.length; i < maxItem; i++) arr.push(charts[i]);
-
-        // Find the UML source element and get the text
-        for (i = 0, maxItem = arr.length; i < maxItem; i++) {
-            childEl = arr[i].firstChild;
-            parentEl = childEl.parentNode;
-            text = "";
-            for (j = 0; j < childEl.childNodes.length; j++) {
-                curNode = childEl.childNodes[j];
-                whitespace = /^\s*$/;
-                if (curNode.nodeName === "#text" && !(whitespace.test(curNode.nodeValue))) {
-                    text = curNode.nodeValue;
-                    break;
-                }
-            }
-
-            // Do UML conversion and replace source
-            el = document.createElement('div');
-            el.className = className;
-            parentEl.parentNode.insertBefore(el, parentEl);
-            parentEl.parentNode.removeChild(parentEl);
-            diagram = converter.parse(text);
-            diagram.drawSVG(el, settings);
-        }
-    };
-
-    function onReady(fn) {
-        if (document.addEventListener) {
-            document.addEventListener('DOMContentLoaded', fn);
-        } else {
-            document.attachEvent('onreadystatechange', function() {
-                if (document.readyState === 'interactive')
-                    fn();
-            });
-        }
-    }
-
-    onReady(function(){
-        convertUML('uml-flowchart', flowchart);
-        convertUML('uml-sequence-diagram', Diagram, {theme: 'simple'});
-    });
-})(document);
-</script>
+<p>And when data flow analysis happens:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="n">Main</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">volume</span> <span class="p">=</span> <span class="m">24000</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
                 
                   
                 
@@ -491,13 +585,13 @@ cond(no)-&gt;sub1(right)-&gt;op1</code></pre>
           </a>
         
         
-          <a href="../issue/" title="Issue Tracking" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../compiler/" title="Specifications of the Compiler" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Issue Tracking
+                Specifications of the Compiler
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
