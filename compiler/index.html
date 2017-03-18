@@ -17,7 +17,7 @@
       
         <link rel="shortcut icon" href="../assets/images/favicon.png">
       
-      <meta name="generator" content="mkdocs-0.16.2, mkdocs-material-1.3.0">
+      <meta name="generator" content="mkdocs-0.16.2, mkdocs-material-1.4.1">
     
     
       
@@ -28,7 +28,7 @@
       <script src="../assets/javascripts/modernizr-56ade86843.js"></script>
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application-1d1da4857d.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application-76741b64bc.css">
       
         <link rel="stylesheet" href="../assets/stylesheets/application-66fa0d9bba.palette.css">
       
@@ -107,7 +107,12 @@
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result"></div>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
       </div>
     </div>
   </div>
@@ -309,11 +314,15 @@
       
       
       
+		
+			
         <li class="md-nav__item">
           <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
             Comments
           </a>
         </li>
+			
+		
       
     </ul>
   
@@ -337,11 +346,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      The Language (lwlC)
+      lwlC Introduction
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        The Language (lwlC)
+        lwlC Introduction
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -364,8 +373,44 @@
 
 
   <li class="md-nav__item">
-    <a href="../language-docs/basics/" title="Basics" class="md-nav__link">
-      Basics
+    <a href="../language-docs/basics/" title="Keywords" class="md-nav__link">
+      Keywords
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      lwlC Keywords
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        lwlC Keywords
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../language-docs/accessor/" title="Levels of Access" class="md-nav__link">
+      Levels of Access
     </a>
   </li>
 
@@ -378,6 +423,30 @@
   <li class="md-nav__item">
     <a href="../language-docs/base/" title="base" class="md-nav__link">
       base
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../language-docs/getset/" title="get/set" class="md-nav__link">
+      get/set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../language-docs/switch/" title="switch/case/default" class="md-nav__link">
+      switch/case/default
     </a>
   </li>
 
@@ -442,11 +511,15 @@
       
       
       
+		
+			
         <li class="md-nav__item">
           <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
             Comments
           </a>
         </li>
+			
+		
       
     </ul>
   
@@ -463,20 +536,20 @@
                 
                 <h1 id="the-parser-compiler-and-stuff">The Parser, Compiler and Stuff</h1>
 <p>These are the two key components to the whole process of lwlC &rarr; CbIL &rarr; Command Blocks. The parser first converts lwlC into CbIL where the compiler then compiles the list of
-instructions into valid commad sequences. This article aims to document and detail the entire proccess of transforming the code.</p>
+instructions into valid command sequences. This article aims to document and detail the entire process of transforming the code.</p>
 <h2 id="the-preprocessor">The Preprocessor</h2>
 <p>Before any parsing of the code can happen, a preprocessor must come along to compile a list of valid symbols within the project. It will load any dependencies and compile a
 symbols list for each of those. Once finished, it must also identify the main entry point of the code within the "default" project. Only once an entry point has been found,
 can the parser come along to do its job. The entry point method must be static, and be inside a static class.</p>
 <h2 id="the-parser">The Parser</h2>
 <p>Starting at the top of the entry point method, the parser makes its way to the bottom of the method. It will track down all the objects used, and their respective symbols, parse
-them, and add it to the final bytecode. The parser keeps a list of variables that it has initiated for GC (garbage collection) purposes. Everytime it has to enter a referenced
+them, and add it to the final bytecode. The parser keeps a list of variables that it has initiated for GC (garbage collection) purposes. Every time it has to enter a referenced
 method (i.e., constructor etc.) or a code block (i.e., if statements), the <em>code depth</em> will be kept. If a variable's code depth exceeds that of the current code depth, that variable
-is considered to be <em>garbage</em> and will be cleaned up to free up space. The garbage collection is done during the bytecode &rarr; command stage of the proccess.<br />
+is considered to be <em>garbage</em> and will be cleaned up to free up space. The garbage collection is done during the bytecode &rarr; command stage of the process.<br />
 For a more in-depth view on how the compiler treats each code statement, please refer to the "Language" portion of the documentation.</p>
 <h2 id="optimizations">Optimizations</h2>
-<p>Due to the woefully unpotimized code that the parser may generate, the code needs to be cleaned up. Some optimizations take place during the parsing stage, and others, during the
-compilation stage. Here is a quick overview of what is provoided:  </p>
+<p>Due to the woefully unoptimized code that the parser may generate, the code needs to be cleaned up. Some optimizations take place during the parsing stage, and others, during the
+compilation stage. Here is a quick overview of what is provided:  </p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>Unrolling Loops:</strong> All loops will be unrolled while parsing the code.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>Garbage Collection:</strong> Garbage will be dealt with during the compilation.</li>
@@ -493,8 +566,12 @@ compilation stage. Here is a quick overview of what is provoided:  </p>
               
               
                 
-                  <h2 id="__comments">Comments</h2>
-                  <div id="disqus_thread"></div>
+                  
+	
+
+<h2 id="__comments">Comments</h2>
+
+<div id="disqus_thread"></div>
 <script>
   var disqus_config = function () {
     this.page.url = "https://thecool1james.github.io/Command-Interpreter/compiler/";
@@ -508,6 +585,9 @@ compilation stage. Here is a quick overview of what is provoided:  </p>
     (d.head || d.body).appendChild(s);
   })();
 </script>
+
+	
+
                 
               
             </article>
@@ -572,7 +652,7 @@ compilation stage. Here is a quick overview of what is provoided:  </p>
       
     </div>
     
-      <script src="../assets/javascripts/application-7aa26ad9ec.js"></script>
+      <script src="../assets/javascripts/application-3964c0cb56.js"></script>
       <script>app.initialize({url:{base:".."}})</script>
       
         <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>

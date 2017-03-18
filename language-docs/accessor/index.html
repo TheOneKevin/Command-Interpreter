@@ -9,7 +9,7 @@
         <meta name="description" content="The CbIL Intermediate Language and lwlC Language Documentation">
       
       
-        <link rel="canonical" href="https://thecool1james.github.io/Command-Interpreter/language-docs/intro/">
+        <link rel="canonical" href="https://thecool1james.github.io/Command-Interpreter/language-docs/accessor/">
       
       
         <meta name="author" content="Kevin Dai">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Introduction - CbIL Docs</title>
+        <title>Levels of Access - CbIL Docs</title>
       
     
     
@@ -86,11 +86,11 @@
             
               
                 <span class="md-header-nav__parent">
-                  lwlC Introduction
+                  lwlC Keywords
                 </span>
               
             
-            Introduction
+            Levels of Access
           
         </span>
       </div>
@@ -278,12 +278,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
       lwlC Introduction
@@ -299,20 +297,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-    <a href="./" title="Introduction" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../intro/" title="Introduction" class="md-nav__link">
       Introduction
     </a>
-    
   </li>
 
         
@@ -337,10 +326,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
     <label class="md-nav__link" for="nav-5">
       lwlC Keywords
@@ -356,11 +347,75 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../accessor/" title="Levels of Access" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Levels of Access
+      </label>
+    
+    <a href="./" title="Levels of Access" class="md-nav__link md-nav__link--active">
       Levels of Access
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#public-modifier" title="public (modifier)" class="md-nav__link">
+    public (modifier)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private-modifier" title="private (modifier)" class="md-nav__link">
+    private (modifier)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-modifier" title="protected (modifier)" class="md-nav__link">
+    protected (modifier)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-modifier" title="internal (modifier)" class="md-nav__link">
+    internal (modifier)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-internal-special-case" title="protected internal (special case)" class="md-nav__link">
+    protected internal (special case)
+  </a>
+  
+</li>
+      
+      
+      
+		
+			
+		
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -431,8 +486,52 @@
 <nav class="md-nav md-nav--secondary">
   
   
-    
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#public-modifier" title="public (modifier)" class="md-nav__link">
+    public (modifier)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private-modifier" title="private (modifier)" class="md-nav__link">
+    private (modifier)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-modifier" title="protected (modifier)" class="md-nav__link">
+    protected (modifier)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-modifier" title="internal (modifier)" class="md-nav__link">
+    internal (modifier)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-internal-special-case" title="protected internal (special case)" class="md-nav__link">
+    protected internal (special case)
+  </a>
+  
+</li>
+      
+      
+      
+		
+			
+		
+      
+    </ul>
   
 </nav>
                   </div>
@@ -445,17 +544,27 @@
               
                 
                 
-                <h1 id="the-language-of-lwlc">The Language of lwlC</h1>
+                  <h1>Levels of Access</h1>
+                
+                <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Private classes can be initiated by outside classes. However, when nested within a class, it can only be referenced within the class it is nested in.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>As the project is work-in-progress, many of the things documented may, and will change over time. I will try my best to update this as the project gets updated. Some features
-documented here may not exist in the project, and vice versa.</p>
+<p>Members without an access modifier is automatically declared as private.</p>
 </div>
-<p>Unlike its fully-fledged counterpart, C#, Lightweight C(#) is... well... lightweight. This means that it lacks many of the great features that makes C# great, but many of those
-features are overkill compared to what this project hopes to accomplish.<br />
-The documentation of this language aims to document all the aspects of the lwlC syntax. <strong>It will not, I repeat, will not document the libraries' methods</strong>. In other words, those
-Minecraft specific methods (<code class="codehilite">/say</code>, <code class="codehilite">/kill</code> etc.) <em>will not be documented</em>. Those come in a library - a collection of code that someone else created. This portion of the
-documentation will only cover the basic syntax and concepts needed to do... well <em>anything</em> with the language.</p>
+<h2 id="public-modifier">public (modifier)</h2>
+<p>When the <code class="codehilite"><span class="k">public</span></code> modifier is used, the type/member can only be accessed by code in the same project or project that references it.</p>
+<h2 id="private-modifier">private (modifier)</h2>
+<p>When the <code class="codehilite"><span class="k">private</span></code> modifier is used, the type/member can only be accessed by code within the same class.</p>
+<h2 id="protected-modifier">protected (modifier)</h2>
+<p>When the <code class="codehilite"><span class="k">protected</span></code> modifier is used, the type/member can only be accessed by code within the same class and the classes that inherit it.</p>
+<h2 id="internal-modifier">internal (modifier)</h2>
+<p>When the <code class="codehilite"><span class="k">internal</span></code> modifier is used, the type/member can only be accessed by code within the same project.</p>
+<h2 id="protected-internal-special-case">protected internal (special case)</h2>
+<p>When the two modifier are combined and used, <code class="codehilite"><span class="k">protected</span> <span class="k">internal</span></code>, the resultant type/member can only be accessed within the same assembly, or can be accessed from a derived
+class in a different assembly.</p>
                 
                   
                 
@@ -463,25 +572,6 @@ documentation will only cover the basic syntax and concepts needed to do... well
               
                 
                   
-	
-
-<h2 id="__comments">Comments</h2>
-
-<div id="disqus_thread"></div>
-<script>
-  var disqus_config = function () {
-    this.page.url = "https://thecool1james.github.io/Command-Interpreter/language-docs/intro/";
-    this.page.identifier =
-      "language-docs/intro/";
-  };
-  (function() {
-    var d = document, s = d.createElement("script");
-    s.src = "//thecoolkevin.disqus.com/embed.js";
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-
 	
 
                 
@@ -497,7 +587,7 @@ documentation will only cover the basic syntax and concepts needed to do... well
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../compiler/" title="Specifications of the Compiler" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../basics/" title="Keywords" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -506,19 +596,19 @@ documentation will only cover the basic syntax and concepts needed to do... well
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Specifications of the Compiler
+                Keywords
               </span>
             </div>
           </a>
         
         
-          <a href="../basics/" title="Keywords" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../base/" title="base" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Keywords
+                base
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

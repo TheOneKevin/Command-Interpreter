@@ -9,7 +9,7 @@
         <meta name="description" content="The CbIL Intermediate Language and lwlC Language Documentation">
       
       
-        <link rel="canonical" href="https://thecool1james.github.io/Command-Interpreter/language-docs/intro/">
+        <link rel="canonical" href="https://thecool1james.github.io/Command-Interpreter/language-docs/getset/">
       
       
         <meta name="author" content="Kevin Dai">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Introduction - CbIL Docs</title>
+        <title>get/set - CbIL Docs</title>
       
     
     
@@ -86,11 +86,11 @@
             
               
                 <span class="md-header-nav__parent">
-                  lwlC Introduction
+                  lwlC Keywords
                 </span>
               
             
-            Introduction
+            get/set
           
         </span>
       </div>
@@ -278,12 +278,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
       lwlC Introduction
@@ -299,20 +297,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-    <a href="./" title="Introduction" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../intro/" title="Introduction" class="md-nav__link">
       Introduction
     </a>
-    
   </li>
 
         
@@ -337,10 +326,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
     <label class="md-nav__link" for="nav-5">
       lwlC Keywords
@@ -380,11 +371,112 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../getset/" title="get/set" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        get/set
+      </label>
+    
+    <a href="./" title="get/set" class="md-nav__link md-nav__link--active">
       get/set
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get-accessor" title="get (accessor)" class="md-nav__link">
+    get (accessor)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-accessor" title="set (accessor)" class="md-nav__link">
+    set (accessor)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explanation" title="Explanation" class="md-nav__link">
+    Explanation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bad-code-practises" title="Bad Code Practises" class="md-nav__link">
+    Bad Code Practises
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auto-implemented-properties" title="Auto Implemented Properties" class="md-nav__link">
+    Auto Implemented Properties
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conversion" title="Conversion" class="md-nav__link">
+    Conversion
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-1" title="Case 1" class="md-nav__link">
+    Case 1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+		
+			
+		
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -434,6 +526,85 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get-accessor" title="get (accessor)" class="md-nav__link">
+    get (accessor)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-accessor" title="set (accessor)" class="md-nav__link">
+    set (accessor)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explanation" title="Explanation" class="md-nav__link">
+    Explanation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bad-code-practises" title="Bad Code Practises" class="md-nav__link">
+    Bad Code Practises
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auto-implemented-properties" title="Auto Implemented Properties" class="md-nav__link">
+    Auto Implemented Properties
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conversion" title="Conversion" class="md-nav__link">
+    Conversion
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-1" title="Case 1" class="md-nav__link">
+    Case 1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+		
+			
+		
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -445,17 +616,162 @@
               
                 
                 
-                <h1 id="the-language-of-lwlc">The Language of lwlC</h1>
+                <h1 id="property-keywords">Property Keywords</h1>
+<h2 id="get-accessor">get (accessor)</h2>
+<p>The <code class="codehilite"><span class="k">get</span></code> keyword defines an <em>accessor</em> method in a property. This means that the method will be called every time the property's value is retrieved. The get accessor <em>must</em>
+return a value, and the value must be of the same type as the property.</p>
+<h2 id="set-accessor">set (accessor)</h2>
+<p>The <code class="codehilite"><span class="k">set</span></code> keyword defines an <em>accessor</em> method in a property. This means that the method will be called every time the property's value is assigned. The get accessor takes one
+input parameter, <em>value</em>, which is the assigned value.</p>
+<h2 id="example">Example</h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">MyClass</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="kt">int</span> <span class="n">property</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">MyProperty</span>
+    <span class="p">{</span>
+        <span class="k">get</span>
+        <span class="p">{</span>
+            <span class="n">mc</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Property get called!&quot;</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">property</span> <span class="p">-</span> <span class="m">10</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">set</span>
+        <span class="p">{</span>
+            <span class="n">property</span> <span class="p">=</span> <span class="k">value</span> <span class="p">+</span> <span class="m">10</span><span class="p">;</span>
+            <span class="n">mc</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Property set called: &quot;</span> <span class="p">+</span> <span class="n">property</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Main</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">main</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">MyClass</span> <span class="n">a</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MyClass</span><span class="p">();</span>
+        <span class="n">a</span><span class="p">.</span><span class="n">MyProperty</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span>
+        <span class="n">mc</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">MyProperty</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>This will output:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Property set called: 20
+Property get called!
+10
+</pre></div>
+</td></tr></table>
+
+<h3 id="explanation">Explanation</h3>
+<p>When the value <code class="codehilite">MyProperty</code> was assigned, the <code class="codehilite"><span class="k">set</span></code> accessor was called. In this example, it took the value, and added 10 to it. It then stored the result in a
+private field named <code class="codehilite">property</code> of type <code class="codehilite"><span class="kt">int</span></code>. When the value of <code class="codehilite">MyProperty</code> was retrieved via <code class="codehilite">mc.WriteLine()</code>, the <code class="codehilite"><span class="k">get</span></code> accessor was called. The accessor
+returns the value within the private field, subtracted by 10. Since 10 was added when the value was stored, and 10 was subtracted when the value was accessed, the initial value
+remains untouched.</p>
+<h2 id="bad-code-practises">Bad Code Practises</h2>
+<p>It is not highly recommended that the object's state <em>not</em> be tampered with during the get method. For example:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="n">PrivateField</span> <span class="p">=</span> <span class="m">0</span>
+
+<span class="k">public</span> <span class="kt">int</span> <span class="n">MyProperty</span>
+<span class="p">{</span>
+    <span class="k">get</span>
+    <span class="p">{</span>
+<span class="hll">        <span class="k">return</span> <span class="n">PrivateField</span><span class="p">++;</span>
+</span>    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Every time the get accessor method is called, the object's state is changed as <code class="codehilite">PrivateField</code> increments by 1 each time.</p>
+<h2 id="auto-implemented-properties">Auto Implemented Properties</h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">MyClass</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">MyProperty</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>The main purpose of properties is to expose fields. Fields should generally be kept private, and accessed via a property.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">MyClass</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">myField</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">MyProperty</span>
+    <span class="p">{</span>
+        <span class="k">get</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">myField</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">set</span>
+        <span class="p">{</span>
+            <span class="n">myField</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>As the project is work-in-progress, many of the things documented may, and will change over time. I will try my best to update this as the project gets updated. Some features
-documented here may not exist in the project, and vice versa.</p>
+<p>Everything below is for super-technical people.</p>
 </div>
-<p>Unlike its fully-fledged counterpart, C#, Lightweight C(#) is... well... lightweight. This means that it lacks many of the great features that makes C# great, but many of those
-features are overkill compared to what this project hopes to accomplish.<br />
-The documentation of this language aims to document all the aspects of the lwlC syntax. <strong>It will not, I repeat, will not document the libraries' methods</strong>. In other words, those
-Minecraft specific methods (<code class="codehilite">/say</code>, <code class="codehilite">/kill</code> etc.) <em>will not be documented</em>. Those come in a library - a collection of code that someone else created. This portion of the
-documentation will only cover the basic syntax and concepts needed to do... well <em>anything</em> with the language.</p>
+<h2 id="conversion">Conversion</h2>
+<h3 id="case-1">Case 1</h3>
                 
                   
                 
@@ -463,25 +779,6 @@ documentation will only cover the basic syntax and concepts needed to do... well
               
                 
                   
-	
-
-<h2 id="__comments">Comments</h2>
-
-<div id="disqus_thread"></div>
-<script>
-  var disqus_config = function () {
-    this.page.url = "https://thecool1james.github.io/Command-Interpreter/language-docs/intro/";
-    this.page.identifier =
-      "language-docs/intro/";
-  };
-  (function() {
-    var d = document, s = d.createElement("script");
-    s.src = "//thecoolkevin.disqus.com/embed.js";
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-
 	
 
                 
@@ -497,7 +794,7 @@ documentation will only cover the basic syntax and concepts needed to do... well
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../compiler/" title="Specifications of the Compiler" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../base/" title="base" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -506,19 +803,19 @@ documentation will only cover the basic syntax and concepts needed to do... well
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Specifications of the Compiler
+                base
               </span>
             </div>
           </a>
         
         
-          <a href="../basics/" title="Keywords" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../switch/" title="switch/case/default" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Keywords
+                switch/case/default
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

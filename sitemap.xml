@@ -4,7 +4,7 @@
     
     <url>
      <loc>https://thecool1james.github.io/Command-Interpreter//</loc>
-     <lastmod>2017-03-16</lastmod>
+     <lastmod>2017-03-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,7 +12,7 @@
     
     <url>
      <loc>https://thecool1james.github.io/Command-Interpreter//lang/</loc>
-     <lastmod>2017-03-16</lastmod>
+     <lastmod>2017-03-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -21,19 +21,19 @@
         
     <url>
      <loc>https://thecool1james.github.io/Command-Interpreter//lwlC/</loc>
-     <lastmod>2017-03-16</lastmod>
+     <lastmod>2017-03-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://thecool1james.github.io/Command-Interpreter//CbIL/</loc>
-     <lastmod>2017-03-16</lastmod>
+     <lastmod>2017-03-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://thecool1james.github.io/Command-Interpreter//compiler/</loc>
-     <lastmod>2017-03-16</lastmod>
+     <lastmod>2017-03-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -43,19 +43,41 @@
         
     <url>
      <loc>https://thecool1james.github.io/Command-Interpreter//language-docs/intro/</loc>
-     <lastmod>2017-03-16</lastmod>
+     <lastmod>2017-03-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://thecool1james.github.io/Command-Interpreter//language-docs/basics/</loc>
-     <lastmod>2017-03-16</lastmod>
+     <lastmod>2017-03-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://thecool1james.github.io/Command-Interpreter//language-docs/accessor/</loc>
+     <lastmod>2017-03-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://thecool1james.github.io/Command-Interpreter//language-docs/base/</loc>
-     <lastmod>2017-03-16</lastmod>
+     <lastmod>2017-03-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thecool1james.github.io/Command-Interpreter//language-docs/getset/</loc>
+     <lastmod>2017-03-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thecool1james.github.io/Command-Interpreter//language-docs/switch/</loc>
+     <lastmod>2017-03-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -64,7 +86,7 @@
     
     <url>
      <loc>https://thecool1james.github.io/Command-Interpreter//issue/</loc>
-     <lastmod>2017-03-16</lastmod>
+     <lastmod>2017-03-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     

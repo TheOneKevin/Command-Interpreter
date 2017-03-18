@@ -17,7 +17,7 @@
       
         <link rel="shortcut icon" href="../assets/images/favicon.png">
       
-      <meta name="generator" content="mkdocs-0.16.2, mkdocs-material-1.3.0">
+      <meta name="generator" content="mkdocs-0.16.2, mkdocs-material-1.4.1">
     
     
       
@@ -28,7 +28,7 @@
       <script src="../assets/javascripts/modernizr-56ade86843.js"></script>
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application-1d1da4857d.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application-76741b64bc.css">
       
         <link rel="stylesheet" href="../assets/stylesheets/application-66fa0d9bba.palette.css">
       
@@ -107,7 +107,12 @@
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result"></div>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
       </div>
     </div>
   </div>
@@ -290,11 +295,15 @@
       
       
       
+		
+			
         <li class="md-nav__item">
           <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
             Comments
           </a>
         </li>
+			
+		
       
     </ul>
   
@@ -330,11 +339,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      The Language (lwlC)
+      lwlC Introduction
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        The Language (lwlC)
+        lwlC Introduction
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -357,8 +366,44 @@
 
 
   <li class="md-nav__item">
-    <a href="../language-docs/basics/" title="Basics" class="md-nav__link">
-      Basics
+    <a href="../language-docs/basics/" title="Keywords" class="md-nav__link">
+      Keywords
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      lwlC Keywords
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        lwlC Keywords
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../language-docs/accessor/" title="Levels of Access" class="md-nav__link">
+      Levels of Access
     </a>
   </li>
 
@@ -371,6 +416,30 @@
   <li class="md-nav__item">
     <a href="../language-docs/base/" title="base" class="md-nav__link">
       base
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../language-docs/getset/" title="get/set" class="md-nav__link">
+      get/set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../language-docs/switch/" title="switch/case/default" class="md-nav__link">
+      switch/case/default
     </a>
   </li>
 
@@ -428,11 +497,15 @@
       
       
       
+		
+			
         <li class="md-nav__item">
           <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
             Comments
           </a>
         </li>
+			
+		
       
     </ul>
   
@@ -452,7 +525,7 @@
 
 <h2 id="preface">Preface</h2>
 <p>Due to this being an intermediate language, CbIL is in bytecode. The bytecode consists of simple logic flow statements, and compiled commands. The compiled commands are stored
-in plaintext, and their contents will not change. Each operation is indicated by an one-byte code, followed by arguments. Variables are all integers, and they are referenced by
+in plain text, and their contents will not change. Each operation is indicated by an one-byte code, followed by arguments. Variables are all integers, and they are referenced by
 their variable ID (numerically from 0 &rarr; <span>\({2}^{32}\)</span> ). The variable ID corresponds to a variable in a list located at the bottom of the code.</p>
 <h2 id="from-object-to-procedural">From Object to Procedural</h2>
 <p>Obviously, we need to convert the object oriented lwlC into a procedural language. Conversion can be quite troublesome, and can lead to <em>very</em> unoptimized code.
@@ -542,8 +615,12 @@ For example:</p>
               
               
                 
-                  <h2 id="__comments">Comments</h2>
-                  <div id="disqus_thread"></div>
+                  
+	
+
+<h2 id="__comments">Comments</h2>
+
+<div id="disqus_thread"></div>
 <script>
   var disqus_config = function () {
     this.page.url = "https://thecool1james.github.io/Command-Interpreter/CbIL/";
@@ -557,6 +634,9 @@ For example:</p>
     (d.head || d.body).appendChild(s);
   })();
 </script>
+
+	
+
                 
               
             </article>
@@ -621,7 +701,7 @@ For example:</p>
       
     </div>
     
-      <script src="../assets/javascripts/application-7aa26ad9ec.js"></script>
+      <script src="../assets/javascripts/application-3964c0cb56.js"></script>
       <script>app.initialize({url:{base:".."}})</script>
       
         <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>

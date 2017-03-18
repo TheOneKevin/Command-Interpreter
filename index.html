@@ -17,7 +17,7 @@
       
         <link rel="shortcut icon" href="./assets/images/favicon.png">
       
-      <meta name="generator" content="mkdocs-0.16.2, mkdocs-material-1.3.0">
+      <meta name="generator" content="mkdocs-0.16.2, mkdocs-material-1.4.1">
     
     
       
@@ -28,7 +28,7 @@
       <script src="./assets/javascripts/modernizr-56ade86843.js"></script>
     
     
-      <link rel="stylesheet" href="./assets/stylesheets/application-1d1da4857d.css">
+      <link rel="stylesheet" href="./assets/stylesheets/application-76741b64bc.css">
       
         <link rel="stylesheet" href="./assets/stylesheets/application-66fa0d9bba.palette.css">
       
@@ -103,7 +103,12 @@
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result"></div>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
       </div>
     </div>
   </div>
@@ -338,11 +343,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      The Language (lwlC)
+      lwlC Introduction
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        The Language (lwlC)
+        lwlC Introduction
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -365,8 +370,44 @@
 
 
   <li class="md-nav__item">
-    <a href="language-docs/basics/" title="Basics" class="md-nav__link">
-      Basics
+    <a href="language-docs/basics/" title="Keywords" class="md-nav__link">
+      Keywords
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      lwlC Keywords
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        lwlC Keywords
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="language-docs/accessor/" title="Levels of Access" class="md-nav__link">
+      Levels of Access
     </a>
   </li>
 
@@ -379,6 +420,30 @@
   <li class="md-nav__item">
     <a href="language-docs/base/" title="base" class="md-nav__link">
       base
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="language-docs/getset/" title="get/set" class="md-nav__link">
+      get/set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="language-docs/switch/" title="switch/case/default" class="md-nav__link">
+      switch/case/default
     </a>
   </li>
 
@@ -473,20 +538,20 @@
 <hr />
 
 <blockquote>
-<p><em>For the increadibly confused, curious and bored folks!</em>  </p>
+<p><em>For the incredibly confused, curious and bored folks!</em>  </p>
 </blockquote>
 <div class="admonition warning">
 <p class="admonition-title">Idiot Warning</p>
-<p>Hello there. The author of this page may be an idiot, so please please <em>please</em> if you find any grammatical errors or contexual/factual errors here, <strong>let me know</strong>!</p>
+<p>Hello there. The author of this page may be an idiot, so please please <em>please</em> if you find any grammatical errors or contextually/factual errors here, <strong>let me know</strong>!</p>
 </div>
 <h2 id="what-is-this">What is this?</h2>
 <p>CbIL stands for <em>Command block Intermediate Language</em>. This program gives support for 2 languages:  </p>
 <ul>
-<li><strong>lwlC:</strong> Lightweight Object Oriented language based on C#</li>
+<li><strong><a href="./language-docs/basics/">lwlC</a>:</strong> Lightweight Object Oriented language based on C#</li>
 <li><strong>CbIL:</strong>  Command block Intermediate Language</li>
 </ul>
 <p>Support for both languages exists due to the fact that an intermediate language is easier to parse and turn into a pattern of Minecraft commands.
-This also provoides ease of access for porting into and out of existing languages such as the Redstone Programming Language (RPL).
+This also provides ease of access for porting into and out of existing languages such as the Redstone Programming Language (RPL).
 The key concepts to note here are: Minecraft command blocks, and intermediate languages.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -507,9 +572,9 @@ are now possible with the new additions. Even though these were possible in prev
 <p>Ok, this portion of the article calls for lots of asterisk marks. So, please bear with me as I will not be placing any asterisk marks. Just know that they are implied.</p>
 </div>
 <p>Let us suppose that you are a programmer - and you just completed your wonderful Paint program. Being the industrious fellow you are, you decide to port this program and
-make it cross-platform. Then you realise a problem: you have to rewrite the program in (possibly) different languages using (possibly) different platform-specific libraries.
-However, being the good programmer that you are, you decided to stay away from dirty platform-specific hacks (supposed "native" calls), and the porting proccess is fairly easy.<br />
-Now, imagine that there was this language that allows you to write the program once, and then it magically becomes corss-platform. There is such thing - it's called Java. Java
+make it cross-platform. Then you realize a problem: you have to rewrite the program in (possibly) different languages using (possibly) different platform-specific libraries.
+However, being the good programmer that you are, you decided to stay away from dirty platform-specific hacks (supposed "native" calls), and the porting process is fairly easy.<br />
+Now, imagine that there was this language that allows you to write the program once, and then it magically becomes cross-platform. There is such thing - it's called Java. Java
 is perhaps the most common - and well known - example of a language that gets compiled into an intermediate language: Java bytecode. Then, during runtime, the bytecode is parsed
 on the spot and executed (insert asterisk here). This is called JIT compilation. Au contraire, CbIL is AOT, or Ahead-Of-Time where the code is compiled into the native machine
 code before execution. So, to sum up, the core purpose of an IL is (usually) for optimization and portability. It acts like an in-between language for high-level languages and
@@ -517,7 +582,7 @@ low-level languages.  </p>
 <blockquote>
 <p>High level code &rarr; Compiler &rarr; Bytecode/IL &rarr; Machine Code (runtime or precompiled)  </p>
 </blockquote>
-<p>Alright, how does this all relate to CbIL? Well, as command blocks follow a completly different logic path than traditional programming languages, the IL is there to strip away any
+<p>Alright, how does this all relate to CbIL? Well, as command blocks follow a completely different logic path than traditional programming languages, the IL is there to strip away any
 unnecessary human abstractions and leave behind only the control flow of the program (i.e., <code class="codehilite">if</code> statements, and <code class="codehilite">while</code>/<code class="codehilite">for</code> loops). This makes the coding portion less messy for
 the creator of the program and the user of the program. Abstraction can be increased, paradigm changed (linear &rarr; object oriented) and overall a cleaner output.  </p>
 <p>Some articles that may be useful: <a href="https://en.wikipedia.org/wiki/Intermediate_representation" title="Intermediate Representation Language">1</a> <a href="https://en.wikipedia.org/wiki/LLVM" title="LLVM">2</a> <a href="https://en.wikipedia.org/wiki/Common_Intermediate_Language" title="CIL">3</a>  </p>
@@ -585,7 +650,7 @@ experience in it of itself for me, and for possibly you - the <em>user</em>.<br 
       
     </div>
     
-      <script src="./assets/javascripts/application-7aa26ad9ec.js"></script>
+      <script src="./assets/javascripts/application-3964c0cb56.js"></script>
       <script>app.initialize({url:{base:"."}})</script>
       
         <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>

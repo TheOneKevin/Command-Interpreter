@@ -17,7 +17,7 @@
       
         <link rel="shortcut icon" href="../assets/images/favicon.png">
       
-      <meta name="generator" content="mkdocs-0.16.2, mkdocs-material-1.3.0">
+      <meta name="generator" content="mkdocs-0.16.2, mkdocs-material-1.4.1">
     
     
       
@@ -28,7 +28,7 @@
       <script src="../assets/javascripts/modernizr-56ade86843.js"></script>
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application-1d1da4857d.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application-76741b64bc.css">
       
         <link rel="stylesheet" href="../assets/stylesheets/application-66fa0d9bba.palette.css">
       
@@ -103,7 +103,12 @@
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result"></div>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
       </div>
     </div>
   </div>
@@ -296,11 +301,15 @@
       
       
       
+		
+			
         <li class="md-nav__item">
           <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
             Comments
           </a>
         </li>
+			
+		
       
     </ul>
   
@@ -379,11 +388,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      The Language (lwlC)
+      lwlC Introduction
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        The Language (lwlC)
+        lwlC Introduction
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -406,8 +415,44 @@
 
 
   <li class="md-nav__item">
-    <a href="../language-docs/basics/" title="Basics" class="md-nav__link">
-      Basics
+    <a href="../language-docs/basics/" title="Keywords" class="md-nav__link">
+      Keywords
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      lwlC Keywords
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        lwlC Keywords
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../language-docs/accessor/" title="Levels of Access" class="md-nav__link">
+      Levels of Access
     </a>
   </li>
 
@@ -420,6 +465,30 @@
   <li class="md-nav__item">
     <a href="../language-docs/base/" title="base" class="md-nav__link">
       base
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../language-docs/getset/" title="get/set" class="md-nav__link">
+      get/set
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../language-docs/switch/" title="switch/case/default" class="md-nav__link">
+      switch/case/default
     </a>
   </li>
 
@@ -532,11 +601,15 @@
       
       
       
+		
+			
         <li class="md-nav__item">
           <a href="#__comments" title="Comments" class="md-nav__link md-nav__link--active">
             Comments
           </a>
         </li>
+			
+		
       
     </ul>
   
@@ -555,7 +628,7 @@
 <h2 id="preface">Preface</h2>
 <p>Programming languages can be classified by their <em>paradigm</em>. A <em>programming paradigm</em> is a way of programming. Some languages may be specialized in one paradigm while others
 can be programmed in more than one. To learn more about paradigms, this article <strong>will</strong> be helpful: <a href="http://cs.lmu.edu/~ray/notes/paradigms/" title="Programming Paradigms">1</a><br />
-For the sake of this article, we will only be focusing soely on one paradigm: object oriented, although the higher-level language (lwlC) can be considered imperataive too.</p>
+For the sake of this article, we will only be focusing solely on one paradigm: object oriented, although the higher-level language (lwlC) can be considered imperative too.</p>
 <div style="text-align:center">
 <p><img alt="Insert Joke Here" src="../images/img1.jpg" /></p>
 </div>
@@ -674,7 +747,7 @@ to our abstract class, because <em>it was not needed</em>. Instead, we added it 
 <h3 id="encapsulation">Encapsulation</h3>
 <p>Ok, do not confuse this with <em>abstraction</em>. They are different concepts. Encapsulation is the means of hiding information that is not needed to the client of the object.
 We encapsulate to reduce the complexity of the code. In some way, you can take an object someone has already made, use it in your code, and it should <em>just work</em> (insert asterisk).
-Encapsulation is achieved by using the accesor keywords: <code class="codehilite">public</code> and <code class="codehilite">private</code>. The client of the object does not, and should not need to know <em>how</em> and object is doing its work,
+Encapsulation is achieved by using the accessor keywords: <code class="codehilite">public</code> and <code class="codehilite">private</code>. The client of the object does not, and should not need to know <em>how</em> and object is doing its work,
 and see the inner "guts" of the object. So, it is like a black box of some ways, where it "just works". Recommended article: <a href="http://blog.ploeh.dk/2012/11/27/Encapsulationofproperties/" title="Good article">3</a><br />
 Alright. Some definitions <sup> <a href="https://chesterli0130.wordpress.com/2012/10/04/four-major-principles-of-object-oriented-programming-oop/">4</a> </sup>:<br />
 <strong>Mutater</strong>: This is a method that modifies the properties/state of an object. It can be a method, or through the <code class="codehilite">set</code> keyword.<br />
@@ -708,14 +781,16 @@ normal class &rarr; class inheritance, overriding is not mandated. Let's say you
 23
 24
 25
-26</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">Foo</span>
+26
+27</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">Foo</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Bar</span><span class="p">()</span>
+    <span class="c1">// Virtual means that it is overridable</span>
+    <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">Bar</span><span class="p">()</span>
     <span class="p">{</span>
         <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Hello from Foo!&quot;</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Bar1</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">Bar1</span><span class="p">()</span>
     <span class="p">{</span>
         <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Hello from Foo!&quot;</span><span class="p">);</span>
     <span class="p">}</span>
@@ -736,7 +811,7 @@ normal class &rarr; class inheritance, overriding is not mandated. Let's say you
 <span class="p">}</span>
 </pre></div>
 </td></tr></table>
-We can see that <code class="codehilite">FooBar</code> inherits <code class="codehilite">Foo</code>. This means that you can call <code class="codehilite">Bar()</code> from <code class="codehilite">FooBar</code>, but the output of <code class="codehilite">Bar1()</code> from <code class="codehilite">FooBar</code> will be changed as it was overriden:</p>
+We can see that <code class="codehilite">FooBar</code> inherits <code class="codehilite">Foo</code>. This means that you can call <code class="codehilite">Bar()</code> from <code class="codehilite">FooBar</code>, but the output of <code class="codehilite">Bar1()</code> from <code class="codehilite">FooBar</code> will be changed as it was overridden:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -774,7 +849,7 @@ Hello from FooBar!
 
 <p>Here is a nice article with a nice diagram to help you through: <a href="https://msdn.microsoft.com/en-us/library/ms173149.aspx" title="Microsoft Again">5</a></p>
 <h3 id="polymorphism">Polymorphism</h3>
-<p>In the word polymorphism, poly is the Greek word for "many" or "much," and "morph" means "forms." Polymorphism is the ability for a method to proccess objects differently
+<p>In the word polymorphism, poly is the Greek word for "many" or "much," and "morph" means "forms." Polymorphism is the ability for a method to process objects differently
 based on their type or class. In other words, it is the ability to <em>override</em> or <em>redefine</em> methods from parent classes.</p>
                 
                   
@@ -782,8 +857,12 @@ based on their type or class. In other words, it is the ability to <em>override<
               
               
                 
-                  <h2 id="__comments">Comments</h2>
-                  <div id="disqus_thread"></div>
+                  
+	
+
+<h2 id="__comments">Comments</h2>
+
+<div id="disqus_thread"></div>
 <script>
   var disqus_config = function () {
     this.page.url = "https://thecool1james.github.io/Command-Interpreter/lang/";
@@ -797,6 +876,9 @@ based on their type or class. In other words, it is the ability to <em>override<
     (d.head || d.body).appendChild(s);
   })();
 </script>
+
+	
+
                 
               
             </article>
@@ -861,7 +943,7 @@ based on their type or class. In other words, it is the ability to <em>override<
       
     </div>
     
-      <script src="../assets/javascripts/application-7aa26ad9ec.js"></script>
+      <script src="../assets/javascripts/application-3964c0cb56.js"></script>
       <script>app.initialize({url:{base:".."}})</script>
       
         <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
